@@ -1,23 +1,23 @@
 PODS:
   - Alamofire (4.8.2)
+  - CBFlashyTabBarController (0.8.3)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
-  - CircleBar (0.8.2)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
+  - CBFlashyTabBarController
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
-  - CircleBar
   - SVProgressHUD
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - CircleBar
+    - CBFlashyTabBarController
     - SVProgressHUD
     - SwiftyJSON
 
@@ -32,11 +32,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  CBFlashyTabBarController: bc6b11dd4cbc9b54785c8944156e2f4d4f03b088
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  CircleBar: 8e17d2090e6e319b518010535a3145fb8fd68c22
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: c94457576156c50897528028c9e62d399304fa4e
+PODFILE CHECKSUM: 8d110ae3932f44c3b4d529c60ef553ef713cf4eb
 
 COCOAPODS: 1.7.5

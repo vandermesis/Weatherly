@@ -28,7 +28,7 @@ It's for me to practise Swift.
 - *[Alamofire](https://github.com/Alamofire/Alamofire)*
 - *[SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)*
 - *[ChameleonFramework](https://github.com/ViccAlexander/Chameleon#random-colors)*
-- *[CircleBar](https://softhaus.org)*
+- *[CBFlashyTabBarController](https://github.com/Cuberto/flashy-tabbar)*
 
 ## Who is who
 Marek Skrzelowski, mskrzelowski@vandermesis.com

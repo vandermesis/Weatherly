@@ -9,7 +9,7 @@ use_frameworks!
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'SVProgressHUD'
-pod 'CircleBar'
+pod 'CBFlashyTabBarController'
 pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 
 end
