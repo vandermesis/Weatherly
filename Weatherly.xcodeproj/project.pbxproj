@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35FCA481F7DD74D801503F0D /* Pods_Weatherly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A887610E19213808802DE82A /* Pods_Weatherly.framework */; };
 		BA6C651C2311C461009F41E1 /* Demo in Resources */ = {isa = PBXBuildFile; fileRef = BA6C651B2311C461009F41E1 /* Demo */; };
 		BA6C651E2311C476009F41E1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BA6C651D2311C476009F41E1 /* README.md */; };
 		BA958F27231011F600985D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA958F26231011F600985D80 /* AppDelegate.swift */; };
@@ -20,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		253904D47C24B000B968D8CF /* Pods-Weatherly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weatherly.release.xcconfig"; path = "Target Support Files/Pods-Weatherly/Pods-Weatherly.release.xcconfig"; sourceTree = "<group>"; };
+		A12DAA6E4632B0BDBE76DFD3 /* Pods-Weatherly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weatherly.debug.xcconfig"; path = "Target Support Files/Pods-Weatherly/Pods-Weatherly.debug.xcconfig"; sourceTree = "<group>"; };
+		A887610E19213808802DE82A /* Pods_Weatherly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weatherly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA6C651B2311C461009F41E1 /* Demo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Demo; sourceTree = "<group>"; };
 		BA6C651D2311C476009F41E1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA958F23231011F600985D80 /* Weatherly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weatherly.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,12 +43,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35FCA481F7DD74D801503F0D /* Pods_Weatherly.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D196A2E2C626674FE82CEC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A887610E19213808802DE82A /* Pods_Weatherly.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E9424D006FC719D29C67342 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A12DAA6E4632B0BDBE76DFD3 /* Pods-Weatherly.debug.xcconfig */,
+				253904D47C24B000B968D8CF /* Pods-Weatherly.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		BA958F1A231011F600985D80 = {
 			isa = PBXGroup;
 			children = (
@@ -52,6 +75,8 @@
 				BA6C651B2311C461009F41E1 /* Demo */,
 				BA958F25231011F600985D80 /* Weatherly */,
 				BA958F24231011F600985D80 /* Products */,
+				8E9424D006FC719D29C67342 /* Pods */,
+				1D196A2E2C626674FE82CEC3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,9 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BA958F35231011F800985D80 /* Build configuration list for PBXNativeTarget "Weatherly" */;
 			buildPhases = (
+				773E47563BB9A4724E832C33 /* [CP] Check Pods Manifest.lock */,
 				BA958F1F231011F600985D80 /* Sources */,
 				BA958F20231011F600985D80 /* Frameworks */,
 				BA958F21231011F600985D80 /* Resources */,
+				E7EE5EFE51BA4BC45B04BB0D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -178,6 +205,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		773E47563BB9A4724E832C33 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Weatherly-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7EE5EFE51BA4BC45B04BB0D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weatherly/Pods-Weatherly-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weatherly/Pods-Weatherly-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weatherly/Pods-Weatherly-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BA958F1F231011F600985D80 /* Sources */ = {
@@ -332,6 +401,7 @@
 		};
 		BA958F36231011F800985D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A12DAA6E4632B0BDBE76DFD3 /* Pods-Weatherly.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -349,6 +419,7 @@
 		};
 		BA958F37231011F800985D80 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 253904D47C24B000B968D8CF /* Pods-Weatherly.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
