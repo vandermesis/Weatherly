@@ -69,6 +69,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Now" image="icons8-circled-notch-100" id="Hc9-mq-mqN"/>
                     <connections>
+                        <outlet property="cityLabel" destination="ytp-6s-Utv" id="JxA-Me-xZh"/>
+                        <outlet property="tempLabel" destination="rxv-Fd-DxT" id="c2h-p8-coL"/>
+                        <outlet property="weatherIcon" destination="8vh-BQ-3eh" id="yxx-id-I0V"/>
                         <segue destination="492-Ub-YHI" kind="show" identifier="gotoFuture" id="eUG-YQ-Amn"/>
                         <segue destination="R14-bG-SoZ" kind="show" identifier="gotoHistory" id="aau-ry-Bra"/>
                     </connections>
@@ -86,7 +89,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="GgW-Am-ZLE">
-                                <rect key="frame" x="0.0" y="597" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="646" width="414" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="588367355.53240502">
                                     <!--2019-08-24 19:22:35 +0000-->
                                 </date>
@@ -104,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQb-VP-ftH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2213" y="879"/>
+            <point key="canvasLocation" x="1209" y="378"/>
         </scene>
         <!--Future-->
         <scene sceneID="Tl1-TS-FvO">
@@ -162,7 +165,7 @@
         <image name="icons8-forward-button-100" width="33" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="O4f-Oz-lDP"/>
-        <segue reference="rti-XZ-4D3"/>
+        <segue reference="eUG-YQ-Amn"/>
+        <segue reference="aau-ry-Bra"/>
     </inferredMetricsTieBreakers>
 </document>
