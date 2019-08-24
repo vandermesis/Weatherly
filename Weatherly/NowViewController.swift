@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  NowViewController.swift
 //  Weatherly
 //
 //  Created by Marek Skrzelowski on 23/08/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NowViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
