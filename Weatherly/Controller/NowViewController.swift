@@ -7,10 +7,9 @@
 //
 
 import UIKit
-import Alamofire
 import ChameleonFramework
-import SwiftyJSON
 import CoreLocation
+import SwiftSky
 
 class NowViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -25,9 +24,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     // MARK: - Constants and Variables
-    // Constants:
-    let darkSkyURL = "https://api.darksky.net/forecast/866e7c9ce3ac206ce04b8644068470c5/"
+    // Constants
     let locationManager = CLLocationManager()
+    let weatherDataModel = WeatherDataModel()
     
     // Variables:
     @IBOutlet weak var tempLabel: UILabel!
@@ -41,11 +40,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             // Stop updating location data
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
-            let latitude = currentLocation.coordinate.latitude
-            let longitude = currentLocation.coordinate.longitude
-            let locationCoordinates = "\(latitude),\(longitude)"
-            print(locationCoordinates)
-            getWeatherData(url: darkSkyURL, location: locationCoordinates)
+            getWeatherData(atLocation: currentLocation)
         }
     }
     
@@ -53,8 +48,24 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         cityLabel.text = "Location Unavaiable"
     }
     
-    func getWeatherData(url: String, location: String) {
+    //MARK: - Get current weather data from DarkSkyAPI
+    func getWeatherData(atLocation: CLLocation) {
         
+        // Configure request
+        SwiftSky.secret = "866e7c9ce3ac206ce04b8644068470c5"
+        SwiftSky.language = .english
+        SwiftSky.locale = .autoupdatingCurrent
+        SwiftSky.units.temperature = .celsius
+        
+        // Request data
+        SwiftSky.get([.current], at: atLocation) { (result) in
+            switch result {
+            case .success(let forecast):
+                print(forecast.current?.temperature?.current?.value)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

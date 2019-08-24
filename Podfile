@@ -6,8 +6,7 @@ target 'Weatherly' do
 use_frameworks!
 
   # Pods for Weatherly
-pod 'Alamofire'
-pod 'SwiftyJSON'
+pod 'SwiftSky'
 pod 'SVProgressHUD'
 pod 'CBFlashyTabBarController'
 pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
