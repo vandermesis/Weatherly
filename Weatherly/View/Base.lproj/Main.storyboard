@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aIa-cy-ReQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d0J-Si-MT6">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,7 +15,7 @@
             <objects>
                 <viewController title="Now" id="BYZ-38-t0r" customClass="NowViewController" customModule="Weatherly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="130" translatesAutoresizingMaskIntoConstraints="NO" id="MoQ-Of-o7O">
@@ -67,7 +67,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Now" id="Hc9-mq-mqN"/>
+                    <tabBarItem key="tabBarItem" title="Now" image="icons8-circled-notch-100" id="Hc9-mq-mqN"/>
                     <connections>
                         <segue destination="492-Ub-YHI" kind="show" identifier="gotoFuture" id="eUG-YQ-Amn"/>
                         <segue destination="R14-bG-SoZ" kind="show" identifier="gotoHistory" id="aau-ry-Bra"/>
@@ -75,30 +75,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1203" y="907"/>
+            <point key="canvasLocation" x="270" y="1188"/>
         </scene>
         <!--Past-->
         <scene sceneID="Odl-HH-48Y">
             <objects>
-                <viewController id="R14-bG-SoZ" sceneMemberID="viewController">
+                <viewController id="R14-bG-SoZ" customClass="PastViewController" customModule="Weatherly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hJ5-jL-Aj6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Lnf-HQ-zB7"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Past" id="djt-J8-fx8"/>
+                    <tabBarItem key="tabBarItem" title="Past" image="icons8-back-arrow-100" id="djt-J8-fx8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQb-VP-ftH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="443" y="907"/>
+            <point key="canvasLocation" x="2213" y="879"/>
         </scene>
         <!--Future-->
         <scene sceneID="Tl1-TS-FvO">
             <objects>
-                <tableViewController id="492-Ub-YHI" sceneMemberID="viewController">
+                <tableViewController id="492-Ub-YHI" customClass="FutureTableViewController" customModule="Weatherly" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nya-dS-kiM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -116,37 +116,39 @@
                             <outlet property="delegate" destination="492-Ub-YHI" id="UN7-WV-5dS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Future" id="oZ5-5O-dw9"/>
+                    <tabBarItem key="tabBarItem" title="Future" image="icons8-forward-button-100" id="oZ5-5O-dw9"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13B-zA-wBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2019" y="907"/>
+            <point key="canvasLocation" x="1210" y="1188"/>
         </scene>
         <!--Tab Bar Controller-->
-        <scene sceneID="4HI-7C-9TH">
+        <scene sceneID="ueB-RZ-QVQ">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="aIa-cy-ReQ" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="d0J-Si-MT6" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4UA-eg-kRZ">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bHE-PG-9Aw">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="R14-bG-SoZ" kind="relationship" relationship="viewControllers" id="Yfq-I0-a2J"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="bxp-u0-Q17"/>
-                        <segue destination="492-Ub-YHI" kind="relationship" relationship="viewControllers" id="Xmt-Zn-dRf"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="PcZ-4m-YRH"/>
+                        <segue destination="492-Ub-YHI" kind="relationship" relationship="viewControllers" id="O4f-Oz-lDP"/>
+                        <segue destination="R14-bG-SoZ" kind="relationship" relationship="viewControllers" id="rti-XZ-4D3"/>
                     </connections>
                 </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j0U-ky-bEi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CSV-uu-P9H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1203" y="89"/>
+            <point key="canvasLocation" x="270" y="378"/>
         </scene>
     </scenes>
     <resources>
         <image name="clear-day" width="148" height="148"/>
+        <image name="icons8-back-arrow-100" width="33" height="33"/>
+        <image name="icons8-circled-notch-100" width="33" height="33"/>
+        <image name="icons8-forward-button-100" width="33" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eUG-YQ-Amn"/>
-        <segue reference="aau-ry-Bra"/>
+        <segue reference="O4f-Oz-lDP"/>
+        <segue reference="rti-XZ-4D3"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,6 +12,9 @@
 		BA958F2C231011F600985D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA958F2A231011F600985D80 /* Main.storyboard */; };
 		BA958F2E231011F800985D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA958F2D231011F800985D80 /* Assets.xcassets */; };
 		BA958F31231011F800985D80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA958F2F231011F800985D80 /* LaunchScreen.storyboard */; };
+		BADF86FC23119B3F00785403 /* FutureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF86FB23119B3F00785403 /* FutureTableViewController.swift */; };
+		BADF86FE23119F4600785403 /* PastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF86FD23119F4600785403 /* PastViewController.swift */; };
+		BADF87032311A4E600785403 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF87022311A4E600785403 /* WeatherDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		BA958F2D231011F800985D80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA958F30231011F800985D80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA958F32231011F800985D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BADF86FB23119B3F00785403 /* FutureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureTableViewController.swift; sourceTree = "<group>"; };
+		BADF86FD23119F4600785403 /* PastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastViewController.swift; sourceTree = "<group>"; };
+		BADF87022311A4E600785403 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +61,48 @@
 			isa = PBXGroup;
 			children = (
 				BA958F26231011F600985D80 /* AppDelegate.swift */,
-				BA958F28231011F600985D80 /* NowViewController.swift */,
-				BA958F2A231011F600985D80 /* Main.storyboard */,
-				BA958F2D231011F800985D80 /* Assets.xcassets */,
-				BA958F2F231011F800985D80 /* LaunchScreen.storyboard */,
+				BADF87042311A4EA00785403 /* Model */,
+				BADF870023119F8600785403 /* View */,
+				BADF86FF23119F7200785403 /* Controller */,
+				BADF870123119F9A00785403 /* SupportingFiles */,
 				BA958F32231011F800985D80 /* Info.plist */,
 			);
 			path = Weatherly;
+			sourceTree = "<group>";
+		};
+		BADF86FF23119F7200785403 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BADF86FD23119F4600785403 /* PastViewController.swift */,
+				BA958F28231011F600985D80 /* NowViewController.swift */,
+				BADF86FB23119B3F00785403 /* FutureTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BADF870023119F8600785403 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA958F2A231011F600985D80 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BADF870123119F9A00785403 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				BA958F2D231011F800985D80 /* Assets.xcassets */,
+				BA958F2F231011F800985D80 /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		BADF87042311A4EA00785403 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BADF87022311A4E600785403 /* WeatherDataModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +177,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA958F29231011F600985D80 /* NowViewController.swift in Sources */,
+				BADF87032311A4E600785403 /* WeatherDataModel.swift in Sources */,
 				BA958F27231011F600985D80 /* AppDelegate.swift in Sources */,
+				BADF86FE23119F4600785403 /* PastViewController.swift in Sources */,
+				BADF86FC23119B3F00785403 /* FutureTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
