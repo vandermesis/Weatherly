@@ -84,7 +84,20 @@
                     <view key="view" contentMode="scaleToFill" id="hJ5-jL-Aj6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="GgW-Am-ZLE">
+                                <rect key="frame" x="0.0" y="597" width="414" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="588367355.53240502">
+                                    <!--2019-08-24 19:22:35 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GgW-Am-ZLE" firstAttribute="bottom" secondItem="Lnf-HQ-zB7" secondAttribute="bottom" id="AqF-xz-Hvy"/>
+                            <constraint firstItem="GgW-Am-ZLE" firstAttribute="leading" secondItem="Lnf-HQ-zB7" secondAttribute="leading" id="NUr-E8-Flj"/>
+                            <constraint firstItem="GgW-Am-ZLE" firstAttribute="trailing" secondItem="Lnf-HQ-zB7" secondAttribute="trailing" id="ssC-CU-zfa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Lnf-HQ-zB7"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Past" image="icons8-back-arrow-100" id="djt-J8-fx8"/>
@@ -128,6 +141,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="d0J-Si-MT6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bHE-PG-9Aw">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </tabBar>
                     <connections>
