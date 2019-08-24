@@ -10,6 +10,7 @@ import UIKit
 import ChameleonFramework
 import CoreLocation
 import SwiftSky
+import SVProgressHUD
 
 class NowViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -21,11 +22,15 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.startUpdatingLocation()
+    
     }
+    
+    
 
     // MARK: - Constants and Variables
     // Constants
     let locationManager = CLLocationManager()
+    let geoCoder = CLGeocoder()
     let weatherDataModel = WeatherDataModel()
     
     // Variables:
@@ -40,6 +45,13 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             // Stop updating location data
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
+            
+            
+            
+            
+            
+            
+            
             getWeatherData(atLocation: currentLocation)
         }
     }
@@ -58,14 +70,23 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         SwiftSky.units.temperature = .celsius
         
         // Request data
+        SVProgressHUD.show()
         SwiftSky.get([.current], at: atLocation) { (result) in
             switch result {
             case .success(let forecast):
-                print(forecast.current?.temperature?.current?.value)
+                self.weatherDataModel.temperature = Int(forecast.current?.temperature?.current?.value ?? 99)
             case .failure(let error):
                 print(error)
+                self.cityLabel.text = "Weather unavaiable"
             }
+            SVProgressHUD.dismiss()
+            self.updateUI()
         }
+    }
+    
+    // MARK: - Update User Interface with current data
+    func updateUI() {
+        tempLabel.text = String(weatherDataModel.temperature ?? 99)
     }
 }
 

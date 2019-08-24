@@ -26,6 +26,7 @@ It's for me to practise Swift.
 ## Credits
 - *[DarkSky](https://darksky.net/dev)*
 - *[Alamofire](https://github.com/Alamofire/Alamofire)*
+- *[SwiftSky](https://github.com/appcompany/SwiftSky)*
 - *[SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)*
 - *[ChameleonFramework](https://github.com/ViccAlexander/Chameleon#random-colors)*
 - *[CBFlashyTabBarController](https://github.com/Cuberto/flashy-tabbar)*
