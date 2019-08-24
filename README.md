@@ -19,6 +19,7 @@ It's for me to practise Swift.
 - UITableView and custom cells
 - Custom design with custom .xib
 - UIPickerView
+- CoreLocation
 
 ## Requirements
 - Cocoapods

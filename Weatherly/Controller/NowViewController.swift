@@ -46,12 +46,14 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
             
-            
-            
-            
-            
-            
-            
+            // Get city name based on current location
+            geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
+                placemarks?.forEach({ (placemark) in
+                    if let city = placemark.locality {
+                        self.weatherDataModel.city = city
+                    }
+                })
+            }
             getWeatherData(atLocation: currentLocation)
         }
     }
@@ -87,6 +89,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Update User Interface with current data
     func updateUI() {
         tempLabel.text = String(weatherDataModel.temperature ?? 99)
+        cityLabel.text = weatherDataModel.city
     }
 }
 
