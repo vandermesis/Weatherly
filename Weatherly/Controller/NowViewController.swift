@@ -63,7 +63,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     func getWeatherData(atLocation: CLLocation) {
         
         // Configure request
-        SwiftSky.secret = "a85efdfe0115bd7bae69a4d1f263f3a2"
+        SwiftSky.secret = "25ecbd3ea290edeed50eb6af3106bfa1"
         SwiftSky.language = .english
         SwiftSky.locale = .autoupdatingCurrent
         SwiftSky.units.temperature = .celsius
@@ -92,10 +92,20 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
     }
     
+    // MARK: - Buttons actions
+    @IBAction func futureButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "gotoFuture", sender: self)
+    }
+    @IBAction func pastButtonPressed(_ sender: Any) {
+    }
+    
+    
     // MARK: - Pass WeatherDataModel to FutureVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let futureVC = segue.destination as! FutureTableViewController
-        futureVC.weatherDataForecast = weatherDataModel.dayForecast!
+        if segue.identifier == "gotoFuture" {
+            let futureVC = segue.destination as! FutureTableViewController
+            futureVC.weatherDataForecast = weatherDataModel.dayForecast
+        }
     }
 }
 

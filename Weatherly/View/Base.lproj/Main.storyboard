@@ -37,6 +37,9 @@
                                 <state key="normal" title="Past" image="icons8-back-arrow-100">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="pastButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fi2-Lv-0sk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uae-A1-a58">
                                 <rect key="frame" x="254" y="410" width="50" height="50"/>
@@ -50,6 +53,9 @@
                                 <state key="normal" title="Future" image="icons8-forward-button-100">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="futureButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8zT-j7-aTv"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Washington DC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytp-6s-Utv">
                                 <rect key="frame" x="41" y="315" width="238" height="42"/>
@@ -98,12 +104,12 @@
                         <outlet property="tempLabel" destination="rxv-Fd-DxT" id="c2h-p8-coL"/>
                         <outlet property="weatherIcon" destination="8vh-BQ-3eh" id="yxx-id-I0V"/>
                         <segue destination="492-Ub-YHI" kind="show" identifier="gotoFuture" id="eUG-YQ-Amn"/>
-                        <segue destination="R14-bG-SoZ" kind="show" identifier="gotoHistory" id="aau-ry-Bra"/>
+                        <segue destination="R14-bG-SoZ" kind="show" identifier="gotoPast" id="aau-ry-Bra"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="22.5" y="807.5"/>
+            <point key="canvasLocation" x="893" y="968"/>
         </scene>
         <!--Past View Controller-->
         <scene sceneID="Odl-HH-48Y">
@@ -131,7 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQb-VP-ftH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1209" y="378"/>
+            <point key="canvasLocation" x="105" y="968"/>
         </scene>
         <!--Future Table View Controller-->
         <scene sceneID="Tl1-TS-FvO">
@@ -159,7 +165,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13B-zA-wBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="1188"/>
+            <point key="canvasLocation" x="1731" y="968"/>
         </scene>
     </scenes>
     <resources>
