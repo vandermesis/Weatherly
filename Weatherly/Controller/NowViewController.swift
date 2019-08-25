@@ -21,11 +21,8 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.startUpdatingLocation()
-    
+        locationManager.startUpdatingLocation()    
     }
-    
-    
 
     // MARK: - Constants and Variables
     // Constants
@@ -66,7 +63,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     func getWeatherData(atLocation: CLLocation) {
         
         // Configure request
-        SwiftSky.secret = "866e7c9ce3ac206ce04b8644068470c5"
+        SwiftSky.secret = "a85efdfe0115bd7bae69a4d1f263f3a2"
         SwiftSky.language = .english
         SwiftSky.locale = .autoupdatingCurrent
         SwiftSky.units.temperature = .celsius
@@ -77,6 +74,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             switch result {
             case .success(let forecast):
                 self.weatherDataModel.temperature = Int(forecast.current?.temperature?.current?.value ?? 99)
+                self.weatherDataModel.icon = String((forecast.current?.icon)!)
             case .failure(let error):
                 print(error)
                 self.cityLabel.text = "Weather unavaiable"
@@ -90,6 +88,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     func updateUI() {
         tempLabel.text = String(weatherDataModel.temperature ?? 99)
         cityLabel.text = weatherDataModel.city
+        weatherIcon.image = UIImage(named: weatherDataModel.icon!)
     }
 }
 
