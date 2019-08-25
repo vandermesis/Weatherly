@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		35FCA481F7DD74D801503F0D /* Pods_Weatherly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A887610E19213808802DE82A /* Pods_Weatherly.framework */; };
+		BA5ED23D23134127007536F2 /* FutureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5ED23B23134127007536F2 /* FutureCell.swift */; };
+		BA5ED23E23134127007536F2 /* FutureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA5ED23C23134127007536F2 /* FutureCell.xib */; };
 		BA6C651C2311C461009F41E1 /* Demo in Resources */ = {isa = PBXBuildFile; fileRef = BA6C651B2311C461009F41E1 /* Demo */; };
 		BA6C651E2311C476009F41E1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BA6C651D2311C476009F41E1 /* README.md */; };
 		BA958F27231011F600985D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA958F26231011F600985D80 /* AppDelegate.swift */; };
@@ -24,6 +26,8 @@
 		253904D47C24B000B968D8CF /* Pods-Weatherly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weatherly.release.xcconfig"; path = "Target Support Files/Pods-Weatherly/Pods-Weatherly.release.xcconfig"; sourceTree = "<group>"; };
 		A12DAA6E4632B0BDBE76DFD3 /* Pods-Weatherly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weatherly.debug.xcconfig"; path = "Target Support Files/Pods-Weatherly/Pods-Weatherly.debug.xcconfig"; sourceTree = "<group>"; };
 		A887610E19213808802DE82A /* Pods_Weatherly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weatherly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA5ED23B23134127007536F2 /* FutureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureCell.swift; sourceTree = "<group>"; };
+		BA5ED23C23134127007536F2 /* FutureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FutureCell.xib; sourceTree = "<group>"; };
 		BA6C651B2311C461009F41E1 /* Demo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Demo; sourceTree = "<group>"; };
 		BA6C651D2311C476009F41E1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA958F23231011F600985D80 /* Weatherly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weatherly.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +69,15 @@
 				253904D47C24B000B968D8CF /* Pods-Weatherly.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BA5ED23A231340E8007536F2 /* FutureCell */ = {
+			isa = PBXGroup;
+			children = (
+				BA5ED23B23134127007536F2 /* FutureCell.swift */,
+				BA5ED23C23134127007536F2 /* FutureCell.xib */,
+			);
+			path = FutureCell;
 			sourceTree = "<group>";
 		};
 		BA958F1A231011F600985D80 = {
@@ -113,6 +126,7 @@
 		BADF870023119F8600785403 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BA5ED23A231340E8007536F2 /* FutureCell */,
 				BA958F2A231011F600985D80 /* Main.storyboard */,
 			);
 			path = View;
@@ -199,6 +213,7 @@
 				BA6C651C2311C461009F41E1 /* Demo in Resources */,
 				BA6C651E2311C476009F41E1 /* README.md in Resources */,
 				BA958F2E231011F800985D80 /* Assets.xcassets in Resources */,
+				BA5ED23E23134127007536F2 /* FutureCell.xib in Resources */,
 				BA958F2C231011F600985D80 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA5ED23D23134127007536F2 /* FutureCell.swift in Sources */,
 				BA958F29231011F600985D80 /* NowViewController.swift in Sources */,
 				BADF87032311A4E600785403 /* WeatherDataModel.swift in Sources */,
 				BA958F27231011F600985D80 /* AppDelegate.swift in Sources */,

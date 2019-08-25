@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (4.8.2)
-  - CBFlashyTabBarController (0.8.3)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -9,7 +8,6 @@ PODS:
     - Alamofire (~> 4.4)
 
 DEPENDENCIES:
-  - CBFlashyTabBarController
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - SVProgressHUD
   - SwiftSky
@@ -17,7 +15,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - CBFlashyTabBarController
     - SVProgressHUD
     - SwiftSky
 
@@ -32,11 +29,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  CBFlashyTabBarController: bc6b11dd4cbc9b54785c8944156e2f4d4f03b088
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftSky: 97a7896cbf22ea5e93bfab3988b0908a23a53f04
 
-PODFILE CHECKSUM: 0930116d0207c14ece0f7b1009c435b4f5da0d7a
+PODFILE CHECKSUM: bb2e32e915ed1e0e2a8580c806b4b4dbf0a2a824
 
 COCOAPODS: 1.7.5

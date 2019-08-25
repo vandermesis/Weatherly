@@ -103,13 +103,66 @@
                         <outlet property="cityLabel" destination="ytp-6s-Utv" id="JxA-Me-xZh"/>
                         <outlet property="tempLabel" destination="rxv-Fd-DxT" id="c2h-p8-coL"/>
                         <outlet property="weatherIcon" destination="8vh-BQ-3eh" id="yxx-id-I0V"/>
-                        <segue destination="492-Ub-YHI" kind="show" identifier="gotoFuture" id="eUG-YQ-Amn"/>
                         <segue destination="R14-bG-SoZ" kind="show" identifier="gotoPast" id="aau-ry-Bra"/>
+                        <segue destination="0mZ-K3-Hpb" kind="show" identifier="gotoFuture" id="Y2G-4E-PVx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="893" y="968"/>
+        </scene>
+        <!--Future Table View Controller-->
+        <scene sceneID="hfS-J5-eYk">
+            <objects>
+                <viewController id="0mZ-K3-Hpb" customClass="FutureTableViewController" customModule="Weatherly" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Y2-ci-C5y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPa-mb-I8z">
+                                <rect key="frame" x="135" y="410" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="JRI-Xf-eHA"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="dBB-cO-FPv"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="ibw-WS-lfL"/>
+                                    <constraint firstAttribute="height" constant="50" id="zWB-Xm-NOe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <inset key="titleEdgeInsets" minX="-32" minY="36" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="10"/>
+                                <state key="normal" title="Now" image="icons8-circled-notch-100">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="futureButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PJH-ek-yfl"/>
+                                    <action selector="nowButtonPressed:" destination="0mZ-K3-Hpb" eventType="touchUpInside" id="Vo1-db-AVl"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6l0-hW-Sff">
+                                <rect key="frame" x="0.0" y="90" width="320" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="fJb-ah-VXb"/>
+                                </constraints>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mPq-rF-tq4" firstAttribute="bottom" secondItem="KPa-mb-I8z" secondAttribute="bottom" constant="20" id="5E1-QM-pOC"/>
+                            <constraint firstItem="KPa-mb-I8z" firstAttribute="centerX" secondItem="5Y2-ci-C5y" secondAttribute="centerX" id="6gv-Ar-2sS"/>
+                            <constraint firstItem="6l0-hW-Sff" firstAttribute="leading" secondItem="5Y2-ci-C5y" secondAttribute="leading" id="ENh-EI-Yto"/>
+                            <constraint firstItem="6l0-hW-Sff" firstAttribute="centerY" secondItem="5Y2-ci-C5y" secondAttribute="centerY" id="rWq-sd-vCl"/>
+                            <constraint firstAttribute="trailing" secondItem="6l0-hW-Sff" secondAttribute="trailing" id="whR-KS-aXR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mPq-rF-tq4"/>
+                    </view>
+                    <connections>
+                        <outlet property="futureTableView" destination="6l0-hW-Sff" id="Kts-2Y-fjD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H2I-jg-QeH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1680" y="967.5"/>
         </scene>
         <!--Past View Controller-->
         <scene sceneID="Odl-HH-48Y">
@@ -139,38 +192,11 @@
             </objects>
             <point key="canvasLocation" x="105" y="968"/>
         </scene>
-        <!--Future Table View Controller-->
-        <scene sceneID="Tl1-TS-FvO">
-            <objects>
-                <tableViewController id="492-Ub-YHI" customClass="FutureTableViewController" customModule="Weatherly" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nya-dS-kiM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ForecastCell" id="Wjv-mU-im2">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wjv-mU-im2" id="pl5-aU-LAS">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="492-Ub-YHI" id="3Fs-4X-Yra"/>
-                            <outlet property="delegate" destination="492-Ub-YHI" id="UN7-WV-5dS"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="13B-zA-wBh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1731" y="968"/>
-        </scene>
     </scenes>
     <resources>
         <image name="clear-day" width="148" height="148"/>
         <image name="icons8-back-arrow-100" width="33" height="33"/>
+        <image name="icons8-circled-notch-100" width="33" height="33"/>
         <image name="icons8-forward-button-100" width="33" height="33"/>
     </resources>
 </document>
