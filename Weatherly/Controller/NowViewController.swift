@@ -74,7 +74,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             switch result {
             case .success(let forecast):
                 self.weatherDataModel.currentTemperature = Int(forecast.current?.temperature?.current?.value ?? 99)
-                self.weatherDataModel.currentIcon = String((forecast.current?.icon)!)
+                self.weatherDataModel.currentIcon = String((forecast.current?.icon) ?? "clear-day")
                 self.weatherDataModel.dayForecast = forecast.days?.points
             case .failure(let error):
                 print(error)
@@ -95,7 +95,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Pass WeatherDataModel to FutureVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let futureVC = segue.destination as! FutureTableViewController
-        futureVC.weatherDataModel = weatherDataModel
+        futureVC.weatherDataForecast = weatherDataModel.dayForecast!
     }
 }
 

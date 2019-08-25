@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftSky
 
 class FutureTableViewController: UITableViewController {
 
@@ -21,7 +22,7 @@ class FutureTableViewController: UITableViewController {
     }
     
     // MARK: - Variables
-    var weatherDataModel: WeatherDataModel?
+    var weatherDataForecast: [DataPoint] = []
 
     // MARK: - Table view data source
 
