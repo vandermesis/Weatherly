@@ -15,23 +15,23 @@
             <objects>
                 <viewController title="Now" id="BYZ-38-t0r" customClass="NowViewController" customModule="Weatherly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="130" translatesAutoresizingMaskIntoConstraints="NO" id="MoQ-Of-o7O">
                                 <rect key="frame" x="40" y="59" width="334" height="737"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oqA-Us-3X1">
-                                        <rect key="frame" x="81" y="0.0" width="172" height="303.5"/>
+                                        <rect key="frame" x="117" y="0.0" width="100" height="303.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="27" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxv-Fd-DxT">
-                                                <rect key="frame" x="0.0" y="104" width="86" height="95.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxv-Fd-DxT">
+                                                <rect key="frame" x="0.0" y="127" width="50" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="80"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ypt-27-WyX">
-                                                <rect key="frame" x="86" y="104" width="86" height="95.5"/>
+                                                <rect key="frame" x="50" y="104" width="50" height="95.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="80"/>
                                                 <color key="textColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
                                                 <nil key="highlightedColor"/>
@@ -41,13 +41,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="10" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PC8-tE-3Wa">
                                         <rect key="frame" x="48" y="433.5" width="238" height="303.5"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-day" translatesAutoresizingMaskIntoConstraints="NO" id="8vh-BQ-3eh">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8vh-BQ-3eh">
                                                 <rect key="frame" x="138" y="0.0" width="100" height="163.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="Zrv-nC-LFs"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Washington DC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytp-6s-Utv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytp-6s-Utv">
                                                 <rect key="frame" x="0.0" y="140" width="238" height="163.5"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="35"/>
                                                 <nil key="textColor"/>
@@ -85,11 +85,11 @@
             <objects>
                 <viewController id="R14-bG-SoZ" customClass="PastViewController" customModule="Weatherly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hJ5-jL-Aj6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="GgW-Am-ZLE">
-                                <rect key="frame" x="0.0" y="646" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="597" width="414" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="588367355.53240502">
                                     <!--2019-08-24 19:22:35 +0000-->
                                 </date>
@@ -114,7 +114,7 @@
             <objects>
                 <tableViewController id="492-Ub-YHI" customClass="FutureTableViewController" customModule="Weatherly" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nya-dS-kiM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -143,7 +143,7 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="d0J-Si-MT6" customClass="CBFlashyTabBarController" customModule="CBFlashyTabBarController" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bHE-PG-9Aw">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bHE-PG-9Aw">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </tabBar>
@@ -159,13 +159,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="clear-day" width="148" height="148"/>
         <image name="icons8-back-arrow-100" width="33" height="33"/>
         <image name="icons8-circled-notch-100" width="33" height="33"/>
         <image name="icons8-forward-button-100" width="33" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eUG-YQ-Amn"/>
-        <segue reference="aau-ry-Bra"/>
+        <segue reference="O4f-Oz-lDP"/>
+        <segue reference="rti-XZ-4D3"/>
     </inferredMetricsTieBreakers>
 </document>

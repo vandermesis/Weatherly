@@ -47,7 +47,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
                 placemarks?.forEach({ (placemark) in
                     if let city = placemark.locality {
-                        self.weatherDataModel.city = city
+                        self.weatherDataModel.currentCity = city
                     }
                 })
             }
@@ -70,11 +70,12 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         
         // Request data
         SVProgressHUD.show()
-        SwiftSky.get([.current], at: atLocation) { (result) in
+        SwiftSky.get([.current, .hours, .days], at: atLocation) { (result) in
             switch result {
             case .success(let forecast):
-                self.weatherDataModel.temperature = Int(forecast.current?.temperature?.current?.value ?? 99)
-                self.weatherDataModel.icon = String((forecast.current?.icon)!)
+                self.weatherDataModel.currentTemperature = Int(forecast.current?.temperature?.current?.value ?? 99)
+                self.weatherDataModel.currentIcon = String((forecast.current?.icon)!)
+                self.weatherDataModel.dayForecast = forecast.days?.points
             case .failure(let error):
                 print(error)
                 self.cityLabel.text = "Weather unavaiable"
@@ -86,9 +87,15 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Update User Interface with current data
     func updateUI() {
-        tempLabel.text = String(weatherDataModel.temperature ?? 99)
-        cityLabel.text = weatherDataModel.city
-        weatherIcon.image = UIImage(named: weatherDataModel.icon!)
+        tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
+        cityLabel.text = weatherDataModel.currentCity
+        weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
+    }
+    
+    // MARK: - Pass WeatherDataModel to FutureVC
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let futureVC = segue.destination as! FutureTableViewController
+        futureVC.weatherDataModel = weatherDataModel
     }
 }
 
