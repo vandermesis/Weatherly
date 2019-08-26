@@ -251,8 +251,7 @@
                     </view>
                     <connections>
                         <outlet property="pastCityLabel" destination="fWs-GA-HJ6" id="tbO-t6-K07"/>
-                        <outlet property="pastTemp" destination="hwB-y2-K3t" id="jRs-PZ-9LW"/>
-                        <outlet property="pastTempLabel" destination="hwB-y2-K3t" id="oBh-oX-R8J"/>
+                        <outlet property="pastTempLabel" destination="hwB-y2-K3t" id="86d-u2-N5B"/>
                         <outlet property="pastWeatherIcon" destination="dvs-9U-BK5" id="x2l-Ba-Z6D"/>
                     </connections>
                 </viewController>

@@ -12,16 +12,18 @@ class PastViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        pastCityLabel.text = cityFromNowVC
+        pastTempLabel.text = String(tempFromNowVC!)
     }
-    
     var cityFromNowVC: String?
+    var tempFromNowVC: Int?
     
     @IBOutlet weak var pastTempLabel: UILabel!
     @IBOutlet weak var pastWeatherIcon: UIImageView!
     @IBOutlet weak var pastCityLabel: UILabel!
     
     @IBAction func pastDatePickerChanged(_ sender: UIDatePicker) {
+        print(sender)
     }
     
     @IBAction func nowButtonPressed(_ sender: Any) {
