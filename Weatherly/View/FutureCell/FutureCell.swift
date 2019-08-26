@@ -18,4 +18,5 @@ class FutureCell: UITableViewCell {
     @IBOutlet weak var dayMaxTemp: UILabel!
     @IBOutlet weak var dayMinTemp: UILabel!
     @IBOutlet weak var dayWeatherIcon: UIImageView!
+    @IBOutlet weak var dayPrecipitation: UILabel!
 }

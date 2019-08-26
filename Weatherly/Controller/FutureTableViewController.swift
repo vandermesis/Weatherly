@@ -17,6 +17,8 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
         futureTableView.dataSource = self
         futureTableView.separatorStyle = .none
         futureTableView.register(UINib(nibName: "FutureCell", bundle: nil), forCellReuseIdentifier: "futureCell")
+        futureTableView.rowHeight = UITableView.automaticDimension
+        futureTableView.estimatedRowHeight = 40.0
     }
     
     
@@ -34,10 +36,11 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "futureCell", for: indexPath) as! FutureCell
-        cell.dayMaxTemp.text = String(Int(round(weatherDataForecast![indexPath.row].temperature?.max?.value ?? 99)))
-        cell.dayMinTemp.text = String(Int(round(weatherDataForecast![indexPath.row].temperature?.min?.value ?? 99)))
+        cell.dayMaxTemp.text = String(Int(round(weatherDataForecast![indexPath.row].temperature?.max?.value ?? 99))) + "°"
+        cell.dayMinTemp.text = String(Int(round(weatherDataForecast![indexPath.row].temperature?.min?.value ?? 99))) + "°"
         cell.dayOfWeek.text = dateFormatter.weekdaySymbols[Calendar.current.component(.weekday, from: weatherDataForecast![indexPath.row].time) - 1]
         cell.dayWeatherIcon.image = UIImage(named: weatherDataForecast![indexPath.row].icon!)
+        cell.dayPrecipitation.text = String(weatherDataForecast![indexPath.row].precipitation?.probability?.value ?? 99) + "%"
         return cell
     }
     
