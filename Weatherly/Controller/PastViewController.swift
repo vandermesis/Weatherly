@@ -13,10 +13,21 @@ class PastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
     
-
+    var cityFromNowVC: String?
+    
+    @IBOutlet weak var pastTempLabel: UILabel!
+    @IBOutlet weak var pastWeatherIcon: UIImageView!
+    @IBOutlet weak var pastCityLabel: UILabel!
+    
+    @IBAction func pastDatePickerChanged(_ sender: UIDatePicker) {
+    }
+    
+    @IBAction func nowButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

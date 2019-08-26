@@ -46,8 +46,8 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             // Get city name based on current location
             geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
                 placemarks?.forEach({ (placemark) in
-                    if let city = placemark.locality {
-                        self.weatherDataModel.currentCity = city
+                    if let currentCity = placemark.locality {
+                        self.weatherDataModel.currentCity = currentCity
                     }
                 })
             }
@@ -63,7 +63,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     func getWeatherData(atLocation: CLLocation) {
         
         // Configure request
-        SwiftSky.secret = "25ecbd3ea290edeed50eb6af3106bfa1"
+        SwiftSky.secret = "44c90ae04d6f86164e505b107b70e5f6"
         SwiftSky.language = .english
         SwiftSky.locale = .autoupdatingCurrent
         SwiftSky.units.temperature = .celsius
@@ -96,7 +96,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func futureButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "gotoFuture", sender: self)
     }
+    
     @IBAction func pastButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "gotoPast", sender: self)
     }
     
     
