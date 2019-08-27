@@ -36,6 +36,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
         cell.dayOfWeek.text = dateFormatter.weekdaySymbols[Calendar.current.component(.weekday, from: weatherDataForecast![indexPath.row].time) - 1]
         cell.dayWeatherIcon.image = UIImage(named: weatherDataForecast![indexPath.row].icon!)
         cell.dayPrecipitation.text = String(weatherDataForecast![indexPath.row].precipitation?.probability?.value ?? 99) + "%"
+        print(dateFormatter.weekdaySymbols[Calendar.current.component(.weekday, from: weatherDataForecast![indexPath.row].time) - 1], weatherDataForecast![indexPath.row].time)
         return cell
     }
     

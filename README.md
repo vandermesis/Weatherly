@@ -12,6 +12,7 @@
 
 ## What for
 It's for me to practise Swift.
+Check current, past and future weather for current location.
 
 ## What new I've learned
 
@@ -21,6 +22,7 @@ It's for me to practise Swift.
 - UIDatePickerView
 - CoreLocation
 - DateFormatter
+- NotificationCenter
 
 ## Requirements
 - Cocoapods

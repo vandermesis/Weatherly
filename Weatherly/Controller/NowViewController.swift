@@ -22,6 +22,11 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         super.viewWillAppear(true)
         NotificationCenter.default.addObserver(self, selector:#selector(updateCurrentLocation), name: UIApplication.didBecomeActiveNotification, object: nil)
         updateCurrentLocation()
+        
+        nowTableView.delegate = self
+        nowTableView.dataSource = self
+        nowTableView.separatorStyle = .none
+        nowTableView.register(UINib(nibName: "NowCell", bundle: nil), forCellReuseIdentifier: "nowCell")
     }
 
     // MARK: - Constants and Variables
@@ -34,6 +39,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var nowTableView: UITableView!
     
     // MARK: - Start updating location data
     @objc func updateCurrentLocation() {
@@ -87,9 +93,13 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             case .success(let forecast):
                 self.weatherDataModel.currentTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
                 self.weatherDataModel.currentIcon = forecast.current?.icon ?? "clear-day"
+                self.weatherDataModel.currentDayHours = forecast.hours?.points
                 self.weatherDataModel.dayForecast = forecast.days?.points
+                self.nowTableView.reloadData()
+//                print(self.weatherDataModel.dayForecast!)
+                print(forecast.current!.time.description)
             case .failure(let error):
-                print(error)
+                print("Error geting data from DarkSky: \(error)")
                 self.cityLabel.text = "Weather unavaiable"
             }
             SVProgressHUD.dismiss()
@@ -129,3 +139,22 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     }
 }
 
+extension NowViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return weatherDataModel.currentDayHours?.count ?? 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM HH:mm"
+        let cell = nowTableView.dequeueReusableCell(withIdentifier: "nowCell", for: indexPath) as! NowCell
+        cell.nowHour.text = dateFormatter.string(from: weatherDataModel.currentDayHours?[indexPath.row].time ?? Date())
+        cell.nowTemperature.text = String(Int(round(weatherDataModel.currentDayHours?[indexPath.row].temperature?.current?.value ?? 99))) + "°"
+        cell.nowPrecipitation.text = String(weatherDataModel.currentDayHours?[indexPath.row].precipitation?.probability?.value ?? 99) + "%"
+        cell.nowWeatherIcon.image = UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")
+        return cell
+    }
+    
+    
+}

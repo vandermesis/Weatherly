@@ -34,12 +34,12 @@ class PastViewController: UIViewController {
         SwiftSky.get([.current], at: locationFromNovVC!, on: Date(timeIntervalSince1970: datePicker.date.timeIntervalSince1970)) { (result) in
             switch result {
             case .success(let forecast):
-                print(forecast)
+                print(forecast.current!.time.description)
                 self.pastDataModel.pastTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
                 self.pastDataModel.pastIcon = forecast.current?.icon ?? "clear-day"
                 self.updateUI()
             case .failure(let error):
-                print(error)
+                print("Error geting data from DarkSky: \(error)")
             }
         }
     }

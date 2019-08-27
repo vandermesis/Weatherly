@@ -18,6 +18,8 @@
 		BA958F2C231011F600985D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA958F2A231011F600985D80 /* Main.storyboard */; };
 		BA958F2E231011F800985D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA958F2D231011F800985D80 /* Assets.xcassets */; };
 		BA958F31231011F800985D80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA958F2F231011F800985D80 /* LaunchScreen.storyboard */; };
+		BAB57C252315B757002C6DE2 /* NowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB57C232315B757002C6DE2 /* NowCell.swift */; };
+		BAB57C262315B757002C6DE2 /* NowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB57C242315B757002C6DE2 /* NowCell.xib */; };
 		BADF86FC23119B3F00785403 /* FutureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF86FB23119B3F00785403 /* FutureTableViewController.swift */; };
 		BADF86FE23119F4600785403 /* PastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF86FD23119F4600785403 /* PastViewController.swift */; };
 		BADF87032311A4E600785403 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF87022311A4E600785403 /* WeatherDataModel.swift */; };
@@ -39,6 +41,8 @@
 		BA958F2D231011F800985D80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA958F30231011F800985D80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA958F32231011F800985D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAB57C232315B757002C6DE2 /* NowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowCell.swift; sourceTree = "<group>"; };
+		BAB57C242315B757002C6DE2 /* NowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowCell.xib; sourceTree = "<group>"; };
 		BADF86FB23119B3F00785403 /* FutureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureTableViewController.swift; sourceTree = "<group>"; };
 		BADF86FD23119F4600785403 /* PastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastViewController.swift; sourceTree = "<group>"; };
 		BADF87022311A4E600785403 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
@@ -115,6 +119,15 @@
 			path = Weatherly;
 			sourceTree = "<group>";
 		};
+		BAB57C222315B739002C6DE2 /* NowCell */ = {
+			isa = PBXGroup;
+			children = (
+				BAB57C232315B757002C6DE2 /* NowCell.swift */,
+				BAB57C242315B757002C6DE2 /* NowCell.xib */,
+			);
+			path = NowCell;
+			sourceTree = "<group>";
+		};
 		BADF86FF23119F7200785403 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +141,7 @@
 		BADF870023119F8600785403 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BAB57C222315B739002C6DE2 /* NowCell */,
 				BA5ED23A231340E8007536F2 /* FutureCell */,
 				BA958F2A231011F600985D80 /* Main.storyboard */,
 			);
@@ -213,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA958F31231011F800985D80 /* LaunchScreen.storyboard in Resources */,
+				BAB57C262315B757002C6DE2 /* NowCell.xib in Resources */,
 				BA6C651C2311C461009F41E1 /* Demo in Resources */,
 				BA6C651E2311C476009F41E1 /* README.md in Resources */,
 				BA958F2E231011F800985D80 /* Assets.xcassets in Resources */,
@@ -274,6 +289,7 @@
 				BA958F29231011F600985D80 /* NowViewController.swift in Sources */,
 				BADF87032311A4E600785403 /* WeatherDataModel.swift in Sources */,
 				BA958F27231011F600985D80 /* AppDelegate.swift in Sources */,
+				BAB57C252315B757002C6DE2 /* NowCell.swift in Sources */,
 				BA882A502315560500D9D483 /* PastDataModel.swift in Sources */,
 				BADF86FE23119F4600785403 /* PastViewController.swift in Sources */,
 				BADF86FC23119B3F00785403 /* FutureTableViewController.swift in Sources */,

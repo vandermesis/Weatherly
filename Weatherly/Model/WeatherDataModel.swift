@@ -16,6 +16,7 @@ class WeatherDataModel {
     var currentTemperature: Int?
     var currentCity: String?
     var currentIcon: String?
+    var currentDayHours: [DataPoint]?
     var currentLocation: CLLocation?
     
     // Data for FutureViewController
