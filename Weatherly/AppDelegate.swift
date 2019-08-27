@@ -15,9 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        //  Show lauch screen for 1 sec to display logo
+        //  Show lauch screen for 0.5 sec to display logo
         Thread.sleep(forTimeInterval: 0.5)
-        
         return true
     }
 

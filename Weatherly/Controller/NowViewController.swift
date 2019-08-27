@@ -16,12 +16,12 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Start updating location data
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.startUpdatingLocation()    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        NotificationCenter.default.addObserver(self, selector:#selector(updateCurrentLocation), name: UIApplication.didBecomeActiveNotification, object: nil)
+        updateCurrentLocation()
     }
 
     // MARK: - Constants and Variables
@@ -34,6 +34,14 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
+    
+    // MARK: - Start updating location data
+    @objc func updateCurrentLocation() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.startUpdatingLocation()
+    }
     
     //MARK: - Get current location data
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -54,6 +62,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
                     }
                 })
             }
+            print(currentLocation)
             getWeatherData(atLocation: currentLocation)
         }
     }

@@ -20,6 +20,7 @@ It's for me to practise Swift.
 - Custom cell design with custom .xib
 - UIDatePickerView
 - CoreLocation
+- DateFormatter
 
 ## Requirements
 - Cocoapods
