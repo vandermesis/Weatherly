@@ -178,8 +178,7 @@
                                     <!--2019-08-24 19:22:35 +0000-->
                                 </date>
                                 <connections>
-                                    <action selector="pastDatePickerChanged:" destination="R14-bG-SoZ" eventType="valueChanged" id="aEC-ht-bJI"/>
-                                    <action selector="pastDatePickerView:" destination="R14-bG-SoZ" eventType="valueChanged" id="2J7-VJ-6uN"/>
+                                    <action selector="datePickerChanged:" destination="R14-bG-SoZ" eventType="valueChanged" id="J4L-WV-pcV"/>
                                 </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Auc-NZ-7IJ">
@@ -252,6 +251,7 @@
                         <viewLayoutGuide key="safeArea" id="5wQ-lC-IZT"/>
                     </view>
                     <connections>
+                        <outlet property="datePicker" destination="GgW-Am-ZLE" id="wbz-ss-22R"/>
                         <outlet property="pastCityLabel" destination="fWs-GA-HJ6" id="tbO-t6-K07"/>
                         <outlet property="pastTempLabel" destination="hwB-y2-K3t" id="86d-u2-N5B"/>
                         <outlet property="pastWeatherIcon" destination="dvs-9U-BK5" id="x2l-Ba-Z6D"/>

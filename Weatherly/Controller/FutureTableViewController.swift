@@ -19,13 +19,9 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
         futureTableView.register(UINib(nibName: "FutureCell", bundle: nil), forCellReuseIdentifier: "futureCell")
     }
     
-    
     // MARK: - Variables
     var weatherDataForecast: [DataPoint]?
     @IBOutlet weak var futureTableView: UITableView!
-    
-    let dateFormatter = DateFormatter()
-    
     
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,6 +29,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let dateFormatter = DateFormatter()
         let cell = tableView.dequeueReusableCell(withIdentifier: "futureCell", for: indexPath) as! FutureCell
         cell.dayMaxTemp.text = String(Int(round(weatherDataForecast![indexPath.row].temperature?.max?.value ?? 99))) + "°"
         cell.dayMinTemp.text = String(Int(round(weatherDataForecast![indexPath.row].temperature?.min?.value ?? 99))) + "°"

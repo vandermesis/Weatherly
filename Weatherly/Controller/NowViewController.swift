@@ -43,6 +43,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
             
+            // Put currentLocation into WeatherDataModel
+            weatherDataModel.currentLocation = currentLocation
+            
             // Get city name based on current location
             geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
                 placemarks?.forEach({ (placemark) in
@@ -73,8 +76,8 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         SwiftSky.get([.current, .hours, .days], at: atLocation) { (result) in
             switch result {
             case .success(let forecast):
-                self.weatherDataModel.currentTemperature = Int(forecast.current?.temperature?.current?.value ?? 99)
-                self.weatherDataModel.currentIcon = String((forecast.current?.icon) ?? "clear-day")
+                self.weatherDataModel.currentTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
+                self.weatherDataModel.currentIcon = forecast.current?.icon ?? "clear-day"
                 self.weatherDataModel.dayForecast = forecast.days?.points
             case .failure(let error):
                 print(error)
@@ -112,6 +115,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             let pastVC = segue.destination as! PastViewController
             pastVC.cityFromNowVC = weatherDataModel.currentCity
             pastVC.tempFromNowVC = weatherDataModel.currentTemperature
+            pastVC.locationFromNovVC = weatherDataModel.currentLocation
         }
     }
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftSky
+import CoreLocation
 
 class PastViewController: UIViewController {
 
@@ -15,29 +17,40 @@ class PastViewController: UIViewController {
         pastCityLabel.text = cityFromNowVC
         pastTempLabel.text = String(tempFromNowVC!)
     }
+    
     var cityFromNowVC: String?
     var tempFromNowVC: Int?
+    var locationFromNovVC: CLLocation?
+    
+    let pastDataModel = PastDataModel()
     
     @IBOutlet weak var pastTempLabel: UILabel!
     @IBOutlet weak var pastWeatherIcon: UIImageView!
     @IBOutlet weak var pastCityLabel: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
-    @IBAction func pastDatePickerChanged(_ sender: UIDatePicker) {
-        print(sender)
+    @IBAction func datePickerChanged(_ sender: UIDatePicker) {
+        
+        SwiftSky.get([.current], at: locationFromNovVC!, on: Date(timeIntervalSince1970: datePicker.date.timeIntervalSince1970)) { (result) in
+            switch result {
+            case .success(let forecast):
+                print(forecast)
+                self.pastDataModel.pastTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
+                self.pastDataModel.pastIcon = forecast.current?.icon ?? "clear-day"
+                self.updateUI()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     @IBAction func nowButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func updateUI() {
+        pastTempLabel.text = String(pastDataModel.pastTemperature ?? 99)
+        pastWeatherIcon.image = UIImage(named: pastDataModel.pastIcon ?? "clear-day")
     }
-    */
 
 }

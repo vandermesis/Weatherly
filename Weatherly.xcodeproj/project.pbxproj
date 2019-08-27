@@ -12,6 +12,7 @@
 		BA5ED23E23134127007536F2 /* FutureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA5ED23C23134127007536F2 /* FutureCell.xib */; };
 		BA6C651C2311C461009F41E1 /* Demo in Resources */ = {isa = PBXBuildFile; fileRef = BA6C651B2311C461009F41E1 /* Demo */; };
 		BA6C651E2311C476009F41E1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BA6C651D2311C476009F41E1 /* README.md */; };
+		BA882A502315560500D9D483 /* PastDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA882A4F2315560500D9D483 /* PastDataModel.swift */; };
 		BA958F27231011F600985D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA958F26231011F600985D80 /* AppDelegate.swift */; };
 		BA958F29231011F600985D80 /* NowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA958F28231011F600985D80 /* NowViewController.swift */; };
 		BA958F2C231011F600985D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA958F2A231011F600985D80 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		BA5ED23C23134127007536F2 /* FutureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FutureCell.xib; sourceTree = "<group>"; };
 		BA6C651B2311C461009F41E1 /* Demo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Demo; sourceTree = "<group>"; };
 		BA6C651D2311C476009F41E1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BA882A4F2315560500D9D483 /* PastDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastDataModel.swift; sourceTree = "<group>"; };
 		BA958F23231011F600985D80 /* Weatherly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weatherly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA958F26231011F600985D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA958F28231011F600985D80 /* NowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				BADF87022311A4E600785403 /* WeatherDataModel.swift */,
+				BA882A4F2315560500D9D483 /* PastDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				BA958F29231011F600985D80 /* NowViewController.swift in Sources */,
 				BADF87032311A4E600785403 /* WeatherDataModel.swift in Sources */,
 				BA958F27231011F600985D80 /* AppDelegate.swift in Sources */,
+				BA882A502315560500D9D483 /* PastDataModel.swift in Sources */,
 				BADF86FE23119F4600785403 /* PastViewController.swift in Sources */,
 				BADF86FC23119B3F00785403 /* FutureTableViewController.swift in Sources */,
 			);
