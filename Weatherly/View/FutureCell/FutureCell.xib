@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -11,30 +11,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="futureCell" rowHeight="40" id="KGk-i7-Jjw" customClass="FutureCell" customModule="Weatherly" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="389" height="40"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="futureCell" rowHeight="50" id="KGk-i7-Jjw" customClass="FutureCell" customModule="Weatherly" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="383" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="389" height="39.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="383" height="49.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99°" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fv2-cO-EL4">
-                        <rect key="frame" x="264" y="0.0" width="35" height="39.5"/>
+                        <rect key="frame" x="258" y="0.0" width="30" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="5Vj-Cj-Hfn"/>
+                            <constraint firstAttribute="width" constant="30" id="5Vj-Cj-Hfn"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKb-z2-6TE">
-                        <rect key="frame" x="10" y="0.0" width="184" height="39.5"/>
+                        <rect key="frame" x="10" y="0.0" width="173" height="40"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99°" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBy-At-GRc">
-                        <rect key="frame" x="229" y="0.0" width="35" height="39.5"/>
+                        <rect key="frame" x="223" y="0.0" width="35" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="6sb-uL-fHX"/>
                         </constraints>
@@ -43,13 +43,21 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="umbrella" translatesAutoresizingMaskIntoConstraints="NO" id="eCn-rx-LT4">
-                        <rect key="frame" x="299" y="0.0" width="35" height="39.5"/>
+                        <rect key="frame" x="288" y="0.0" width="40" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="35" id="UA2-Ge-CtB"/>
+                            <constraint firstAttribute="height" constant="40" id="LsR-Ld-2yt"/>
+                            <constraint firstAttribute="width" constant="40" id="UA2-Ge-CtB"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-day" translatesAutoresizingMaskIntoConstraints="NO" id="wW9-sv-Fiv">
+                        <rect key="frame" x="183" y="0.0" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="8fu-hp-a0W"/>
+                            <constraint firstAttribute="width" constant="40" id="B51-nM-dfJ"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99%" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79C-R9-SKP">
-                        <rect key="frame" x="334" y="0.0" width="45" height="39.5"/>
+                        <rect key="frame" x="328" y="0.0" width="45" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="45" id="vB8-t3-52h"/>
                         </constraints>
@@ -57,12 +65,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-day" translatesAutoresizingMaskIntoConstraints="NO" id="wW9-sv-Fiv">
-                        <rect key="frame" x="194" y="0.0" width="35" height="39.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="B51-nM-dfJ"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="wW9-sv-Fiv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="4v7-D6-Tg0"/>
@@ -93,7 +95,7 @@
                 <outlet property="dayPrecipitation" destination="79C-R9-SKP" id="UyH-Mp-553"/>
                 <outlet property="dayWeatherIcon" destination="wW9-sv-Fiv" id="qu6-FK-kiv"/>
             </connections>
-            <point key="canvasLocation" x="-36.956521739130437" y="144.64285714285714"/>
+            <point key="canvasLocation" x="97" y="135"/>
         </tableViewCell>
     </objects>
     <resources>

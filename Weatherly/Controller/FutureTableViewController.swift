@@ -17,8 +17,6 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
         futureTableView.dataSource = self
         futureTableView.separatorStyle = .none
         futureTableView.register(UINib(nibName: "FutureCell", bundle: nil), forCellReuseIdentifier: "futureCell")
-        futureTableView.rowHeight = UITableView.automaticDimension
-        futureTableView.estimatedRowHeight = 40.0
     }
     
     

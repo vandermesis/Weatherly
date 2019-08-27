@@ -15,10 +15,10 @@ It's for me to practise Swift.
 
 ## What new I've learned
 
-- Get data from DarkSky API using Alamofire
+- Get data from DarkSky API using SwiftSky library
 - UITableView and custom cells
-- Custom design with custom .xib
-- UIPickerView
+- Custom cell design with custom .xib
+- UIDatePickerView
 - CoreLocation
 
 ## Requirements
