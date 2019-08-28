@@ -24,6 +24,17 @@ Check current, past and future weather for current location.
 - DateFormatter
 - NotificationCenter
 
+## To-do
+
+- [x] Get and present current weather data from DarkSkyAPI
+- [x] Get and present future weather forecast
+- [x] Get and present past weather forecast and allow user to choose date
+- [x] Get and present hourly forecast on Now view controller
+- [ ] Background color change based on time of the day
+- [ ] Let user choose location manually
+- [ ] Persist user favorite locations
+- [ ] Tailor UI and UX
+
 ## Requirements
 - Cocoapods
 
