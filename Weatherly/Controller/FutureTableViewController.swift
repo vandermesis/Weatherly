@@ -13,17 +13,14 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        futureTableView.delegate = self
-        futureTableView.dataSource = self
-        futureTableView.separatorStyle = .none
-        futureTableView.register(UINib(nibName: "FutureCell", bundle: nil), forCellReuseIdentifier: "futureCell")
+        configureTableView()
     }
     
     // MARK: - Variables
     var weatherDataForecast: [DataPoint]?
     @IBOutlet weak var futureTableView: UITableView!
     
-    // MARK: - Table view data source
+    // MARK: - TableView methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherDataForecast?.count ?? 1
     }
@@ -39,6 +36,18 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
         print(dateFormatter.weekdaySymbols[Calendar.current.component(.weekday, from: weatherDataForecast![indexPath.row].time) - 1], weatherDataForecast![indexPath.row].time)
         return cell
     }
+    
+    func configureTableView() {
+        futureTableView.delegate = self
+        futureTableView.dataSource = self
+        futureTableView.register(UINib(nibName: "FutureCell", bundle: nil), forCellReuseIdentifier: "futureCell")
+        futureTableView.separatorStyle = .none
+        futureTableView.layer.masksToBounds = true
+        futureTableView.layer.borderColor = UIColor.lightGray.cgColor
+        futureTableView.layer.borderWidth = 0.5
+    }
+    
+    
     
     @IBAction func nowButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

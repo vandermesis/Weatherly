@@ -22,11 +22,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         super.viewWillAppear(true)
         NotificationCenter.default.addObserver(self, selector:#selector(updateCurrentLocation), name: UIApplication.didBecomeActiveNotification, object: nil)
         updateCurrentLocation()
-        
-        nowTableView.delegate = self
-        nowTableView.dataSource = self
-        nowTableView.separatorStyle = .none
-        nowTableView.register(UINib(nibName: "NowCell", bundle: nil), forCellReuseIdentifier: "nowCell")
+        configureTableView()
     }
 
     // MARK: - Constants and Variables
@@ -140,6 +136,17 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
 }
 
 extension NowViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func configureTableView() {
+        nowTableView.delegate = self
+        nowTableView.dataSource = self
+        nowTableView.register(UINib(nibName: "NowCell", bundle: nil), forCellReuseIdentifier: "nowCell")
+        nowTableView.separatorStyle = .none
+        nowTableView.layer.masksToBounds = true
+        nowTableView.layer.borderColor = UIColor.lightGray.cgColor
+        nowTableView.layer.borderWidth = 0.5
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherDataModel.currentDayHours?.count ?? 1
