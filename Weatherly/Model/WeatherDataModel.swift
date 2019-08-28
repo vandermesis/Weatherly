@@ -12,14 +12,14 @@ import CoreLocation
 
 class WeatherDataModel {
     
-    // Data for NowViewController
+    // Store data from DarkSky api for use in NowViewController
     var currentTemperature: Int?
     var currentCity: String?
     var currentIcon: String?
     var currentDayHours: [DataPoint]?
     var currentLocation: CLLocation?
     
-    // Data for FutureViewController
+    // Store data from DarkSky api for use in FutureViewController
     var dayForecast: [DataPoint]?
     
 }

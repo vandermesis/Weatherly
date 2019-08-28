@@ -20,6 +20,8 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        // Setup notification to trigger refresh current location and data when application come back from the backgroudn
         NotificationCenter.default.addObserver(self, selector:#selector(updateCurrentLocation), name: UIApplication.didBecomeActiveNotification, object: nil)
         updateCurrentLocation()
         configureTableView()
@@ -37,7 +39,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var nowTableView: UITableView!
     
-    // MARK: - Start updating location data
+    // MARK: - Configure Location Manager and start updating location data
     @objc func updateCurrentLocation() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -49,6 +51,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let currentLocation = locations[locations.count - 1]
         if currentLocation.horizontalAccuracy > 0 {
+            
             // Stop updating location data
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
@@ -69,8 +72,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // If errors with obtaining location occurs update cityLabel
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        cityLabel.text = "Location Unavaiable"
+        cityLabel.text = "Unavaiable"
     }
     
     //MARK: - Get current weather data from DarkSkyAPI
@@ -86,6 +90,8 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         SVProgressHUD.show()
         SwiftSky.get([.current, .hours, .days], at: atLocation) { (result) in
             switch result {
+                
+            // Update WeatherDataModel if request from api will success
             case .success(let forecast):
                 self.weatherDataModel.currentTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
                 self.weatherDataModel.currentIcon = forecast.current?.icon ?? "clear-day"
@@ -94,9 +100,11 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
                 self.nowTableView.reloadData()
 //                print(self.weatherDataModel.dayForecast!)
                 print(forecast.current!.time.description)
+                
+            // If errors with obtaining weather data will occure update cityLabel
             case .failure(let error):
                 print("Error geting data from DarkSky: \(error)")
-                self.cityLabel.text = "Weather unavaiable"
+                self.cityLabel.text = "Unavaiable"
             }
             SVProgressHUD.dismiss()
             self.updateUI()
@@ -110,7 +118,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
     }
     
-    // MARK: - Buttons actions
+    // MARK: - Buttons actions - go to FutureVC or PastVC
     @IBAction func futureButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "gotoFuture", sender: self)
     }
@@ -120,7 +128,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    // MARK: - Pass WeatherDataModel to FutureVC
+    // MARK: - Pass WeatherDataModel to FutureVC and PastVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoFuture" {
             let futureVC = segue.destination as! FutureTableViewController
@@ -135,8 +143,10 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     }
 }
 
+// MARK: TableView methods
 extension NowViewController: UITableViewDelegate, UITableViewDataSource {
     
+    // Setup and configure tableview
     func configureTableView() {
         nowTableView.delegate = self
         nowTableView.dataSource = self
@@ -146,7 +156,6 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
         nowTableView.layer.borderColor = UIColor.lightGray.cgColor
         nowTableView.layer.borderWidth = 0.5
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherDataModel.currentDayHours?.count ?? 1

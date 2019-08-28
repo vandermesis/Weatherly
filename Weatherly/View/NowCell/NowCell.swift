@@ -14,6 +14,7 @@ class NowCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    // Variables for connected outlets
     @IBOutlet weak var nowHour: UILabel!
     @IBOutlet weak var nowWeatherIcon: UIImageView!
     @IBOutlet weak var nowTemperature: UILabel!

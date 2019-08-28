@@ -20,7 +20,24 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
     var weatherDataForecast: [DataPoint]?
     @IBOutlet weak var futureTableView: UITableView!
     
+    // MARK: - Button action - dismiss FutureVC and go back to NowVC
+    @IBAction func nowButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     // MARK: - TableView methods
+    
+    // Setup and configure tableview
+    func configureTableView() {
+        futureTableView.delegate = self
+        futureTableView.dataSource = self
+        futureTableView.register(UINib(nibName: "FutureCell", bundle: nil), forCellReuseIdentifier: "futureCell")
+        futureTableView.separatorStyle = .none
+        futureTableView.layer.masksToBounds = true
+        futureTableView.layer.borderColor = UIColor.lightGray.cgColor
+        futureTableView.layer.borderWidth = 0.5
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weatherDataForecast?.count ?? 1
     }
@@ -35,21 +52,5 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
         cell.dayPrecipitation.text = String(weatherDataForecast![indexPath.row].precipitation?.probability?.value ?? 99) + "%"
         print(dateFormatter.weekdaySymbols[Calendar.current.component(.weekday, from: weatherDataForecast![indexPath.row].time) - 1], weatherDataForecast![indexPath.row].time)
         return cell
-    }
-    
-    func configureTableView() {
-        futureTableView.delegate = self
-        futureTableView.dataSource = self
-        futureTableView.register(UINib(nibName: "FutureCell", bundle: nil), forCellReuseIdentifier: "futureCell")
-        futureTableView.separatorStyle = .none
-        futureTableView.layer.masksToBounds = true
-        futureTableView.layer.borderColor = UIColor.lightGray.cgColor
-        futureTableView.layer.borderWidth = 0.5
-    }
-    
-    
-    
-    @IBAction func nowButtonPressed(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
     }
 }

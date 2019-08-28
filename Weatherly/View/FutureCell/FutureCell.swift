@@ -14,6 +14,7 @@ class FutureCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    // Variables for connected outlets
     @IBOutlet weak var dayOfWeek: UILabel!
     @IBOutlet weak var dayMaxTemp: UILabel!
     @IBOutlet weak var dayMinTemp: UILabel!
