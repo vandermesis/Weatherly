@@ -110,7 +110,9 @@
                     </view>
                     <connections>
                         <outlet property="cityLabel" destination="ytp-6s-Utv" id="JxA-Me-xZh"/>
+                        <outlet property="futureButton" destination="uae-A1-a58" id="Et1-ow-fHY"/>
                         <outlet property="nowTableView" destination="Llf-5l-lUO" id="z7s-Us-pRM"/>
+                        <outlet property="pastButton" destination="fHh-ZQ-fWd" id="Qfs-Lu-Bdg"/>
                         <outlet property="tempLabel" destination="rxv-Fd-DxT" id="c2h-p8-coL"/>
                         <outlet property="weatherIcon" destination="8vh-BQ-3eh" id="yxx-id-I0V"/>
                         <segue destination="R14-bG-SoZ" kind="show" identifier="gotoPast" id="aau-ry-Bra"/>

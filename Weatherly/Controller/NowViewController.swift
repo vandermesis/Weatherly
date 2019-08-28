@@ -32,12 +32,15 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     let geoCoder = CLGeocoder()
     let weatherDataModel = WeatherDataModel()
+    let dateFormatter = DateFormatter()
     
     // Variables:
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var nowTableView: UITableView!
+    @IBOutlet weak var pastButton: UIButton!
+    @IBOutlet weak var futureButton: UIButton!
     
     // MARK: - Configure Location Manager and start updating location data
     @objc func updateCurrentLocation() {
@@ -67,7 +70,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
                     }
                 })
             }
-            print(currentLocation)
+            print("Current location: ", currentLocation)
             getWeatherData(atLocation: currentLocation)
         }
     }
@@ -95,11 +98,12 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             case .success(let forecast):
                 self.weatherDataModel.currentTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
                 self.weatherDataModel.currentIcon = forecast.current?.icon ?? "clear-day"
+                self.weatherDataModel.currentHour = forecast.current?.time
                 self.weatherDataModel.currentDayHours = forecast.hours?.points
                 self.weatherDataModel.dayForecast = forecast.days?.points
                 self.nowTableView.reloadData()
 //                print(self.weatherDataModel.dayForecast!)
-                print(forecast.current!.time.description)
+                print("Current time from DarkSky:", forecast.current!.time.description)
                 
             // If errors with obtaining weather data will occure update cityLabel
             case .failure(let error):
@@ -116,6 +120,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
         cityLabel.text = weatherDataModel.currentCity
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
+        changeUIColors(currentTime: weatherDataModel.currentHour!,sunset: weatherDataModel.dayForecast![0].sunset!, sunrise: weatherDataModel.dayForecast![0].sunrise!)
     }
     
     // MARK: - Buttons actions - go to FutureVC or PastVC
@@ -126,7 +131,6 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func pastButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "gotoPast", sender: self)
     }
-    
     
     // MARK: - Pass WeatherDataModel to FutureVC and PastVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -141,6 +145,41 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             pastVC.locationFromNovVC = weatherDataModel.currentLocation
         }
     }
+    
+    // MARK: - UI color changes based on sunrise and sunset
+    // FIXME: Refactor needed
+    // FIXME: Change NowCell background and text color
+    func changeUIColors(currentTime: Date, sunset: Date, sunrise: Date) {
+        dateFormatter.dateFormat = "HH"
+        let sunriseHour = dateFormatter.string(from: sunrise)
+        let sunsetHour = dateFormatter.string(from: sunset)
+        let currentHour = dateFormatter.string(from: currentTime)
+        let currentIcon = weatherDataModel.currentIcon
+        print("currentHour:\(currentHour), sunriseHour:\(sunriseHour), sunsetHour:\(sunsetHour)")
+        if sunriseHour...sunsetHour ~= currentHour {
+            self.view.backgroundColor = .white
+            tempLabel.textColor = .black
+            cityLabel.textColor = .black
+        } else {
+            self.view.backgroundColor = .black
+            tempLabel.textColor = .white
+            cityLabel.textColor = .white
+            weatherIcon.image = invertImageColors(weatherIcon: UIImage(named: currentIcon!)!)
+            pastButton.setImage(invertImageColors(weatherIcon: UIImage(named: "icons8-back-arrow-100")!), for: .normal)
+            futureButton.setImage(invertImageColors(weatherIcon: UIImage(named: "icons8-forward-button-100")!), for: .normal)
+        }
+    }
+    
+    func invertImageColors(weatherIcon: UIImage) -> UIImage? {
+        let beginImage = CIImage(image: weatherIcon)
+        var newImage: UIImage?
+        if let filter = CIFilter(name: "CIColorInvert") {
+            filter.setValue(beginImage, forKey: kCIInputImageKey)
+            newImage = UIImage(ciImage: filter.outputImage!)
+        }
+        return newImage
+    }
+    
 }
 
 // MARK: TableView methods
@@ -162,7 +201,6 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM HH:hh"
         let cell = nowTableView.dequeueReusableCell(withIdentifier: "nowCell", for: indexPath) as! NowCell
         cell.nowHour.text = dateFormatter.string(from: weatherDataModel.currentDayHours?[indexPath.row].time ?? Date())
