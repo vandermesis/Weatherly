@@ -168,6 +168,7 @@
                     </view>
                     <connections>
                         <outlet property="futureTableView" destination="6l0-hW-Sff" id="Kts-2Y-fjD"/>
+                        <outlet property="nowButton" destination="KPa-mb-I8z" id="6oz-YJ-2DV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H2I-jg-QeH" userLabel="First Responder" sceneMemberID="firstResponder"/>

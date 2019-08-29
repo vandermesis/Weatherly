@@ -20,4 +20,6 @@ class FutureCell: UITableViewCell {
     @IBOutlet weak var dayMinTemp: UILabel!
     @IBOutlet weak var dayWeatherIcon: UIImageView!
     @IBOutlet weak var dayPrecipitation: UILabel!
+    @IBOutlet weak var umbrellaIcon: UIImageView!
+    
 }

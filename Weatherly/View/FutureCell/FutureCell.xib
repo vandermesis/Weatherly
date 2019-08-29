@@ -92,8 +92,9 @@
                 <outlet property="dayOfWeek" destination="TKb-z2-6TE" id="vWR-3Z-4Cl"/>
                 <outlet property="dayPrecipitation" destination="79C-R9-SKP" id="UyH-Mp-553"/>
                 <outlet property="dayWeatherIcon" destination="wW9-sv-Fiv" id="qu6-FK-kiv"/>
+                <outlet property="umbrellaIcon" destination="eCn-rx-LT4" id="OXA-ax-RyM"/>
             </connections>
-            <point key="canvasLocation" x="97" y="135"/>
+            <point key="canvasLocation" x="-318" y="94"/>
         </tableViewCell>
     </objects>
     <resources>

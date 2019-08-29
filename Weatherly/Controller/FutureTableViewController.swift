@@ -18,7 +18,9 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     // MARK: - Variables
     var weatherDataForecast: [DataPoint]?
+    var dayTimeFromNowVC: Bool?
     @IBOutlet weak var futureTableView: UITableView!
+    @IBOutlet weak var nowButton: UIButton!
     
     // MARK: - Button action - dismiss FutureVC and go back to NowVC
     @IBAction func nowButtonPressed(_ sender: UIButton) {
@@ -44,13 +46,51 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dateFormatter = DateFormatter()
+        let nowButtonImage = "icons8-circled-notch-100"
         let cell = tableView.dequeueReusableCell(withIdentifier: "futureCell", for: indexPath) as! FutureCell
         cell.dayMaxTemp.text = String(Int(round(weatherDataForecast![indexPath.row].temperature?.max?.value ?? 99))) + "°"
         cell.dayMinTemp.text = String(Int(round(weatherDataForecast![indexPath.row].temperature?.min?.value ?? 99))) + "°"
         cell.dayOfWeek.text = dateFormatter.weekdaySymbols[Calendar.current.component(.weekday, from: weatherDataForecast![indexPath.row].time) - 1]
-        cell.dayWeatherIcon.image = UIImage(named: weatherDataForecast![indexPath.row].icon!)
         cell.dayPrecipitation.text = String(weatherDataForecast![indexPath.row].precipitation?.probability?.value ?? 99) + "%"
+        
+        // Invert FutureVC colors during night time
+        if dayTimeFromNowVC ?? true {
+            self.view.backgroundColor = .white
+            futureTableView.backgroundColor = .white
+            cell.dayMaxTemp.textColor = .black
+            cell.dayPrecipitation.textColor = .black
+            cell.dayOfWeek.textColor = .black
+            cell.backgroundColor = .white
+            cell.dayWeatherIcon.image = UIImage(named: weatherDataForecast![indexPath.row].icon!)
+            cell.umbrellaIcon.image = UIImage(named: "umbrella")
+            nowButton.setImage(UIImage(named: nowButtonImage), for: .normal)
+            nowButton.titleLabel?.textColor = .black
+        } else {
+            self.view.backgroundColor = .black
+            futureTableView.backgroundColor = .black
+            cell.dayMaxTemp.textColor = .white
+            cell.dayPrecipitation.textColor = .white
+            cell.dayOfWeek.textColor = .white
+            cell.backgroundColor = .black
+            cell.dayWeatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataForecast![indexPath.row].icon!)!)
+            cell.umbrellaIcon.image = invertImageColors(weatherIcon: UIImage(named: "umbrella")!)
+            nowButton.setImage(invertImageColors(weatherIcon: UIImage(named: nowButtonImage)!), for: .normal)
+            nowButton.titleLabel?.textColor = .white
+        }
+        
+        
         print(dateFormatter.weekdaySymbols[Calendar.current.component(.weekday, from: weatherDataForecast![indexPath.row].time) - 1], weatherDataForecast![indexPath.row].time)
         return cell
+    }
+    
+    // Filter to invert colors of images
+    func invertImageColors(weatherIcon: UIImage) -> UIImage? {
+        let beginImage = CIImage(image: weatherIcon)
+        var newImage: UIImage?
+        if let filter = CIFilter(name: "CIColorInvert") {
+            filter.setValue(beginImage, forKey: kCIInputImageKey)
+            newImage = UIImage(ciImage: filter.outputImage!)
+        }
+        return newImage
     }
 }
