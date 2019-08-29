@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-day" translatesAutoresizingMaskIntoConstraints="NO" id="8vh-BQ-3eh">
-                                <rect key="frame" x="169.66666666666666" y="157" width="75" height="100"/>
+                                <rect key="frame" x="157" y="157" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="3jS-M1-10I"/>
-                                    <constraint firstAttribute="width" constant="75" id="7WB-Fc-ZzZ"/>
+                                    <constraint firstAttribute="width" constant="100" id="7WB-Fc-ZzZ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uae-A1-a58">
@@ -214,10 +214,10 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-day" translatesAutoresizingMaskIntoConstraints="NO" id="dvs-9U-BK5">
-                                <rect key="frame" x="169.66666666666666" y="157" width="75" height="100"/>
+                                <rect key="frame" x="157" y="157" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="V8B-Rw-pi4"/>
-                                    <constraint firstAttribute="width" constant="75" id="fJa-7y-4rV"/>
+                                    <constraint firstAttribute="width" constant="100" id="fJa-7y-4rV"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwB-y2-K3t">
@@ -267,6 +267,7 @@
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="GgW-Am-ZLE" id="wbz-ss-22R"/>
+                        <outlet property="nowButtonImage" destination="Auc-NZ-7IJ" id="OiY-Zw-8PA"/>
                         <outlet property="pastCityLabel" destination="fWs-GA-HJ6" id="tbO-t6-K07"/>
                         <outlet property="pastTempLabel" destination="hwB-y2-K3t" id="86d-u2-N5B"/>
                         <outlet property="pastWeatherIcon" destination="dvs-9U-BK5" id="x2l-Ba-Z6D"/>

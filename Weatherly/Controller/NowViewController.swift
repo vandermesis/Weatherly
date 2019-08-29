@@ -143,7 +143,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             let pastVC = segue.destination as! PastViewController
             pastVC.cityFromNowVC = weatherDataModel.currentCity
             pastVC.tempFromNowVC = weatherDataModel.currentTemperature
-            pastVC.locationFromNovVC = weatherDataModel.currentLocation
+            pastVC.iconFromNowVC = weatherDataModel.currentIcon
+            pastVC.locationFromNowVC = weatherDataModel.currentLocation
+            pastVC.dayTimeFromNowVC = weatherDataModel.dayTime
         }
     }
     

@@ -16,6 +16,8 @@ class PastViewController: UIViewController {
         super.viewDidLoad()
         pastCityLabel.text = cityFromNowVC
         pastTempLabel.text = String(tempFromNowVC!)
+        pastWeatherIcon.image = UIImage(named: iconFromNowVC!)
+        updateUIColors()
     }
     
     // MARK: - Constants and Variables
@@ -25,17 +27,20 @@ class PastViewController: UIViewController {
     //Variables
     var cityFromNowVC: String?
     var tempFromNowVC: Int?
-    var locationFromNovVC: CLLocation?
+    var iconFromNowVC: String?
+    var locationFromNowVC: CLLocation?
+    var dayTimeFromNowVC: Bool?
     @IBOutlet weak var pastTempLabel: UILabel!
     @IBOutlet weak var pastWeatherIcon: UIImageView!
     @IBOutlet weak var pastCityLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var nowButtonImage: UIButton!
     
     // MARK: - DatePicker method
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         
         //MARK: - Get past weather data from DarkSkyAPI
-        SwiftSky.get([.current], at: locationFromNovVC!, on: Date(timeIntervalSince1970: datePicker.date.timeIntervalSince1970)) { (result) in
+        SwiftSky.get([.current], at: locationFromNowVC!, on: Date(timeIntervalSince1970: datePicker.date.timeIntervalSince1970)) { (result) in
             switch result {
             
             // Update WeatherDataModel if request from api will success
@@ -58,10 +63,51 @@ class PastViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    // MARK: - Update User Interface with current data
+    // MARK: - Update User Interface
+    
+    // Update UI with current data
     func updateUI() {
         pastTempLabel.text = String(pastDataModel.pastTemperature ?? 99)
-        pastWeatherIcon.image = UIImage(named: pastDataModel.pastIcon ?? "clear-day")
+        if dayTimeFromNowVC ?? true {
+            pastWeatherIcon.image = UIImage(named: pastDataModel.pastIcon ?? "clear-day")
+        } else {
+            pastWeatherIcon.image = invertImageColors(weatherIcon: UIImage(named: pastDataModel.pastIcon ?? "clear-day")!)
+        }
+        
+    }
+    
+    // Invert FutureVC colors during night time
+    func updateUIColors() {
+        let nowButton = "icons8-circled-notch-100"
+        if dayTimeFromNowVC ?? true {
+            self.view.backgroundColor = .white
+            pastTempLabel.textColor = .black
+            pastCityLabel.textColor = .black
+            datePicker.backgroundColor = .white
+            datePicker.tintColor = .black
+            datePicker.setValue(UIColor.black, forKeyPath: "textColor")
+            nowButtonImage.setImage(UIImage(named: nowButton), for: .normal)
+            pastWeatherIcon.image = UIImage(named: iconFromNowVC ?? "clear-day")
+        } else {
+            self.view.backgroundColor = .black
+            pastTempLabel.textColor = .white
+            pastCityLabel.textColor = .white
+            datePicker.backgroundColor = .black
+            datePicker.setValue(UIColor.white, forKeyPath: "textColor")
+            nowButtonImage.setImage(invertImageColors(weatherIcon: UIImage(named: nowButton)!), for: .normal)
+            pastWeatherIcon.image = invertImageColors(weatherIcon: UIImage(named: iconFromNowVC ?? "clear-day")!)
+        }
+    }
+    
+    // Filter to invert colors of images
+    func invertImageColors(weatherIcon: UIImage) -> UIImage? {
+        let beginImage = CIImage(image: weatherIcon)
+        var newImage: UIImage?
+        if let filter = CIFilter(name: "CIColorInvert") {
+            filter.setValue(beginImage, forKey: kCIInputImageKey)
+            newImage = UIImage(ciImage: filter.outputImage!)
+        }
+        return newImage
     }
 
 }
