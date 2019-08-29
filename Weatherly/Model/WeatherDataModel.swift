@@ -16,9 +16,9 @@ class WeatherDataModel {
     var currentTemperature: Int?
     var currentCity: String?
     var currentIcon: String?
-    var currentHour: Date?
     var currentDayHours: [DataPoint]?
     var currentLocation: CLLocation?
+    var dayTime: Bool?
     
     // Store data from DarkSky api for use in FutureViewController
     var dayForecast: [DataPoint]?

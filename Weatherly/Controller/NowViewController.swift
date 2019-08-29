@@ -98,9 +98,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             case .success(let forecast):
                 self.weatherDataModel.currentTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
                 self.weatherDataModel.currentIcon = forecast.current?.icon ?? "clear-day"
-                self.weatherDataModel.currentHour = forecast.current?.time
                 self.weatherDataModel.currentDayHours = forecast.hours?.points
                 self.weatherDataModel.dayForecast = forecast.days?.points
+                self.dayTimeCheck(currentTime: forecast.current!.time, sunset: forecast.days?.points[0].sunset, sunrise: forecast.days?.points[0].sunrise)
                 self.nowTableView.reloadData()
 //                print(self.weatherDataModel.dayForecast!)
                 print("Current time from DarkSky:", forecast.current!.time.description)
@@ -120,7 +120,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
         cityLabel.text = weatherDataModel.currentCity
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
-        changeUIColors(currentTime: weatherDataModel.currentHour!,sunset: weatherDataModel.dayForecast![0].sunset!, sunrise: weatherDataModel.dayForecast![0].sunrise!)
+        changeUIColors()
     }
     
     // MARK: - Buttons actions - go to FutureVC or PastVC
@@ -146,30 +146,44 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // MARK: - UI color changes based on sunrise and sunset
+    // MARK: - Invert UI colors during night time
     // FIXME: Refactor needed
-    // FIXME: Change NowCell background and text color
-    func changeUIColors(currentTime: Date, sunset: Date, sunrise: Date) {
+    func dayTimeCheck(currentTime: Date, sunset: Date?, sunrise: Date?) {
         dateFormatter.dateFormat = "HH"
-        let sunriseHour = dateFormatter.string(from: sunrise)
-        let sunsetHour = dateFormatter.string(from: sunset)
+        let sunriseHour = dateFormatter.string(from: sunrise!)
+        let sunsetHour = dateFormatter.string(from: sunset!)
         let currentHour = dateFormatter.string(from: currentTime)
-        let currentIcon = weatherDataModel.currentIcon
+        weatherDataModel.dayTime = sunsetHour...sunsetHour ~= currentHour
         print("currentHour:\(currentHour), sunriseHour:\(sunriseHour), sunsetHour:\(sunsetHour)")
-        if sunriseHour...sunsetHour ~= currentHour {
+        print("daytime: \(weatherDataModel.dayTime!)")
+    }
+
+    func changeUIColors() {
+        let pastButtonImage = "icons8-back-arrow-100"
+        let futureButtonImage = "icons8-forward-button-100"
+        if weatherDataModel.dayTime ?? true {
             self.view.backgroundColor = .white
             tempLabel.textColor = .black
             cityLabel.textColor = .black
+            weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
+            pastButton.setImage(UIImage(named: pastButtonImage), for: .normal)
+            futureButton.setImage(UIImage(named: futureButtonImage), for: .normal)
+            pastButton.titleLabel?.textColor = .black
+            futureButton.titleLabel?.textColor = .black
         } else {
             self.view.backgroundColor = .black
             tempLabel.textColor = .white
             cityLabel.textColor = .white
-            weatherIcon.image = invertImageColors(weatherIcon: UIImage(named: currentIcon!)!)
-            pastButton.setImage(invertImageColors(weatherIcon: UIImage(named: "icons8-back-arrow-100")!), for: .normal)
-            futureButton.setImage(invertImageColors(weatherIcon: UIImage(named: "icons8-forward-button-100")!), for: .normal)
+            weatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataModel.currentIcon!)!)
+            pastButton.setImage(invertImageColors(weatherIcon: UIImage(named: pastButtonImage)!), for: .normal)
+            futureButton.setImage(invertImageColors(weatherIcon: UIImage(named: futureButtonImage)!), for: .normal)
+            // FIXME: Button labels text color doesn't change
+            pastButton.titleLabel?.textColor = .white
+            futureButton.titleLabel?.textColor = .white
         }
     }
     
+    // Filter to invert colors of images
     func invertImageColors(weatherIcon: UIImage) -> UIImage? {
         let beginImage = CIImage(image: weatherIcon)
         var newImage: UIImage?
@@ -201,14 +215,29 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        dateFormatter.dateFormat = "dd.MM HH:hh"
+        dateFormatter.dateFormat = "dd.MM HH:00"
         let cell = nowTableView.dequeueReusableCell(withIdentifier: "nowCell", for: indexPath) as! NowCell
         cell.nowHour.text = dateFormatter.string(from: weatherDataModel.currentDayHours?[indexPath.row].time ?? Date())
         cell.nowTemperature.text = String(Int(round(weatherDataModel.currentDayHours?[indexPath.row].temperature?.current?.value ?? 99))) + "°"
         cell.nowPrecipitation.text = String(weatherDataModel.currentDayHours?[indexPath.row].precipitation?.probability?.value ?? 99) + "%"
-        cell.nowWeatherIcon.image = UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")
+        
+        // Invert NowCell colors during night time
+        if weatherDataModel.dayTime ?? true {
+            nowTableView.backgroundColor = .white
+            cell.backgroundColor = .white
+            cell.nowHour.textColor = .black
+            cell.nowTemperature.textColor = .black
+            cell.nowPrecipitation.textColor = .black
+            cell.nowWeatherIcon.image = UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")
+        } else {
+            nowTableView.backgroundColor = .black
+            cell.backgroundColor = .black
+            cell.nowHour.textColor = .white
+            cell.nowTemperature.textColor = .white
+            cell.nowPrecipitation.textColor = .white
+            cell.nowWeatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")!)
+            cell.umbrellaIcon.image = invertImageColors(weatherIcon: UIImage(named: "umbrella")!)
+        }
         return cell
     }
-    
-    
 }

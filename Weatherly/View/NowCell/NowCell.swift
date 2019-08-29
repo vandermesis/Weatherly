@@ -19,5 +19,6 @@ class NowCell: UITableViewCell {
     @IBOutlet weak var nowWeatherIcon: UIImageView!
     @IBOutlet weak var nowTemperature: UILabel!
     @IBOutlet weak var nowPrecipitation: UILabel!
+    @IBOutlet weak var umbrellaIcon: UIImageView!
     
 }
