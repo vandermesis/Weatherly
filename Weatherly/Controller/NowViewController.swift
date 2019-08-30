@@ -142,19 +142,23 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     // Buttons actions - go to FutureVC or PastVC
     @IBAction func futureButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "gotoFuture", sender: self)
+        if weatherDataModel.dayForecast != nil {
+            performSegue(withIdentifier: "gotoFuture", sender: self)
+        }
     }
     
     @IBAction func pastButtonPressed(_ sender: Any) {
-        performSegue(withIdentifier: "gotoPast", sender: self)
+        if weatherDataModel.currentTemperature != nil {
+            performSegue(withIdentifier: "gotoPast", sender: self)
+        }
     }
     
     // MARK: - Pass WeatherDataModel to FutureVC and PastVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoFuture" {
             let futureVC = segue.destination as! FutureTableViewController
-            futureVC.weatherDataForecast = weatherDataModel.dayForecast
-            futureVC.dayTimeFromNowVC = weatherDataModel.dayTime
+                futureVC.weatherDataForecast = weatherDataModel.dayForecast
+                futureVC.dayTimeFromNowVC = weatherDataModel.dayTime
         }
         if segue.identifier == "gotoPast" {
             let pastVC = segue.destination as! PastViewController
@@ -176,7 +180,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         if sunriseHour < sunsetHour {
             weatherDataModel.dayTime = sunriseHour...sunsetHour ~= currentHour
         } else {
-            weatherDataModel.dayTime = false
+            weatherDataModel.dayTime = true
         }
         print("currentHour:\(currentHour), sunriseHour:\(sunriseHour), sunsetHour:\(sunsetHour)")
         print("daytimeBool: \(weatherDataModel.dayTime!)")

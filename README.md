@@ -30,7 +30,7 @@ Check current, past and future weather for current location.
 - [x] Get and present future weather forecast
 - [x] Get and present past weather forecast and allow user to choose date
 - [x] Get and present hourly forecast on Now view controller
-- [ ] Background color change based on time of the day
+- [x] UI color inverse based on time of the day
 - [ ] Let user choose location manually
 - [ ] Persist user favorite locations
 - [ ] Tailor UI and UX
