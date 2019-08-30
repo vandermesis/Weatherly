@@ -26,15 +26,13 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uae-A1-a58">
-                                <rect key="frame" x="344" y="792" width="50" height="50"/>
+                                <rect key="frame" x="334" y="782" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="SOT-Ww-d3X"/>
-                                    <constraint firstAttribute="height" constant="50" id="nsf-bz-C8d"/>
+                                    <constraint firstAttribute="width" constant="60" id="SOT-Ww-d3X"/>
+                                    <constraint firstAttribute="height" constant="60" id="nsf-bz-C8d"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <inset key="titleEdgeInsets" minX="-32" minY="36" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="10"/>
-                                <state key="normal" title="Future" image="icons8-forward-button-100">
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Future">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -51,15 +49,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHh-ZQ-fWd">
-                                <rect key="frame" x="20" y="792" width="50" height="50"/>
+                                <rect key="frame" x="20" y="782" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="23w-JJ-ezY"/>
-                                    <constraint firstAttribute="height" constant="50" id="u5X-4k-eQO"/>
+                                    <constraint firstAttribute="width" constant="60" id="23w-JJ-ezY"/>
+                                    <constraint firstAttribute="height" constant="60" id="u5X-4k-eQO"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <inset key="titleEdgeInsets" minX="-32" minY="36" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="10"/>
-                                <state key="normal" title="Past" image="icons8-back-arrow-100">
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Past">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -77,7 +73,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Llf-5l-lUO">
-                                <rect key="frame" x="0.0" y="347" width="414" height="405"/>
+                                <rect key="frame" x="0.0" y="347" width="414" height="395"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Luna" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytp-6s-Utv">
@@ -132,15 +128,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPa-mb-I8z">
-                                <rect key="frame" x="182" y="792" width="50" height="50"/>
+                                <rect key="frame" x="177" y="782" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="JRI-Xf-eHA"/>
-                                    <constraint firstAttribute="height" constant="50" id="zWB-Xm-NOe"/>
+                                    <constraint firstAttribute="width" constant="60" id="JRI-Xf-eHA"/>
+                                    <constraint firstAttribute="height" constant="60" id="zWB-Xm-NOe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <inset key="titleEdgeInsets" minX="-32" minY="36" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="10"/>
-                                <state key="normal" title="Now" image="icons8-circled-notch-100">
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Now">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -184,7 +179,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="GgW-Am-ZLE">
-                                <rect key="frame" x="0.0" y="644" width="414" height="140"/>
+                                <rect key="frame" x="0.0" y="634" width="414" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="mDc-Ig-oGV"/>
                                 </constraints>
@@ -196,15 +191,13 @@
                                 </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Auc-NZ-7IJ">
-                                <rect key="frame" x="182" y="792" width="50" height="50"/>
+                                <rect key="frame" x="177" y="782" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="172-6m-du7"/>
-                                    <constraint firstAttribute="width" constant="50" id="QKu-ik-g6F"/>
+                                    <constraint firstAttribute="height" constant="60" id="172-6m-du7"/>
+                                    <constraint firstAttribute="width" constant="60" id="QKu-ik-g6F"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <inset key="titleEdgeInsets" minX="-32" minY="36" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="10"/>
-                                <state key="normal" title="Now" image="icons8-circled-notch-100">
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Now">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -267,7 +260,7 @@
                     </view>
                     <connections>
                         <outlet property="datePicker" destination="GgW-Am-ZLE" id="wbz-ss-22R"/>
-                        <outlet property="nowButtonImage" destination="Auc-NZ-7IJ" id="OiY-Zw-8PA"/>
+                        <outlet property="nowButton" destination="Auc-NZ-7IJ" id="OiY-Zw-8PA"/>
                         <outlet property="pastCityLabel" destination="fWs-GA-HJ6" id="tbO-t6-K07"/>
                         <outlet property="pastTempLabel" destination="hwB-y2-K3t" id="86d-u2-N5B"/>
                         <outlet property="pastWeatherIcon" destination="dvs-9U-BK5" id="x2l-Ba-Z6D"/>
@@ -280,8 +273,5 @@
     </scenes>
     <resources>
         <image name="clear-day" width="197" height="197"/>
-        <image name="icons8-back-arrow-100" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="icons8-circled-notch-100" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="icons8-forward-button-100" width="33.333332061767578" height="33.333332061767578"/>
     </resources>
 </document>

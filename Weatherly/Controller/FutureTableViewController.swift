@@ -46,7 +46,6 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dateFormatter = DateFormatter()
-        let nowButtonImage = "icons8-circled-notch-100"
         let cell = tableView.dequeueReusableCell(withIdentifier: "futureCell", for: indexPath) as! FutureCell
         cell.dayMaxTemp.text = String(Int(round(weatherDataForecast![indexPath.row].temperature?.max?.value ?? 99))) + "°"
         cell.dayMinTemp.text = String(Int(round(weatherDataForecast![indexPath.row].temperature?.min?.value ?? 99))) + "°"
@@ -63,8 +62,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
             cell.backgroundColor = .white
             cell.dayWeatherIcon.image = UIImage(named: weatherDataForecast![indexPath.row].icon!)
             cell.umbrellaIcon.image = UIImage(named: "umbrella")
-            nowButton.setImage(UIImage(named: nowButtonImage), for: .normal)
-            nowButton.titleLabel?.textColor = .black
+            nowButton.setTitleColor(.black, for: .normal)
         } else {
             self.view.backgroundColor = .black
             futureTableView.backgroundColor = .black
@@ -74,11 +72,8 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
             cell.backgroundColor = .black
             cell.dayWeatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataForecast![indexPath.row].icon!)!)
             cell.umbrellaIcon.image = invertImageColors(weatherIcon: UIImage(named: "umbrella")!)
-            nowButton.setImage(invertImageColors(weatherIcon: UIImage(named: nowButtonImage)!), for: .normal)
-            nowButton.titleLabel?.textColor = .white
+            nowButton.setTitleColor(.white, for: .normal)
         }
-        
-        
         print(dateFormatter.weekdaySymbols[Calendar.current.component(.weekday, from: weatherDataForecast![indexPath.row].time) - 1], weatherDataForecast![indexPath.row].time)
         return cell
     }

@@ -34,7 +34,7 @@ class PastViewController: UIViewController {
     @IBOutlet weak var pastWeatherIcon: UIImageView!
     @IBOutlet weak var pastCityLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var nowButtonImage: UIButton!
+    @IBOutlet weak var nowButton: UIButton!
     
     // MARK: - DatePicker method
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
@@ -78,7 +78,6 @@ class PastViewController: UIViewController {
     
     // Invert FutureVC colors during night time
     func updateUIColors() {
-        let nowButton = "icons8-circled-notch-100"
         if dayTimeFromNowVC ?? true {
             self.view.backgroundColor = .white
             pastTempLabel.textColor = .black
@@ -86,15 +85,15 @@ class PastViewController: UIViewController {
             datePicker.backgroundColor = .white
             datePicker.tintColor = .black
             datePicker.setValue(UIColor.black, forKeyPath: "textColor")
-            nowButtonImage.setImage(UIImage(named: nowButton), for: .normal)
             pastWeatherIcon.image = UIImage(named: iconFromNowVC ?? "clear-day")
+            nowButton.setTitleColor(.white, for: .normal)
         } else {
             self.view.backgroundColor = .black
             pastTempLabel.textColor = .white
             pastCityLabel.textColor = .white
             datePicker.backgroundColor = .black
             datePicker.setValue(UIColor.white, forKeyPath: "textColor")
-            nowButtonImage.setImage(invertImageColors(weatherIcon: UIImage(named: nowButton)!), for: .normal)
+            nowButton.setTitleColor(.white, for: .normal)
             pastWeatherIcon.image = invertImageColors(weatherIcon: UIImage(named: iconFromNowVC ?? "clear-day")!)
         }
     }

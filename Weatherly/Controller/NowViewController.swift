@@ -156,31 +156,27 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         let sunriseHour = dateFormatter.string(from: sunrise!)
         let sunsetHour = dateFormatter.string(from: sunset!)
         let currentHour = dateFormatter.string(from: currentTime)
-        weatherDataModel.dayTime = sunriseHour...sunsetHour ~= currentHour
+        if sunriseHour < sunsetHour {
+            weatherDataModel.dayTime = sunriseHour...sunsetHour ~= currentHour
+        }
+        weatherDataModel.dayTime = false
         print("currentHour:\(currentHour), sunriseHour:\(sunriseHour), sunsetHour:\(sunsetHour)")
-        print("daytime: \(weatherDataModel.dayTime!)")
+        print("daytimeBool: \(weatherDataModel.dayTime!)")
     }
 
     func changeUIColors() {
-        let pastButtonImage = "icons8-back-arrow-100"
-        let futureButtonImage = "icons8-forward-button-100"
         if weatherDataModel.dayTime ?? true {
             self.view.backgroundColor = .white
             tempLabel.textColor = .black
             cityLabel.textColor = .black
             weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
-            pastButton.setImage(UIImage(named: pastButtonImage), for: .normal)
-            futureButton.setImage(UIImage(named: futureButtonImage), for: .normal)
-            pastButton.titleLabel?.textColor = .black
-            futureButton.titleLabel?.textColor = .black
+            pastButton.setTitleColor(.black, for: .normal)
+            futureButton.setTitleColor(.black, for: .normal)
         } else {
             self.view.backgroundColor = .black
             tempLabel.textColor = .white
             cityLabel.textColor = .white
             weatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataModel.currentIcon!)!)
-            pastButton.setImage(invertImageColors(weatherIcon: UIImage(named: pastButtonImage)!), for: .normal)
-            futureButton.setImage(invertImageColors(weatherIcon: UIImage(named: futureButtonImage)!), for: .normal)
-            // FIXME: Button labels text color doesn't change
             pastButton.setTitleColor(.white, for: .normal)
             futureButton.setTitleColor(.white, for: .normal)
         }
