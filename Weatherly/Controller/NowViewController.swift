@@ -21,6 +21,10 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        // Setup buttons with round borders
+        roundBorder(button: pastButton)
+        roundBorder(button: futureButton)
+        
         // Setup notification to trigger refresh current location and data when application come back from the backgroudn
         NotificationCenter.default.addObserver(self, selector:#selector(updateCurrentLocation), name: UIApplication.didBecomeActiveNotification, object: nil)
         updateCurrentLocation()
@@ -123,7 +127,20 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         changeUIColors()
     }
     
-    // MARK: - Buttons actions - go to FutureVC or PastVC
+    // MARK: - Buttons
+    // Buttons appearance
+    func roundBorder(button: UIButton) {
+        button.backgroundColor = .clear
+        button.layer.cornerRadius = 30
+        button.layer.borderWidth = 1
+        if self.view.backgroundColor == UIColor.white {
+            button.layer.borderColor = UIColor.black.cgColor
+        } else {
+            button.layer.borderColor = UIColor.white.cgColor
+        }
+    }
+    
+    // Buttons actions - go to FutureVC or PastVC
     @IBAction func futureButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "gotoFuture", sender: self)
     }
@@ -158,8 +175,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         let currentHour = dateFormatter.string(from: currentTime)
         if sunriseHour < sunsetHour {
             weatherDataModel.dayTime = sunriseHour...sunsetHour ~= currentHour
+        } else {
+            weatherDataModel.dayTime = false
         }
-        weatherDataModel.dayTime = false
         print("currentHour:\(currentHour), sunriseHour:\(sunriseHour), sunsetHour:\(sunsetHour)")
         print("daytimeBool: \(weatherDataModel.dayTime!)")
     }
@@ -172,6 +190,8 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
             pastButton.setTitleColor(.black, for: .normal)
             futureButton.setTitleColor(.black, for: .normal)
+            pastButton.layer.borderColor = UIColor.black.cgColor
+            futureButton.layer.borderColor = UIColor.black.cgColor
         } else {
             self.view.backgroundColor = .black
             tempLabel.textColor = .white
@@ -179,6 +199,8 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             weatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataModel.currentIcon!)!)
             pastButton.setTitleColor(.white, for: .normal)
             futureButton.setTitleColor(.white, for: .normal)
+            pastButton.layer.borderColor = UIColor.white.cgColor
+            futureButton.layer.borderColor = UIColor.white.cgColor
         }
     }
     

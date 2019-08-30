@@ -36,7 +36,8 @@ Check current, past and future weather for current location.
 - [ ] Tailor UI and UX
 
 ## Requirements
-- Cocoapods
+- Xcode 10.3 with latest iOS SDK (12.4)
+- CocoaPods 1.7.5 or higher
 
 ## Credits
 - *[DarkSky](https://darksky.net/dev)*
