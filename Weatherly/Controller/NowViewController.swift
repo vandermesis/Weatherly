@@ -21,11 +21,6 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-//        getLocation(forPlaceCalled: "Gdańsk") { (location) in
-//            print("Gdańsk: ", location)
-//            self.getWeatherData(atLocation: location!)
-//        }
-        
         // Setup buttons with round borders
         roundBorder(button: pastButton)
         roundBorder(button: futureButton)
@@ -46,7 +41,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     // Variables:
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var weatherIcon: UIImageView!
-    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var cityButtonLabel: UIButton!
     @IBOutlet weak var nowTableView: UITableView!
     @IBOutlet weak var pastButton: UIButton!
     @IBOutlet weak var futureButton: UIButton!
@@ -76,6 +71,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
                 placemarks?.forEach({ (placemark) in
                     if let currentCity = placemark.locality {
                         self.weatherDataModel.currentCity = currentCity
+                        self.cityButtonLabel.setTitle(currentCity, for: .normal)
                     }
                 })
             }
@@ -86,7 +82,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     // If errors with obtaining location occurs update cityLabel
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        cityLabel.text = "Unavaiable"
+        cityButtonLabel.setTitle("Unavaiable", for: .normal)
     }
     
     //MARK: - Get location of place entered by user - thanks to https://github.com/davidseek/Swift101ConvertCoordinates
@@ -139,7 +135,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             // If errors with obtaining weather data will occure update cityLabel
             case .failure(let error):
                 print("Error geting data from DarkSky: \(error)")
-                self.cityLabel.text = "Unavaiable"
+                self.cityButtonLabel.setTitle("Unavaiable", for: .normal)
             }
             SVProgressHUD.dismiss()
             self.updateUI()
@@ -149,13 +145,13 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Update User Interface with current data
     func updateUI() {
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
-        cityLabel.text = weatherDataModel.currentCity
+        cityButtonLabel.setTitle(weatherDataModel.currentCity, for: .normal)
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
         changeUIColors()
     }
     
     // MARK: - Buttons
-    // Buttons appearance
+    // Navigation buttons appearance
     func roundBorder(button: UIButton) {
         button.backgroundColor = .clear
         button.layer.cornerRadius = 30
@@ -167,7 +163,8 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    // Buttons actions - go to FutureVC or PastVC
+    // Buttons actions
+    // Go to FutureVC or PastVC
     @IBAction func futureButtonPressed(_ sender: UIButton) {
         if weatherDataModel.dayForecast != nil {
             performSegue(withIdentifier: "gotoFuture", sender: self)
@@ -177,6 +174,14 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func pastButtonPressed(_ sender: Any) {
         if weatherDataModel.currentTemperature != nil {
             performSegue(withIdentifier: "gotoPast", sender: self)
+        }
+    }
+    
+    @IBAction func cityButtonPressed(_ sender: UIButton) {
+        getLocation(forPlaceCalled: "Reykiavik") { (location) in
+            print("Reykiavik: ", location!)
+            self.weatherDataModel.currentCity = "Reykiavik"
+            self.getWeatherData(atLocation: location!)
         }
     }
     
@@ -217,7 +222,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         if weatherDataModel.dayTime ?? true {
             self.view.backgroundColor = .white
             tempLabel.textColor = .black
-            cityLabel.textColor = .black
+            cityButtonLabel.titleLabel?.textColor = .black
             weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
             pastButton.setTitleColor(.black, for: .normal)
             futureButton.setTitleColor(.black, for: .normal)
@@ -226,7 +231,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             self.view.backgroundColor = .black
             tempLabel.textColor = .white
-            cityLabel.textColor = .white
+            cityButtonLabel.titleLabel?.textColor = .white
             weatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataModel.currentIcon!)!)
             pastButton.setTitleColor(.white, for: .normal)
             futureButton.setTitleColor(.white, for: .normal)

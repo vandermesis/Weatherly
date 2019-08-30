@@ -73,39 +73,43 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Llf-5l-lUO">
-                                <rect key="frame" x="0.0" y="347" width="414" height="395"/>
+                                <rect key="frame" x="0.0" y="359" width="414" height="383"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Luna" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytp-6s-Utv">
-                                <rect key="frame" x="170.5" y="265" width="75" height="42"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cic-7j-eMt">
+                                <rect key="frame" x="170" y="265" width="74" height="54"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="35"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Luna">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cityButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LJZ-1a-AsR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ytp-6s-Utv" firstAttribute="top" secondItem="8vh-BQ-3eh" secondAttribute="bottom" constant="8" id="3i0-ux-YkA"/>
                             <constraint firstItem="uae-A1-a58" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="4tj-zC-d5o"/>
                             <constraint firstItem="rxv-Fd-DxT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5wY-cZ-7Bj"/>
                             <constraint firstItem="Llf-5l-lUO" firstAttribute="trailing" secondItem="tRS-Yf-wpZ" secondAttribute="trailing" id="92v-eN-7aw"/>
-                            <constraint firstItem="ytp-6s-Utv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BIK-E4-cdP"/>
                             <constraint firstAttribute="bottomMargin" secondItem="uae-A1-a58" secondAttribute="bottom" constant="20" id="C2i-yB-wFq"/>
                             <constraint firstItem="8vh-BQ-3eh" firstAttribute="top" secondItem="rxv-Fd-DxT" secondAttribute="bottom" constant="8" id="DoB-Ss-2qU"/>
                             <constraint firstItem="rxv-Fd-DxT" firstAttribute="top" secondItem="tRS-Yf-wpZ" secondAttribute="top" constant="35" id="Elg-n4-CwP"/>
                             <constraint firstAttribute="bottomMargin" secondItem="fHh-ZQ-fWd" secondAttribute="bottom" constant="20" id="Mqr-Ho-ddw"/>
+                            <constraint firstItem="Cic-7j-eMt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N4O-kE-QOE"/>
                             <constraint firstItem="fHh-ZQ-fWd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ShA-i0-j5z"/>
                             <constraint firstItem="uae-A1-a58" firstAttribute="top" secondItem="Llf-5l-lUO" secondAttribute="bottom" constant="40" id="T3g-rE-Omc"/>
                             <constraint firstItem="Llf-5l-lUO" firstAttribute="leading" secondItem="tRS-Yf-wpZ" secondAttribute="leading" id="VGB-jf-skl"/>
                             <constraint firstItem="8vh-BQ-3eh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xej-QJ-u03"/>
                             <constraint firstItem="Ypt-27-WyX" firstAttribute="top" secondItem="tRS-Yf-wpZ" secondAttribute="top" constant="35" id="atF-af-KCv"/>
+                            <constraint firstItem="Cic-7j-eMt" firstAttribute="top" secondItem="8vh-BQ-3eh" secondAttribute="bottom" constant="8" id="eeg-TD-sjL"/>
                             <constraint firstItem="Ypt-27-WyX" firstAttribute="leading" secondItem="rxv-Fd-DxT" secondAttribute="trailing" id="fU9-34-HTG"/>
-                            <constraint firstItem="Llf-5l-lUO" firstAttribute="top" secondItem="ytp-6s-Utv" secondAttribute="bottom" constant="40" id="rTg-Wy-G9v"/>
+                            <constraint firstItem="Llf-5l-lUO" firstAttribute="top" secondItem="Cic-7j-eMt" secondAttribute="bottom" constant="40" id="qrF-Kq-8o4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tRS-Yf-wpZ"/>
                     </view>
                     <connections>
-                        <outlet property="cityLabel" destination="ytp-6s-Utv" id="JxA-Me-xZh"/>
+                        <outlet property="cityButtonLabel" destination="Cic-7j-eMt" id="NVl-ZU-q6D"/>
                         <outlet property="futureButton" destination="uae-A1-a58" id="Et1-ow-fHY"/>
                         <outlet property="nowTableView" destination="Llf-5l-lUO" id="z7s-Us-pRM"/>
                         <outlet property="pastButton" destination="fHh-ZQ-fWd" id="Qfs-Lu-Bdg"/>
