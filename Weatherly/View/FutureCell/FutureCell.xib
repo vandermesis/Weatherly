@@ -43,15 +43,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="umbrella" translatesAutoresizingMaskIntoConstraints="NO" id="eCn-rx-LT4">
-                        <rect key="frame" x="288" y="0.0" width="40" height="49.5"/>
+                        <rect key="frame" x="288" y="5" width="40.000000000000057" height="40.000000000000057"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="40" id="5WE-J5-86b"/>
                             <constraint firstAttribute="width" constant="40" id="UA2-Ge-CtB"/>
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-day" translatesAutoresizingMaskIntoConstraints="NO" id="wW9-sv-Fiv">
-                        <rect key="frame" x="183" y="0.0" width="40" height="49.5"/>
+                        <rect key="frame" x="183" y="5" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="B51-nM-dfJ"/>
+                            <constraint firstAttribute="height" constant="40" id="T5x-Cn-zky"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99%" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79C-R9-SKP">
@@ -65,24 +67,22 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="wW9-sv-Fiv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="4v7-D6-Tg0"/>
                     <constraint firstItem="fv2-cO-EL4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6AP-eN-hNS"/>
                     <constraint firstItem="wW9-sv-Fiv" firstAttribute="leading" secondItem="TKb-z2-6TE" secondAttribute="trailing" id="9In-bz-fbp"/>
                     <constraint firstItem="79C-R9-SKP" firstAttribute="leading" secondItem="eCn-rx-LT4" secondAttribute="trailing" id="APm-6B-qhO"/>
                     <constraint firstAttribute="bottom" secondItem="fv2-cO-EL4" secondAttribute="bottom" id="B89-PT-RpB"/>
+                    <constraint firstItem="eCn-rx-LT4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="CuV-o7-82e"/>
                     <constraint firstItem="TKb-z2-6TE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="DM1-kM-te6"/>
                     <constraint firstItem="fv2-cO-EL4" firstAttribute="leading" secondItem="DBy-At-GRc" secondAttribute="trailing" id="EOV-ie-d6B"/>
                     <constraint firstItem="TKb-z2-6TE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="L9b-QL-SEt"/>
-                    <constraint firstAttribute="bottom" secondItem="wW9-sv-Fiv" secondAttribute="bottom" id="Ldo-xh-bgz"/>
                     <constraint firstItem="79C-R9-SKP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="NMz-wR-b0F"/>
                     <constraint firstItem="eCn-rx-LT4" firstAttribute="leading" secondItem="fv2-cO-EL4" secondAttribute="trailing" id="QY8-yj-jlN"/>
                     <constraint firstAttribute="bottom" secondItem="DBy-At-GRc" secondAttribute="bottom" id="RXg-QJ-NAf"/>
                     <constraint firstItem="DBy-At-GRc" firstAttribute="leading" secondItem="wW9-sv-Fiv" secondAttribute="trailing" id="Uom-lV-I5X"/>
+                    <constraint firstItem="wW9-sv-Fiv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Vok-ou-o0K"/>
                     <constraint firstAttribute="trailing" secondItem="79C-R9-SKP" secondAttribute="trailing" constant="10" id="cpv-q2-mlO"/>
                     <constraint firstAttribute="bottom" secondItem="TKb-z2-6TE" secondAttribute="bottom" id="hFi-ZM-ip4"/>
-                    <constraint firstAttribute="bottom" secondItem="eCn-rx-LT4" secondAttribute="bottom" id="jdN-8p-uUK"/>
                     <constraint firstItem="DBy-At-GRc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="pLQ-Ps-7Cw"/>
-                    <constraint firstItem="eCn-rx-LT4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vqx-JX-JEH"/>
                     <constraint firstAttribute="bottom" secondItem="79C-R9-SKP" secondAttribute="bottom" id="wif-iO-8wD"/>
                 </constraints>
             </tableViewCellContentView>

@@ -156,7 +156,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         let sunriseHour = dateFormatter.string(from: sunrise!)
         let sunsetHour = dateFormatter.string(from: sunset!)
         let currentHour = dateFormatter.string(from: currentTime)
-        weatherDataModel.dayTime = sunsetHour...sunsetHour ~= currentHour
+        weatherDataModel.dayTime = sunriseHour...sunsetHour ~= currentHour
         print("currentHour:\(currentHour), sunriseHour:\(sunriseHour), sunsetHour:\(sunsetHour)")
         print("daytime: \(weatherDataModel.dayTime!)")
     }
@@ -181,8 +181,8 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             pastButton.setImage(invertImageColors(weatherIcon: UIImage(named: pastButtonImage)!), for: .normal)
             futureButton.setImage(invertImageColors(weatherIcon: UIImage(named: futureButtonImage)!), for: .normal)
             // FIXME: Button labels text color doesn't change
-            pastButton.titleLabel?.textColor = .white
-            futureButton.titleLabel?.textColor = .white
+            pastButton.setTitleColor(.white, for: .normal)
+            futureButton.setTitleColor(.white, for: .normal)
         }
     }
     
