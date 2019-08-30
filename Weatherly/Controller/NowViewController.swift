@@ -21,6 +21,11 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+//        getLocation(forPlaceCalled: "Gdańsk") { (location) in
+//            print("Gdańsk: ", location)
+//            self.getWeatherData(atLocation: location!)
+//        }
+        
         // Setup buttons with round borders
         roundBorder(button: pastButton)
         roundBorder(button: futureButton)
@@ -66,7 +71,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             // Put currentLocation into WeatherDataModel
             weatherDataModel.currentLocation = currentLocation
             
-            // Get city name based on current location
+            // Get city name based on current location - thanks to https://github.com/davidseek/Swift101ConvertCoordinates
             geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
                 placemarks?.forEach({ (placemark) in
                     if let currentCity = placemark.locality {
@@ -82,6 +87,28 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     // If errors with obtaining location occurs update cityLabel
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         cityLabel.text = "Unavaiable"
+    }
+    
+    //MARK: - Get location of place entered by user - thanks to https://github.com/davidseek/Swift101ConvertCoordinates
+    func getLocation(forPlaceCalled name: String, completion: @escaping(CLLocation?) -> Void) {
+        geoCoder.geocodeAddressString(name) { placemarks, error in
+            guard error == nil else {
+                print("*** Error in \(#function): \(error!.localizedDescription)")
+                completion(nil)
+                return
+            }
+            guard let placemark = placemarks?[0] else {
+                print("*** Error in \(#function): placemark is nil")
+                completion(nil)
+                return
+            }
+            guard let location = placemark.location else {
+                print("*** Error in \(#function): placemark is nil")
+                completion(nil)
+                return
+            }
+            completion(location)
+        }
     }
     
     //MARK: - Get current weather data from DarkSkyAPI
