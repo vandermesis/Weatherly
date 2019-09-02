@@ -199,6 +199,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         getLocation(forPlaceCalled: "Reykiavik") { (location) in
             print("Reykiavik: ", location!)
             self.weatherDataModel.currentCity = "Reykiavik"
+            self.weatherDataModel.currentLocation = location
             self.getWeatherData(atLocation: location!)
         }
     }

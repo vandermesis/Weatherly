@@ -46,10 +46,11 @@ class PastViewController: UIViewController {
             
             // Update WeatherDataModel if request from api will success
             case .success(let forecast):
-                print(forecast.current!.time.description)
                 self.pastDataModel.pastTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
                 self.pastDataModel.pastIcon = forecast.current?.icon ?? "clear-day"
-                self.updateUI()
+                self.updateUIWithPastWeatherData()
+                print(forecast.current!.time.description)
+                print("locationFromVC", self.locationFromNowVC!)
                 
             // If errors with obtaining weather data will occure update cityLabel
             case .failure(let error):
@@ -80,7 +81,7 @@ class PastViewController: UIViewController {
     // MARK: - Update User Interface
     
     // Update UI with current data
-    func updateUI() {
+    func updateUIWithPastWeatherData() {
         pastTempLabel.text = String(pastDataModel.pastTemperature ?? 99)
         if dayTimeFromNowVC ?? true {
             pastWeatherIcon.image = UIImage(named: pastDataModel.pastIcon ?? "clear-day")
