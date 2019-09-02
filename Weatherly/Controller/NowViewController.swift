@@ -66,17 +66,16 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             // Put currentLocation into WeatherDataModel
             weatherDataModel.currentLocation = currentLocation
             
-            // Get city name based on current location - thanks to https://github.com/davidseek/Swift101ConvertCoordinates
-            geoCoder.reverseGeocodeLocation(currentLocation) { (placemarks, _) in
-                placemarks?.forEach({ (placemark) in
-                    if let currentCity = placemark.locality {
-                        self.weatherDataModel.currentCity = currentCity
-                        self.cityButtonLabel.setTitle(currentCity, for: .normal)
-                    }
-                })
+            // Get city name based on current location
+            getPlace(for: currentLocation) { (placemark) in
+                guard let placemark = placemark else { return }
+                if let currentCity = placemark.locality {
+                    self.weatherDataModel.currentCity = currentCity
+                    self.cityButtonLabel.setTitle(currentCity, for: .normal)
+                }
             }
-            print("Current location: ", currentLocation)
             getWeatherData(atLocation: currentLocation)
+            print("Current location: ", currentLocation)
         }
     }
     
@@ -85,7 +84,26 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         cityButtonLabel.setTitle("Unavaiable", for: .normal)
     }
     
-    //MARK: - Get location of place entered by user - thanks to https://github.com/davidseek/Swift101ConvertCoordinates
+    // MARK: - Convert coordinates to city names and back - - thanks to https://github.com/davidseek/Swift101ConvertCoordinates
+    // Get city name from location
+    func getPlace(for location: CLLocation,
+                  completion: @escaping (CLPlacemark?) -> Void) {
+        geoCoder.reverseGeocodeLocation(location) { placemarks, error in
+            guard error == nil else {
+                print("*** Error in \(#function): \(error!.localizedDescription)")
+                completion(nil)
+                return
+            }
+            guard let placemark = placemarks?[0] else {
+                print("*** Error in \(#function): placemark is nil")
+                completion(nil)
+                return
+            }
+            completion(placemark)
+        }
+    }
+    
+    // Get location of place entered by user
     func getLocation(forPlaceCalled name: String, completion: @escaping(CLLocation?) -> Void) {
         geoCoder.geocodeAddressString(name) { placemarks, error in
             guard error == nil else {
