@@ -195,13 +195,29 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // User enters a new city name
     @IBAction func cityButtonPressed(_ sender: UIButton) {
-        getLocation(forPlaceCalled: "Reykiavik") { (location) in
-            print("Reykiavik: ", location!)
-            self.weatherDataModel.currentCity = "Reykiavik"
-            self.weatherDataModel.currentLocation = location
-            self.getWeatherData(atLocation: location!)
+        var cityNameTextField = UITextField()
+        let alert = UIAlertController(title: "Enter city name", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
+            if cityNameTextField.text != "" {
+                self.getLocation(forPlaceCalled: cityNameTextField.text!) { (location) in
+                    print("User enters location: \(cityNameTextField.text!): \(location!)")
+                    self.weatherDataModel.currentCity = cityNameTextField.text!
+                    self.weatherDataModel.currentLocation = location
+                    self.getWeatherData(atLocation: location!)
+                }
+            }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addTextField { (textField) in
+            cityNameTextField = textField
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        alert.preferredAction = alert.actions[0]
+        present(alert, animated: true, completion: nil)
+        
     }
     
     // MARK: - Pass WeatherDataModel to FutureVC and PastVC
