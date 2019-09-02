@@ -13,6 +13,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        futureCityLabel.text = cityFromNowVC
         configureTableView()
         roundBorder(button: nowButton)
     }
@@ -20,7 +21,9 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - Variables
     var weatherDataForecast: [DataPoint]?
     var dayTimeFromNowVC: Bool?
+    var cityFromNowVC: String?
     @IBOutlet weak var futureTableView: UITableView!
+    @IBOutlet weak var futureCityLabel: UILabel!
     @IBOutlet weak var nowButton: UIButton!
     
     // MARK: - Buttons

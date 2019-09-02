@@ -151,19 +151,28 @@
                                 <rect key="frame" x="0.0" y="144" width="414" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Luna" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhj-K1-WVG">
+                                <rect key="frame" x="170.5" y="79" width="73.5" height="42"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mPq-rF-tq4" firstAttribute="bottom" secondItem="KPa-mb-I8z" secondAttribute="bottom" constant="20" id="5E1-QM-pOC"/>
                             <constraint firstItem="KPa-mb-I8z" firstAttribute="centerX" secondItem="5Y2-ci-C5y" secondAttribute="centerX" id="6gv-Ar-2sS"/>
+                            <constraint firstItem="fhj-K1-WVG" firstAttribute="centerX" secondItem="5Y2-ci-C5y" secondAttribute="centerX" id="9a7-Sg-TgE"/>
                             <constraint firstItem="6l0-hW-Sff" firstAttribute="top" secondItem="mPq-rF-tq4" secondAttribute="top" constant="100" id="AmJ-3A-q1f"/>
                             <constraint firstItem="6l0-hW-Sff" firstAttribute="leading" secondItem="5Y2-ci-C5y" secondAttribute="leading" id="ENh-EI-Yto"/>
                             <constraint firstItem="mPq-rF-tq4" firstAttribute="bottom" secondItem="6l0-hW-Sff" secondAttribute="bottom" constant="100" id="Vur-xd-JYo"/>
                             <constraint firstAttribute="trailing" secondItem="6l0-hW-Sff" secondAttribute="trailing" id="whR-KS-aXR"/>
+                            <constraint firstItem="fhj-K1-WVG" firstAttribute="top" secondItem="mPq-rF-tq4" secondAttribute="top" constant="35" id="zGY-Ll-TTg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mPq-rF-tq4"/>
                     </view>
                     <connections>
+                        <outlet property="futureCityLabel" destination="fhj-K1-WVG" id="1v9-op-qcg"/>
                         <outlet property="futureTableView" destination="6l0-hW-Sff" id="Kts-2Y-fjD"/>
                         <outlet property="nowButton" destination="KPa-mb-I8z" id="6oz-YJ-2DV"/>
                     </connections>

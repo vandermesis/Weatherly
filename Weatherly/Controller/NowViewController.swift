@@ -209,6 +209,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             let futureVC = segue.destination as! FutureTableViewController
                 futureVC.weatherDataForecast = weatherDataModel.dayForecast
                 futureVC.dayTimeFromNowVC = weatherDataModel.dayTime
+                futureVC.cityFromNowVC = weatherDataModel.currentCity
         }
         if segue.identifier == "gotoPast" {
             let pastVC = segue.destination as! PastViewController
