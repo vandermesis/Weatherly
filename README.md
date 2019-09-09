@@ -21,6 +21,7 @@ Check current, past and future weather for current location.
 - Custom cell design with custom .xib
 - UIDatePickerView
 - CoreLocation
+- CoreData
 - DateFormatter
 - NotificationCenter
 
@@ -31,7 +32,7 @@ Check current, past and future weather for current location.
 - [x] Get and present past weather forecast and allow user to choose date
 - [x] Get and present hourly forecast on Now view controller
 - [x] UI color inverse based on time of the day
-- [ ] Let user choose location manually
+- [x] Let user choose location manually
 - [ ] Persist user favorite locations
 - [ ] Tailor UI and UX
 

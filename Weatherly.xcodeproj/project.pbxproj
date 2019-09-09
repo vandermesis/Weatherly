@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35FCA481F7DD74D801503F0D /* Pods_Weatherly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A887610E19213808802DE82A /* Pods_Weatherly.framework */; };
+		BA28D1F22326769D00481DC5 /* FavoritesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA28D1F02326769D00481DC5 /* FavoritesModel.xcdatamodeld */; };
 		BA5ED23D23134127007536F2 /* FutureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5ED23B23134127007536F2 /* FutureCell.swift */; };
 		BA5ED23E23134127007536F2 /* FutureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA5ED23C23134127007536F2 /* FutureCell.xib */; };
 		BA6C651C2311C461009F41E1 /* Demo in Resources */ = {isa = PBXBuildFile; fileRef = BA6C651B2311C461009F41E1 /* Demo */; };
@@ -30,6 +31,7 @@
 		253904D47C24B000B968D8CF /* Pods-Weatherly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weatherly.release.xcconfig"; path = "Target Support Files/Pods-Weatherly/Pods-Weatherly.release.xcconfig"; sourceTree = "<group>"; };
 		A12DAA6E4632B0BDBE76DFD3 /* Pods-Weatherly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weatherly.debug.xcconfig"; path = "Target Support Files/Pods-Weatherly/Pods-Weatherly.debug.xcconfig"; sourceTree = "<group>"; };
 		A887610E19213808802DE82A /* Pods_Weatherly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weatherly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA28D1F12326769D00481DC5 /* FavoritesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoritesModel.xcdatamodel; sourceTree = "<group>"; };
 		BA5ED23B23134127007536F2 /* FutureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureCell.swift; sourceTree = "<group>"; };
 		BA5ED23C23134127007536F2 /* FutureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FutureCell.xib; sourceTree = "<group>"; };
 		BA6C651B2311C461009F41E1 /* Demo */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Demo; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				BADF87022311A4E600785403 /* WeatherDataModel.swift */,
 				BA882A4F2315560500D9D483 /* PastDataModel.swift */,
+				BA28D1F02326769D00481DC5 /* FavoritesModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				BA958F29231011F600985D80 /* NowViewController.swift in Sources */,
 				BADF87032311A4E600785403 /* WeatherDataModel.swift in Sources */,
 				BA958F27231011F600985D80 /* AppDelegate.swift in Sources */,
+				BA28D1F22326769D00481DC5 /* FavoritesModel.xcdatamodeld in Sources */,
 				BAB57C252315B757002C6DE2 /* NowCell.swift in Sources */,
 				BA882A502315560500D9D483 /* PastDataModel.swift in Sources */,
 				BADF86FE23119F4600785403 /* PastViewController.swift in Sources */,
@@ -498,6 +502,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BA28D1F02326769D00481DC5 /* FavoritesModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BA28D1F12326769D00481DC5 /* FavoritesModel.xcdatamodel */,
+			);
+			currentVersion = BA28D1F12326769D00481DC5 /* FavoritesModel.xcdatamodel */;
+			path = FavoritesModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BA958F1B231011F600985D80 /* Project object */;
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class FavoritesViewController: UIViewController {
 
@@ -15,14 +16,16 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
         configureTableView()
         roundBorder(button: addButtonLabel)
+        loadCities()
     }
     
     // MARK: - Constants and Variables
     // Constants:
     let geoCoder = CLGeocoder()
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // Variables
-    var favorites = [String]()
+    var favorites = [Favorites]()
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var favoritesTableView: UITableView!
     @IBOutlet weak var addButtonLabel: UIButton!
@@ -44,11 +47,17 @@ class FavoritesViewController: UIViewController {
     // Add city to favorites
     @IBAction func addButtonPressed(_ sender: UIButton) {
         var cityNameTextField = UITextField()
+        let newCity = Favorites(context: self.context)
         let alert = UIAlertController(title: "Enter city name", message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
             if cityNameTextField.text != "" {
                 self.getLocation(forPlaceCalled: cityNameTextField.text!) { (location) in
                     print("User enters location: \(cityNameTextField.text!): \(location!)")
+                    newCity.city = cityNameTextField.text
+                    self.favorites.append(newCity)
+                    self.saveCities()
+                    self.favoritesTableView.reloadData()
+                    
 //                    self.weatherDataModel.currentCity = cityNameTextField.text!
 //                    self.weatherDataModel.currentLocation = location
 //                    self.getWeatherData(atLocation: location!)
@@ -70,29 +79,27 @@ class FavoritesViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    //MARK: - CRUD - Save and Load user favorite cities with CoreData
+    func loadCities() {
+        let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
+        do {
+            favorites = try context.fetch(request)
+        } catch {
+            print("Error fetching cities: \(error.localizedDescription)")
+        }
+    }
     
+    func saveCities() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving cities \(error)")
+        }
+    }
 }
 
 // MARK: - Convert coordinates to city names and back - - thanks to https://github.com/davidseek/Swift101ConvertCoordinates
 extension FavoritesViewController: CLLocationManagerDelegate {
-    
-    // Get city name from location
-    func getPlace(for location: CLLocation,
-                  completion: @escaping (CLPlacemark?) -> Void) {
-        geoCoder.reverseGeocodeLocation(location) { placemarks, error in
-            guard error == nil else {
-                print("*** Error in \(#function): \(error!.localizedDescription)")
-                completion(nil)
-                return
-            }
-            guard let placemark = placemarks?[0] else {
-                print("*** Error in \(#function): placemark is nil")
-                completion(nil)
-                return
-            }
-            completion(placemark)
-        }
-    }
     
     // Get location of place entered by user
     func getLocation(forPlaceCalled name: String, completion: @escaping(CLLocation?) -> Void) {
@@ -132,15 +139,18 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return favorites.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = favoritesTableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath)
-        cell.textLabel?.text = "City1"
+        cell.textLabel?.text = favorites[indexPath.row].city
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(favorites[indexPath.row])
+    }
     
 }
 
