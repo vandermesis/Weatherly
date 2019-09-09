@@ -10,6 +10,11 @@ import UIKit
 import CoreLocation
 import CoreData
 
+protocol CanReceive {
+    func userEntered(city: String)
+    func setFavoritesMode(to: Bool)
+}
+
 class FavoritesViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -25,6 +30,7 @@ class FavoritesViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // Variables
+    var delegate: CanReceive?
     var favorites = [Favorites]()
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var favoritesTableView: UITableView!
@@ -57,15 +63,14 @@ class FavoritesViewController: UIViewController {
                     self.favorites.append(newCity)
                     self.saveCities()
                     self.favoritesTableView.reloadData()
-                    
-//                    self.weatherDataModel.currentCity = cityNameTextField.text!
-//                    self.weatherDataModel.currentLocation = location
-//                    self.getWeatherData(atLocation: location!)
+                    self.delegate?.userEntered(city: cityNameTextField.text!)
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }
         let currentLocationAction = UIAlertAction(title: "Current Location", style: .default) { (alertAction) in
             print("Back to NowVC with Current Location")
+            self.delegate?.setFavoritesMode(to: false)
             self.dismiss(animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)

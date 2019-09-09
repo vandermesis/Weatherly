@@ -25,8 +25,10 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         roundBorder(button: futureButton)
         
         // Setup notification to trigger refresh current location and data when application come back from the backgroudn
-        NotificationCenter.default.addObserver(self, selector:#selector(updateCurrentLocation), name: UIApplication.didBecomeActiveNotification, object: nil)
-        updateCurrentLocation()
+        if favoritesMode == false {
+            NotificationCenter.default.addObserver(self, selector:#selector(updateCurrentLocation), name: UIApplication.didBecomeActiveNotification, object: nil)
+            updateCurrentLocation()
+        }
         configureTableView()
     }
 
@@ -44,6 +46,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var nowTableView: UITableView!
     @IBOutlet weak var pastButton: UIButton!
     @IBOutlet weak var futureButton: UIButton!
+    var favoritesMode = false
     
     // MARK: - Configure Location Manager and start updating location data
     @objc func updateCurrentLocation() {
@@ -235,6 +238,10 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             pastVC.locationFromNowVC = weatherDataModel.currentLocation
             pastVC.dayTimeFromNowVC = weatherDataModel.dayTime
         }
+        if segue.identifier == "gotoFavorites" {
+            let favoritesVC = segue.destination as! FavoritesViewController
+            favoritesVC.delegate = self
+        }
     }
     
     // MARK: - Invert UI colors during night time
@@ -332,4 +339,24 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
+}
+
+// MARK: Get city from FavoritesViewController
+extension NowViewController: CanReceive {
+    
+    func setFavoritesMode(to: Bool) {
+        favoritesMode = to
+    }
+    
+    func userEntered(city: String) {
+        print("City passed from FavoritesVC: \(city)")
+        favoritesMode = true
+        weatherDataModel.currentCity = city
+        getLocation(forPlaceCalled: city) { (location) in
+            self.weatherDataModel.currentLocation = location
+            self.getWeatherData(atLocation: location!)
+        }
+    }
+    
+    
 }
