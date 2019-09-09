@@ -8,6 +8,5 @@ use_frameworks!
   # Pods for Weatherly
 pod 'SwiftSky'
 pod 'SVProgressHUD'
-pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 
 end
