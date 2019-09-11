@@ -334,8 +334,8 @@
                             <constraint firstItem="0xa-MF-wz7" firstAttribute="bottom" secondItem="FoH-E5-UDh" secondAttribute="bottom" constant="100" id="5D1-50-UXL"/>
                             <constraint firstItem="FoH-E5-UDh" firstAttribute="top" secondItem="0xa-MF-wz7" secondAttribute="top" constant="100" id="71h-3w-NZT"/>
                             <constraint firstItem="oYf-f8-gWj" firstAttribute="top" secondItem="0xa-MF-wz7" secondAttribute="top" constant="35" id="Dn2-mh-R7Z"/>
-                            <constraint firstItem="FoH-E5-UDh" firstAttribute="trailing" secondItem="ACS-7D-OET" secondAttribute="trailing" id="Qvk-aH-I9S"/>
-                            <constraint firstItem="FoH-E5-UDh" firstAttribute="leading" secondItem="ACS-7D-OET" secondAttribute="leading" id="WEo-fx-waH"/>
+                            <constraint firstItem="FoH-E5-UDh" firstAttribute="trailing" secondItem="0xa-MF-wz7" secondAttribute="trailing" id="Qvk-aH-I9S"/>
+                            <constraint firstItem="FoH-E5-UDh" firstAttribute="leading" secondItem="0xa-MF-wz7" secondAttribute="leading" id="WEo-fx-waH"/>
                             <constraint firstItem="oYf-f8-gWj" firstAttribute="centerX" secondItem="ACS-7D-OET" secondAttribute="centerX" id="WOm-2S-zIH"/>
                             <constraint firstItem="m6Y-UF-qzr" firstAttribute="centerX" secondItem="ACS-7D-OET" secondAttribute="centerX" id="coz-Uo-w4Q"/>
                         </constraints>

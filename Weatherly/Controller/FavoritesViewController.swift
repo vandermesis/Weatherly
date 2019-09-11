@@ -130,5 +130,19 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            context.delete(favorites[indexPath.row])
+            do {
+                try context.save()
+            } catch {
+                print("Error context.save: \(error)")
+            }
+            favorites.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
 }
 
