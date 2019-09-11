@@ -344,8 +344,8 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: Get city from FavoritesViewController
 extension NowViewController: CanReceive {
     
-    func setFavoritesMode(to: Bool) {
-        favoritesMode = to
+    func setFavorites(mode: Bool) {
+        favoritesMode = mode
     }
     
     func userEntered(city: String) {

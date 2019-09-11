@@ -12,7 +12,7 @@ import CoreData
 
 protocol CanReceive {
     func userEntered(city: String)
-    func setFavoritesMode(to: Bool)
+    func setFavorites(mode: Bool)
 }
 
 class FavoritesViewController: UIViewController {
@@ -70,7 +70,7 @@ class FavoritesViewController: UIViewController {
         }
         let currentLocationAction = UIAlertAction(title: "Current Location", style: .default) { (alertAction) in
             print("Back to NowVC with Current Location")
-            self.delegate?.setFavoritesMode(to: false)
+            self.delegate?.setFavorites(mode: false)
             self.dismiss(animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
@@ -155,6 +155,8 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(favorites[indexPath.row])
+        delegate?.userEntered(city: favorites[indexPath.row].city!)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
