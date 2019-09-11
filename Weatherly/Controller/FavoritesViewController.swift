@@ -32,6 +32,7 @@ class FavoritesViewController: UIViewController {
     // Variables
     var delegate: CanReceive?
     var favorites = [Favorites]()
+    var dayTimeFromNowVC: Bool?
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var favoritesTableView: UITableView!
     @IBOutlet weak var addButtonLabel: UIButton!
@@ -42,7 +43,7 @@ class FavoritesViewController: UIViewController {
         button.backgroundColor = .clear
         button.layer.cornerRadius = 30
         button.layer.borderWidth = 1
-        if self.view.backgroundColor == UIColor.white {
+        if dayTimeFromNowVC ?? true {
             button.layer.borderColor = UIColor.black.cgColor
         } else {
             button.layer.borderColor = UIColor.white.cgColor
@@ -82,6 +83,7 @@ class FavoritesViewController: UIViewController {
     }
     
     //MARK: - CRUD - Save and Load user favorite cities with CoreData
+    // Read data from database
     func loadCities() {
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         do {
@@ -91,6 +93,7 @@ class FavoritesViewController: UIViewController {
         }
     }
     
+    // Save data to database
     func saveCities() {
         do {
             try context.save()
@@ -100,9 +103,8 @@ class FavoritesViewController: UIViewController {
     }
 }
 
+// MARK: - TableView methods
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    // MARK: - TableView methods
     
     // Setup and configure tableview
     func configureTableView() {
@@ -121,17 +123,36 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = favoritesTableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath)
         cell.textLabel?.text = favorites[indexPath.row].city
+        
+        // Invert FutureVC colors during night time
+        if dayTimeFromNowVC ?? true {
+            self.view.backgroundColor = .white
+            favoritesTableView.backgroundColor = .white
+            cell.textLabel?.textColor = .black
+            cell.backgroundColor = .white
+            addButtonLabel.setTitleColor(.black, for: .normal)
+        } else {
+            self.view.backgroundColor = .black
+            favoritesTableView.backgroundColor = .black
+            cell.textLabel?.textColor = .white
+            cell.backgroundColor = .black
+            addButtonLabel.setTitleColor(.white, for: .normal)
+        }
+        
         return cell
     }
-    
+
+    // Select city from favorites and go to NowVC
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(favorites[indexPath.row])
-        delegate?.userEntered(city: favorites[indexPath.row].city!)
+        if let selectedCity = favorites[indexPath.row].city {
+            delegate?.userEntered(city: selectedCity)
+        }
         self.dismiss(animated: true, completion: nil)
     }
     
+    // Remove city from favorites
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             context.delete(favorites[indexPath.row])
             do {

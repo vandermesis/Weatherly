@@ -33,7 +33,7 @@ Check current, past and future weather for current location.
 - [x] Get and present hourly forecast on Now view controller
 - [x] UI color inverse based on time of the day
 - [x] Let user choose location manually
-- [ ] Persist user favorite locations
+- [x] Persist user favorite locations
 - [ ] Tailor UI and UX
 
 ## Requirements
@@ -45,7 +45,6 @@ Check current, past and future weather for current location.
 - *[Alamofire](https://github.com/Alamofire/Alamofire)*
 - *[SwiftSky](https://github.com/appcompany/SwiftSky)*
 - *[SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)*
-- *[ChameleonFramework](https://github.com/ViccAlexander/Chameleon#random-colors)*
 
 ## Who is who
 Marek Skrzelowski, mskrzelowski@vandermesis.com

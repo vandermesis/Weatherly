@@ -199,26 +199,6 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     // User enters a new city name
     @IBAction func cityButtonPressed(_ sender: UIButton) {
-//        var cityNameTextField = UITextField()
-//        let alert = UIAlertController(title: "Enter city name", message: "", preferredStyle: .alert)
-//        let okAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
-//            if cityNameTextField.text != "" {
-//                self.getLocation(forPlaceCalled: cityNameTextField.text!) { (location) in
-//                    print("User enters location: \(cityNameTextField.text!): \(location!)")
-//                    self.weatherDataModel.currentCity = cityNameTextField.text!
-//                    self.weatherDataModel.currentLocation = location
-//                    self.getWeatherData(atLocation: location!)
-//                }
-//            }
-//        }
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-//        alert.addTextField { (textField) in
-//            cityNameTextField = textField
-//        }
-//        alert.addAction(okAction)
-//        alert.addAction(cancelAction)
-//        alert.preferredAction = alert.actions[0]
-//        present(alert, animated: true, completion: nil)
         performSegue(withIdentifier: "gotoFavorites", sender: self)
     }
     
@@ -241,6 +221,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         if segue.identifier == "gotoFavorites" {
             let favoritesVC = segue.destination as! FavoritesViewController
             favoritesVC.delegate = self
+            favoritesVC.dayTimeFromNowVC = weatherDataModel.dayTime
         }
     }
     
@@ -254,7 +235,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         if sunriseHour < sunsetHour {
             weatherDataModel.dayTime = sunriseHour...sunsetHour ~= currentHour
         } else {
-            weatherDataModel.dayTime = true
+            weatherDataModel.dayTime = false
         }
         print("currentHour:\(currentHour), sunriseHour:\(sunriseHour), sunsetHour:\(sunsetHour)")
         print("daytimeBool: \(weatherDataModel.dayTime!)")
