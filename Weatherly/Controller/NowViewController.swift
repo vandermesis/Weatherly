@@ -353,8 +353,10 @@ extension NowViewController: CanReceive {
         favoritesMode = true
         weatherDataModel.currentCity = city
         getLocation(forPlaceCalled: city) { (location) in
-            self.weatherDataModel.currentLocation = location
-            self.getWeatherData(atLocation: location!)
+            if let cityLocation = location {
+                self.weatherDataModel.currentLocation = cityLocation
+                self.getWeatherData(atLocation: cityLocation)
+            }
         }
     }
     

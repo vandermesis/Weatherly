@@ -58,7 +58,7 @@ class FavoritesViewController: UIViewController {
         let okAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
             if cityNameTextField.text != "" {
                 self.getLocation(forPlaceCalled: cityNameTextField.text!) { (location) in
-                    print("User enters location: \(cityNameTextField.text!): \(location!)")
+//                    print("User enters location: \(cityNameTextField.text!): \(location!)")
                     newCity.city = cityNameTextField.text
                     self.favorites.append(newCity)
                     self.saveCities()
