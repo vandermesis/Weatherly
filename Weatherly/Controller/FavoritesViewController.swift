@@ -57,15 +57,12 @@ class FavoritesViewController: UIViewController {
         let alert = UIAlertController(title: "Enter city name", message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
             if cityNameTextField.text != "" {
-                self.getLocation(forPlaceCalled: cityNameTextField.text!) { (location) in
-//                    print("User enters location: \(cityNameTextField.text!): \(location!)")
                     newCity.city = cityNameTextField.text
                     self.favorites.append(newCity)
                     self.saveCities()
                     self.favoritesTableView.reloadData()
                     self.delegate?.userEntered(city: cityNameTextField.text!)
                     self.dismiss(animated: true, completion: nil)
-                }
             }
         }
         let currentLocationAction = UIAlertAction(title: "Current Location", style: .default) { (alertAction) in
@@ -99,32 +96,6 @@ class FavoritesViewController: UIViewController {
             try context.save()
         } catch {
             print("Error saving cities \(error)")
-        }
-    }
-}
-
-// MARK: - Convert coordinates to city names and back - - thanks to https://github.com/davidseek/Swift101ConvertCoordinates
-extension FavoritesViewController: CLLocationManagerDelegate {
-    
-    // Get location of place entered by user
-    func getLocation(forPlaceCalled name: String, completion: @escaping(CLLocation?) -> Void) {
-        geoCoder.geocodeAddressString(name) { placemarks, error in
-            guard error == nil else {
-                print("*** Error in \(#function): \(error!.localizedDescription)")
-                completion(nil)
-                return
-            }
-            guard let placemark = placemarks?[0] else {
-                print("*** Error in \(#function): placemark is nil")
-                completion(nil)
-                return
-            }
-            guard let location = placemark.location else {
-                print("*** Error in \(#function): placemark is nil")
-                completion(nil)
-                return
-            }
-            completion(location)
         }
     }
 }
