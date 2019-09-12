@@ -19,7 +19,6 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("NowVC did load")
         
         // Setup buttons with round borders
         roundBorder(button: pastButton)
@@ -134,7 +133,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         // Configure request
         SwiftSky.secret = "44c90ae04d6f86164e505b107b70e5f6"
         SwiftSky.language = .english
-        SwiftSky.locale = .autoupdatingCurrent
+//        SwiftSky.locale = .autoupdatingCurrent
         SwiftSky.units.temperature = .celsius
         
         // Request data
@@ -166,7 +165,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Update User Interface with current data
     func updateUI() {
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
-//        cityButtonLabel.setTitle(weatherDataModel.currentCity!, for: .normal)
+        cityButtonLabel.setTitle(weatherDataModel.currentCity!, for: .normal)
 //        print(cityButtonLabel.titleLabel?.attributedText)
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
         changeUIColors()
@@ -237,7 +236,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         if sunriseHour < sunsetHour {
             weatherDataModel.dayTime = sunriseHour...sunsetHour ~= currentHour
         } else {
-            weatherDataModel.dayTime = false
+            weatherDataModel.dayTime = true
         }
         print("currentHour:\(currentHour), sunriseHour:\(sunriseHour), sunsetHour:\(sunsetHour)")
         print("daytimeBool: \(weatherDataModel.dayTime!)")

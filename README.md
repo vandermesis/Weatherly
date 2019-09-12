@@ -12,7 +12,7 @@
 
 ## What for
 It's for me to practise Swift.
-Check current, past and future weather for current location.
+Check current, past and future weather for different locations.
 
 ## What new I've learned
 
