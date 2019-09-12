@@ -22,7 +22,6 @@ class FavoritesViewController: UIViewController {
         configureTableView()
         roundBorder(button: addButtonLabel)
         loadCities()
-        print("Favorites before OK: \(favorites.count)")
     }
     
     // MARK: - Constants and Variables
@@ -81,7 +80,6 @@ class FavoritesViewController: UIViewController {
         alert.addAction(currentLocationAction)
         alert.preferredAction = alert.actions[0]
         present(alert, animated: true, completion: nil)
-        print("Favorites after OK: \(favorites.count)")
     }
     
     //MARK: - CRUD - Save and Load user favorite cities with CoreData

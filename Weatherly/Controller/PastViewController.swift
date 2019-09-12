@@ -9,6 +9,7 @@
 import UIKit
 import SwiftSky
 import CoreLocation
+import SVProgressHUD
 
 class PastViewController: UIViewController {
 
@@ -41,6 +42,7 @@ class PastViewController: UIViewController {
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         
         //MARK: - Get past weather data from DarkSkyAPI
+        SVProgressHUD.show()
         SwiftSky.get([.current], at: locationFromNowVC!, on: Date(timeIntervalSince1970: datePicker.date.timeIntervalSince1970)) { (result) in
             switch result {
             
@@ -57,6 +59,7 @@ class PastViewController: UIViewController {
                 self.pastCityLabel.text = "Unavailable"
                 print("Error geting data from DarkSky: \(error)")
             }
+            SVProgressHUD.dismiss()
         }
     }
     

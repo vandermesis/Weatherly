@@ -19,6 +19,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        print("NowVC did load")
         
         // Setup buttons with round borders
         roundBorder(button: pastButton)
@@ -164,6 +165,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Update User Interface with current data
     func updateUI() {
+        print("updateUI current city: \(weatherDataModel.currentCity!)")
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
         cityButtonLabel.setTitle(weatherDataModel.currentCity, for: .normal)
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
@@ -335,6 +337,8 @@ extension NowViewController: CanReceive {
         print("City passed from FavoritesVC: \(city)")
         favoritesMode = true
         weatherDataModel.currentCity = city
+        cityButtonLabel.setTitle(city, for: .normal)
+        print("userEntered CityButtonLable text", cityButtonLabel.titleLabel?.text)
         getLocation(forPlaceCalled: city) { (location) in
             if let cityLocation = location {
                 self.weatherDataModel.currentLocation = cityLocation
