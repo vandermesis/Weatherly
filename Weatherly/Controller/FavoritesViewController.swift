@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import CoreData
 
+// MARK: - Use protocol to send data from FavoritesVC back to NowVC
 protocol CanReceive {
     func userEntered(city: String)
     func setFavorites(mode: Bool)
@@ -55,6 +56,8 @@ class FavoritesViewController: UIViewController {
     @IBAction func addButtonPressed(_ sender: UIButton) {
         var cityNameTextField = UITextField()
         let alert = UIAlertController(title: "Enter city name", message: "", preferredStyle: .alert)
+
+        // Action for OK - get user text, save it to database and pass it to NowVC to get current weather data
         let okAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
             if cityNameTextField.text != "" {
                     let newCity = Favorites(context: self.context)
@@ -66,6 +69,8 @@ class FavoritesViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
             }
         }
+        
+        // Action for Current Location - dismiss FavoritesVC and let NowVC present weather for current location
         let currentLocationAction = UIAlertAction(title: "Current Location", style: .default) { (alertAction) in
             print("Back to NowVC with Current Location")
             self.delegate?.setFavorites(mode: false)

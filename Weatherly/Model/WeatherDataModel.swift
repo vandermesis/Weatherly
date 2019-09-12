@@ -22,5 +22,4 @@ class WeatherDataModel {
     
     // Store data from DarkSky api for use in FutureViewController
     var dayForecast: [DataPoint]?
-    
 }

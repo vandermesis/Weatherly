@@ -207,9 +207,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoFuture" {
             let futureVC = segue.destination as! FutureTableViewController
-                futureVC.weatherDataForecast = weatherDataModel.dayForecast
-                futureVC.dayTimeFromNowVC = weatherDataModel.dayTime
-                futureVC.cityFromNowVC = weatherDataModel.currentCity
+            futureVC.weatherDataForecast = weatherDataModel.dayForecast
+            futureVC.dayTimeFromNowVC = weatherDataModel.dayTime
+            futureVC.cityFromNowVC = weatherDataModel.currentCity
         }
         if segue.identifier == "gotoPast" {
             let pastVC = segue.destination as! PastViewController
@@ -326,13 +326,15 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-// MARK: Get city from FavoritesViewController
+// MARK: Get city from FavoritesViewController and present weather data for city location
 extension NowViewController: CanReceive {
     
+    // Switch favorites mode on/off to make NowVC load or not current location on viewWillAppear
     func setFavorites(mode: Bool) {
         favoritesMode = mode
     }
     
+    // Use user city to get current weather data for city's location
     func userEntered(city: String) {
         print("City passed from FavoritesVC: \(city)")
         favoritesMode = true
@@ -345,6 +347,4 @@ extension NowViewController: CanReceive {
             }
         }
     }
-    
-    
 }
