@@ -165,9 +165,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Update User Interface with current data
     func updateUI() {
-        print("updateUI current city: \(weatherDataModel.currentCity!)")
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
-        cityButtonLabel.setTitle(weatherDataModel.currentCity, for: .normal)
+//        cityButtonLabel.setTitle(weatherDataModel.currentCity!, for: .normal)
+//        print(cityButtonLabel.titleLabel?.attributedText)
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
         changeUIColors()
     }
@@ -312,6 +312,7 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
             cell.nowTemperature.textColor = .black
             cell.nowPrecipitation.textColor = .black
             cell.nowWeatherIcon.image = UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")
+            cell.umbrellaIcon.image = UIImage(named: "umbrella")
         } else {
             nowTableView.backgroundColor = .black
             cityButtonLabel.titleLabel?.textColor = .white
@@ -338,7 +339,6 @@ extension NowViewController: CanReceive {
         favoritesMode = true
         weatherDataModel.currentCity = city
         cityButtonLabel.setTitle(city, for: .normal)
-        print("userEntered CityButtonLable text", cityButtonLabel.titleLabel?.text)
         getLocation(forPlaceCalled: city) { (location) in
             if let cityLocation = location {
                 self.weatherDataModel.currentLocation = cityLocation
