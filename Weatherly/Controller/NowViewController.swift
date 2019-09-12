@@ -247,7 +247,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         if weatherDataModel.dayTime ?? true {
             self.view.backgroundColor = .white
             tempLabel.textColor = .black
-            
+            cityButtonLabel.setTitleColor(.black, for: .normal)
             weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
             pastButton.setTitleColor(.black, for: .normal)
             futureButton.setTitleColor(.black, for: .normal)
@@ -256,7 +256,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             self.view.backgroundColor = .black
             tempLabel.textColor = .white
-            
+            cityButtonLabel.setTitleColor(.white, for: .normal)
             weatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataModel.currentIcon!)!)
             pastButton.setTitleColor(.white, for: .normal)
             futureButton.setTitleColor(.white, for: .normal)
