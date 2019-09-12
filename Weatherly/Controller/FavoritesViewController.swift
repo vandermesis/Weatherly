@@ -22,6 +22,7 @@ class FavoritesViewController: UIViewController {
         configureTableView()
         roundBorder(button: addButtonLabel)
         loadCities()
+        print("Favorites before OK: \(favorites.count)")
     }
     
     // MARK: - Constants and Variables
@@ -54,10 +55,10 @@ class FavoritesViewController: UIViewController {
     // Add city to favorites
     @IBAction func addButtonPressed(_ sender: UIButton) {
         var cityNameTextField = UITextField()
-        let newCity = Favorites(context: self.context)
         let alert = UIAlertController(title: "Enter city name", message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (alertAction) in
             if cityNameTextField.text != "" {
+                    let newCity = Favorites(context: self.context)
                     newCity.city = cityNameTextField.text
                     self.favorites.append(newCity)
                     self.saveCities()
@@ -80,6 +81,7 @@ class FavoritesViewController: UIViewController {
         alert.addAction(currentLocationAction)
         alert.preferredAction = alert.actions[0]
         present(alert, animated: true, completion: nil)
+        print("Favorites after OK: \(favorites.count)")
     }
     
     //MARK: - CRUD - Save and Load user favorite cities with CoreData
@@ -91,6 +93,7 @@ class FavoritesViewController: UIViewController {
         } catch {
             print("Error fetching cities: \(error.localizedDescription)")
         }
+        favoritesTableView.reloadData()
     }
     
     // Save data to database

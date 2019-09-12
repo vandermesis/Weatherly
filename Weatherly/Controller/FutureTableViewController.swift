@@ -72,6 +72,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
         // Invert FutureVC colors during night time
         if dayTimeFromNowVC ?? true {
             self.view.backgroundColor = .white
+            futureCityLabel.textColor = .black
             futureTableView.backgroundColor = .white
             cell.dayMaxTemp.textColor = .black
             cell.dayPrecipitation.textColor = .black
@@ -82,6 +83,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
             nowButton.setTitleColor(.black, for: .normal)
         } else {
             self.view.backgroundColor = .black
+            futureCityLabel.textColor = .white
             futureTableView.backgroundColor = .black
             cell.dayMaxTemp.textColor = .white
             cell.dayPrecipitation.textColor = .white

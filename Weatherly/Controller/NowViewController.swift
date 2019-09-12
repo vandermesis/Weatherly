@@ -176,7 +176,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         button.backgroundColor = .clear
         button.layer.cornerRadius = 30
         button.layer.borderWidth = 1
-        if self.view.backgroundColor == UIColor.white {
+        if weatherDataModel.dayTime ?? true {
             button.layer.borderColor = UIColor.black.cgColor
         } else {
             button.layer.borderColor = UIColor.white.cgColor
@@ -245,7 +245,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         if weatherDataModel.dayTime ?? true {
             self.view.backgroundColor = .white
             tempLabel.textColor = .black
-            cityButtonLabel.titleLabel?.textColor = .black
+            
             weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
             pastButton.setTitleColor(.black, for: .normal)
             futureButton.setTitleColor(.black, for: .normal)
@@ -254,7 +254,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             self.view.backgroundColor = .black
             tempLabel.textColor = .white
-            cityButtonLabel.titleLabel?.textColor = .white
+            
             weatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataModel.currentIcon!)!)
             pastButton.setTitleColor(.white, for: .normal)
             futureButton.setTitleColor(.white, for: .normal)
@@ -304,6 +304,7 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
         // Invert NowCell colors during night time
         if weatherDataModel.dayTime ?? true {
             nowTableView.backgroundColor = .white
+            cityButtonLabel.titleLabel?.textColor = .black
             cell.backgroundColor = .white
             cell.nowHour.textColor = .black
             cell.nowTemperature.textColor = .black
@@ -311,6 +312,7 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
             cell.nowWeatherIcon.image = UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")
         } else {
             nowTableView.backgroundColor = .black
+            cityButtonLabel.titleLabel?.textColor = .white
             cell.backgroundColor = .black
             cell.nowHour.textColor = .white
             cell.nowTemperature.textColor = .white
