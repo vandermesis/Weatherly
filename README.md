@@ -8,7 +8,7 @@
 ![xcode](https://img.shields.io/badge/xcode-10.3-orange.svg)
 
 ## How it looks like
-![logo](/Demo/demo.png)
+![logo](/Demo/animation.gif)
 
 ## What for
 It's for me to practise Swift.
