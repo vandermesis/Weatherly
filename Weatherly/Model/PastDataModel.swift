@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PastDataModel {
+struct PastDataModel {
     
     // Store data from DarkSky api for use in PastViewController
     var pastTemperature: Int?

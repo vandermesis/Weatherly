@@ -10,7 +10,7 @@ import Foundation
 import SwiftSky
 import CoreLocation
 
-class WeatherDataModel {
+struct WeatherDataModel {
     
     // Store data from DarkSky api for use in NowViewController
     var currentTemperature: Int?

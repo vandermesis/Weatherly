@@ -27,12 +27,12 @@ class FavoritesViewController: UIViewController {
     
     // MARK: - Constants and Variables
     // Constants:
-    let geoCoder = CLGeocoder()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let geoCoder = CLGeocoder()
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     // Variables
     var delegate: CanReceive?
-    var favorites = [Favorites]()
+    private var favorites = [Favorites]()
     var dayTimeFromNowVC: Bool?
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var favoritesTableView: UITableView!
@@ -40,7 +40,7 @@ class FavoritesViewController: UIViewController {
     
     // MARK: - Buttons
     // Navigation buttons appearance
-    func roundBorder(button: UIButton) {
+    private func roundBorder(button: UIButton) {
         button.backgroundColor = .clear
         button.layer.cornerRadius = 30
         button.layer.borderWidth = 1
@@ -89,7 +89,7 @@ class FavoritesViewController: UIViewController {
     
     //MARK: - CRUD - Save and Load user favorite cities with CoreData
     // Read data from database
-    func loadCities() {
+    private func loadCities() {
         let request: NSFetchRequest<Favorites> = Favorites.fetchRequest()
         do {
             favorites = try context.fetch(request)
@@ -100,7 +100,7 @@ class FavoritesViewController: UIViewController {
     }
     
     // Save data to database
-    func saveCities() {
+    private func saveCities() {
         do {
             try context.save()
         } catch {
@@ -113,7 +113,7 @@ class FavoritesViewController: UIViewController {
 extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     
     // Setup and configure tableview
-    func configureTableView() {
+    private func configureTableView() {
         favoritesTableView.delegate = self
         favoritesTableView.dataSource = self
         favoritesTableView.separatorStyle = .none

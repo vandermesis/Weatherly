@@ -28,7 +28,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     // MARK: - Buttons
     // Button appearance
-    func roundBorder(button: UIButton) {
+    private func roundBorder(button: UIButton) {
         button.backgroundColor = .clear
         button.layer.cornerRadius = 30
         button.layer.borderWidth = 1
@@ -47,7 +47,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - TableView methods
     
     // Setup and configure tableview
-    func configureTableView() {
+    private func configureTableView() {
         futureTableView.delegate = self
         futureTableView.dataSource = self
         futureTableView.register(UINib(nibName: "FutureCell", bundle: nil), forCellReuseIdentifier: "futureCell")
@@ -98,7 +98,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // Filter to invert colors of images
-    func invertImageColors(weatherIcon: UIImage) -> UIImage? {
+    private func invertImageColors(weatherIcon: UIImage) -> UIImage? {
         let beginImage = CIImage(image: weatherIcon)
         var newImage: UIImage?
         if let filter = CIFilter(name: "CIColorInvert") {

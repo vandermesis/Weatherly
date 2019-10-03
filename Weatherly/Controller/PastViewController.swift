@@ -24,9 +24,9 @@ class PastViewController: UIViewController {
     
     // MARK: - Constants and Variables
     // Constants
-    let pastDataModel = PastDataModel()
     
     //Variables
+    private var pastDataModel = PastDataModel()
     var cityFromNowVC: String?
     var tempFromNowVC: Int?
     var iconFromNowVC: String?
@@ -65,7 +65,7 @@ class PastViewController: UIViewController {
     
     // MARK: - Buttons
     // Button appearance
-    func roundBorder(button: UIButton) {
+    private func roundBorder(button: UIButton) {
         button.backgroundColor = .clear
         button.layer.cornerRadius = 30
         button.layer.borderWidth = 1
@@ -84,7 +84,7 @@ class PastViewController: UIViewController {
     // MARK: - Update User Interface
     
     // Update UI with current data
-    func updateUIWithPastWeatherData() {
+    private func updateUIWithPastWeatherData() {
         pastTempLabel.text = String(pastDataModel.pastTemperature ?? 99)
         if dayTimeFromNowVC ?? true {
             pastWeatherIcon.image = UIImage(named: pastDataModel.pastIcon ?? "clear-day")
@@ -95,7 +95,7 @@ class PastViewController: UIViewController {
     }
     
     // Invert FutureVC colors during night time
-    func updateUIColors() {
+    private func updateUIColors() {
         if dayTimeFromNowVC ?? true {
             self.view.backgroundColor = .white
             pastTempLabel.textColor = .black
@@ -117,7 +117,7 @@ class PastViewController: UIViewController {
     }
     
     // Filter to invert colors of images
-    func invertImageColors(weatherIcon: UIImage) -> UIImage? {
+    private func invertImageColors(weatherIcon: UIImage) -> UIImage? {
         let beginImage = CIImage(image: weatherIcon)
         var newImage: UIImage?
         if let filter = CIFilter(name: "CIColorInvert") {

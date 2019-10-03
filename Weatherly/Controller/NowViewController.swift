@@ -17,11 +17,15 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
     }
     
+    fileprivate func extractedFunc() {
+        // Setup buttons with round borders
+        roundBorder(button: pastButton)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        // Setup buttons with round borders
-        roundBorder(button: pastButton)
+        extractedFunc()
         roundBorder(button: futureButton)
         
         // Setup notification to trigger refresh current location and data when application come back from the backgroudn
@@ -34,10 +38,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
 
     // MARK: - Constants and Variables
     // Constants
-    let locationManager = CLLocationManager()
-    let geoCoder = CLGeocoder()
-    let weatherDataModel = WeatherDataModel()
-    let dateFormatter = DateFormatter()
+    private let locationManager = CLLocationManager()
+    private let geoCoder = CLGeocoder()
+    private let dateFormatter = DateFormatter()
     
     // Variables:
     @IBOutlet weak var tempLabel: UILabel!
@@ -46,10 +49,11 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var nowTableView: UITableView!
     @IBOutlet weak var pastButton: UIButton!
     @IBOutlet weak var futureButton: UIButton!
-    var favoritesMode = false
+    private var favoritesMode = false
+    private var weatherDataModel = WeatherDataModel()
     
     // MARK: - Configure Location Manager and start updating location data
-    @objc func updateCurrentLocation() {
+    @objc private func updateCurrentLocation() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -128,7 +132,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     //MARK: - Get current weather data from DarkSkyAPI
-    func getWeatherData(atLocation: CLLocation) {
+    private func getWeatherData(atLocation: CLLocation) {
         
         // Configure request
         SwiftSky.secret = "44c90ae04d6f86164e505b107b70e5f6"
@@ -163,7 +167,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // MARK: - Update User Interface with current data
-    func updateUI() {
+    private func updateUI() {
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
         cityButtonLabel.setTitle(weatherDataModel.currentCity!, for: .normal)
 //        print(cityButtonLabel.titleLabel?.attributedText)
@@ -173,7 +177,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Buttons
     // Navigation buttons appearance
-    func roundBorder(button: UIButton) {
+    private func roundBorder(button: UIButton) {
         button.backgroundColor = .clear
         button.layer.cornerRadius = 30
         button.layer.borderWidth = 1
@@ -228,7 +232,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Invert UI colors during night time
     // FIXME: Refactor needed
-    func dayTimeCheck(currentTime: Date, sunset: Date?, sunrise: Date?) {
+    private func dayTimeCheck(currentTime: Date, sunset: Date?, sunrise: Date?) {
         dateFormatter.dateFormat = "HH"
         let sunriseHour = dateFormatter.string(from: sunrise!)
         let sunsetHour = dateFormatter.string(from: sunset!)
@@ -242,7 +246,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         print("daytimeBool: \(weatherDataModel.dayTime!)")
     }
 
-    func changeUIColors() {
+    private func changeUIColors() {
         if weatherDataModel.dayTime ?? true {
             self.view.backgroundColor = .white
             tempLabel.textColor = .black
@@ -265,7 +269,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     // Filter to invert colors of images
-    func invertImageColors(weatherIcon: UIImage) -> UIImage? {
+    private func invertImageColors(weatherIcon: UIImage) -> UIImage? {
         let beginImage = CIImage(image: weatherIcon)
         var newImage: UIImage?
         if let filter = CIFilter(name: "CIColorInvert") {
@@ -281,7 +285,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
 extension NowViewController: UITableViewDelegate, UITableViewDataSource {
     
     // Setup and configure tableview
-    func configureTableView() {
+    private func configureTableView() {
         nowTableView.delegate = self
         nowTableView.dataSource = self
         nowTableView.register(UINib(nibName: "NowCell", bundle: nil), forCellReuseIdentifier: "nowCell")
