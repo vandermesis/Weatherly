@@ -25,6 +25,8 @@
 		BADF86FC23119B3F00785403 /* FutureTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF86FB23119B3F00785403 /* FutureTableViewController.swift */; };
 		BADF86FE23119F4600785403 /* PastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF86FD23119F4600785403 /* PastViewController.swift */; };
 		BADF87032311A4E600785403 /* WeatherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADF87022311A4E600785403 /* WeatherDataModel.swift */; };
+		BAE8051D2348F6AD0072F456 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE8051C2348F6AD0072F456 /* Secrets.swift */; };
+		BAE8051F2348F6B90072F456 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = BAE8051E2348F6B90072F456 /* Secrets.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		BADF86FB23119B3F00785403 /* FutureTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureTableViewController.swift; sourceTree = "<group>"; };
 		BADF86FD23119F4600785403 /* PastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastViewController.swift; sourceTree = "<group>"; };
 		BADF87022311A4E600785403 /* WeatherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataModel.swift; sourceTree = "<group>"; };
+		BAE8051C2348F6AD0072F456 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		BAE8051E2348F6B90072F456 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 				BADF86FF23119F7200785403 /* Controller */,
 				BADF870123119F9A00785403 /* SupportingFiles */,
 				BA958F32231011F800985D80 /* Info.plist */,
+				BAE805202348F7930072F456 /* Secrets */,
 			);
 			path = Weatherly;
 			sourceTree = "<group>";
@@ -170,6 +175,15 @@
 				BA28D1F02326769D00481DC5 /* FavoritesModel.xcdatamodeld */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BAE805202348F7930072F456 /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				BAE8051C2348F6AD0072F456 /* Secrets.swift */,
+				BAE8051E2348F6B90072F456 /* Secrets.plist */,
+			);
+			path = Secrets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAE8051F2348F6B90072F456 /* Secrets.plist in Resources */,
 				BA958F31231011F800985D80 /* LaunchScreen.storyboard in Resources */,
 				BAB57C262315B757002C6DE2 /* NowCell.xib in Resources */,
 				BA6C651C2311C461009F41E1 /* Demo in Resources */,
@@ -301,6 +316,7 @@
 				BA882A502315560500D9D483 /* PastDataModel.swift in Sources */,
 				BADF86FE23119F4600785403 /* PastViewController.swift in Sources */,
 				BADF86FC23119B3F00785403 /* FutureTableViewController.swift in Sources */,
+				BAE8051D2348F6AD0072F456 /* Secrets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

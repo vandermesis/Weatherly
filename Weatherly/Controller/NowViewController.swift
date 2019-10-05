@@ -17,23 +17,24 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
     }
     
-    fileprivate func extractedFunc() {
-        // Setup buttons with round borders
-        roundBorder(button: pastButton)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        extractedFunc()
+        // Get apiKey
+        decodeKey()
+        
+        // Setup buttons with round borders
+        roundBorder(button: pastButton)
         roundBorder(button: futureButton)
+        
+        configureTableView()
         
         // Setup notification to trigger refresh current location and data when application come back from the backgroudn
         if favoritesMode == false {
             NotificationCenter.default.addObserver(self, selector:#selector(updateCurrentLocation), name: UIApplication.didBecomeActiveNotification, object: nil)
             updateCurrentLocation()
         }
-        configureTableView()
+        
     }
 
     // MARK: - Constants and Variables
@@ -51,6 +52,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var futureButton: UIButton!
     private var favoritesMode = false
     private var weatherDataModel = WeatherDataModel()
+    private var secret: Secrets?
     
     // MARK: - Configure Location Manager and start updating location data
     @objc private func updateCurrentLocation() {
@@ -58,6 +60,17 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.startUpdatingLocation()
+    }
+    
+    // MARK: - Get apiKey
+    private func decodeKey() {
+        let filePath = Bundle.main.path(forResource: "Secrets", ofType: "plist")
+        do {
+            let data = try Data(contentsOf: URL(fileURLWithPath: filePath!))
+            secret = try PropertyListDecoder().decode(Secrets.self, from: data)
+        } catch {
+            print("Error in \(#function): \(error.localizedDescription)")
+        }
     }
     
     //MARK: - Get current location data
@@ -135,9 +148,10 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     private func getWeatherData(atLocation: CLLocation) {
         
         // Configure request
-        SwiftSky.secret = "44c90ae04d6f86164e505b107b70e5f6"
+        guard let key = secret?.apiKey else { fatalError("No api key)") }
+        SwiftSky.secret = key
         SwiftSky.language = .english
-//        SwiftSky.locale = .autoupdatingCurrent
+        SwiftSky.locale = .autoupdatingCurrent
         SwiftSky.units.temperature = .celsius
         
         // Request data
@@ -169,7 +183,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Update User Interface with current data
     private func updateUI() {
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
-        cityButtonLabel.setTitle(weatherDataModel.currentCity!, for: .normal)
+        cityButtonLabel.setTitle(weatherDataModel.currentCity ?? "", for: .normal)
 //        print(cityButtonLabel.titleLabel?.attributedText)
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
         changeUIColors()

@@ -107,4 +107,7 @@ fastlane/test_output
 
 iOSInjectionProject/
 
+# Secrets
+Secrets.plist
+
 # End of https://www.gitignore.io/api/swift,macos
