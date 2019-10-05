@@ -148,12 +148,12 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     private func getWeatherData(atLocation: CLLocation) {
         
         // Configure request
-        guard let key = secret?.apiKey else { fatalError("No api key)") }
-        SwiftSky.secret = key
-        SwiftSky.language = .english
-        SwiftSky.locale = .autoupdatingCurrent
-        SwiftSky.units.temperature = .celsius
-        
+        if let key = secret?.apiKey {
+            SwiftSky.secret = key
+            SwiftSky.language = .english
+            SwiftSky.locale = .autoupdatingCurrent
+            SwiftSky.units.temperature = .celsius
+        }
         // Request data
         SVProgressHUD.show()
         SwiftSky.get([.current, .hours, .days], at: atLocation) { (result) in
@@ -183,7 +183,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Update User Interface with current data
     private func updateUI() {
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
-        cityButtonLabel.setTitle(weatherDataModel.currentCity ?? "", for: .normal)
+        cityButtonLabel.setTitle(weatherDataModel.currentCity ?? "Luna", for: .normal)
 //        print(cityButtonLabel.titleLabel?.attributedText)
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
         changeUIColors()
