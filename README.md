@@ -35,9 +35,28 @@ Check current, past and future weather for different locations.
 - [x] Let user choose location manually
 - [x] Persist user favorite locations
 - [ ] Tailor UI and UX
+- [ ] Unit Tests
+
+## Api key
+
+In order run this app create Secret.plist file as in an example and put it in Secrets folder.
+
+Replace XXX with your api-key. You can get free DarkSky api-key here: *[DarkSky](https://darksky.net/dev)*
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>apiKey</key>
+    <string>XXX</string>
+</dict>
+</plist>
+```
 
 ## Requirements
-- Xcode 10.3 with latest iOS SDK (12.4)
+
+- Xcode 10.3 with iOS SDK (12.4)
 - CocoaPods 1.7.5 or higher
 
 ## Credits
