@@ -24,6 +24,7 @@ Check current, past and future weather for different locations.
 - CoreData
 - DateFormatter
 - NotificationCenter
+- Swift Package Manager
 
 ## To-do
 
@@ -56,14 +57,17 @@ Replace XXX with your api-key. You can get free DarkSky api-key here: *[DarkSky]
 
 ## Requirements
 
-- Xcode 10.3 with iOS SDK (12.4)
-- CocoaPods 1.7.5 or higher
+- Xcode 11 with iOS SDK (13.1)
+- Swift Package Manager
+- ~~CocoaPods 1.7.5 or higher~~
 
 ## Credits
 - *[DarkSky](https://darksky.net/dev)*
 - *[Alamofire](https://github.com/Alamofire/Alamofire)*
 - *[SwiftSky](https://github.com/appcompany/SwiftSky)*
-- *[SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD)*
+- *[JGProgressHUD](https://github.com/JonasGessner/JGProgressHUD)*
+- *[~~SVProgressHUD~~](https://github.com/SVProgressHUD/SVProgressHUD)*
+
 
 ## Who is who
 Marek Skrzelowski, mskrzelowski@vandermesis.com
