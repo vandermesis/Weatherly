@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 import SwiftSky
-import SVProgressHUD
+import JGProgressHUD
 
 class NowViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -42,6 +42,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private let geoCoder = CLGeocoder()
     private let dateFormatter = DateFormatter()
+    private let hud = JGProgressHUD(style: .dark)
     
     // Variables:
     @IBOutlet weak var tempLabel: UILabel!
@@ -155,7 +156,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             SwiftSky.units.temperature = .celsius
         }
         // Request data
-        SVProgressHUD.show()
+        hud.show(in: self.view)
         SwiftSky.get([.current, .hours, .days], at: atLocation) { (result) in
             switch result {
                 
@@ -175,7 +176,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
                 print("Error geting data from DarkSky: \(error)")
                 self.cityButtonLabel.setTitle("Unavaiable", for: .normal)
             }
-            SVProgressHUD.dismiss()
+            self.hud.dismiss()
             self.updateUI()
         }
     }
