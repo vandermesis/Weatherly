@@ -24,8 +24,8 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         decodeKey()
         
         // Setup buttons with round borders
-        roundBorder(button: pastButton)
-        roundBorder(button: futureButton)
+        pastButton.roundBorder()
+        futureButton.roundBorder()
         
         configureTableView()
         
@@ -191,16 +191,6 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Buttons
     // Navigation buttons appearance
-    private func roundBorder(button: UIButton) {
-        button.backgroundColor = .clear
-        button.layer.cornerRadius = 30
-        button.layer.borderWidth = 1
-        if weatherDataModel.dayTime ?? true {
-            button.layer.borderColor = UIColor.black.cgColor
-        } else {
-            button.layer.borderColor = UIColor.white.cgColor
-        }
-    }
     
     // Buttons actions
     // Go to FutureVC or PastVC
@@ -364,5 +354,14 @@ extension NowViewController: CanReceive {
                 self.getWeatherData(atLocation: cityLocation)
             }
         }
+    }
+}
+
+extension UIButton {
+    func roundBorder() {
+        self.backgroundColor = .clear
+        self.clipsToBounds = true
+        self.layer.cornerRadius = self.frame.size.width / 2
+        self.layer.borderWidth = 1
     }
 }

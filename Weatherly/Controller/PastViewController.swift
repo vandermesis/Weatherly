@@ -18,7 +18,7 @@ class PastViewController: UIViewController {
         pastCityLabel.text = cityFromNowVC
         pastTempLabel.text = String(tempFromNowVC!)
         pastWeatherIcon.image = UIImage(named: iconFromNowVC!)
-        roundBorder(button: nowButton)
+        nowButton.roundBorder()
         updateUIColors()
     }
     
@@ -64,18 +64,7 @@ class PastViewController: UIViewController {
     }
     
     // MARK: - Buttons
-    // Button appearance
-    private func roundBorder(button: UIButton) {
-        button.backgroundColor = .clear
-        button.layer.cornerRadius = 30
-        button.layer.borderWidth = 1
-        if dayTimeFromNowVC ?? true {
-            button.layer.borderColor = UIColor.black.cgColor
-        } else {
-            button.layer.borderColor = UIColor.white.cgColor
-        }
-        
-    }
+    
     // Button action - dismiss PastVC and go back to NowVC
     @IBAction func nowButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

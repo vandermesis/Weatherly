@@ -15,7 +15,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         futureCityLabel.text = cityFromNowVC
         configureTableView()
-        roundBorder(button: nowButton)
+        nowButton.roundBorder()
     }
     
     // MARK: - Variables
@@ -27,18 +27,7 @@ class FutureTableViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var nowButton: UIButton!
     
     // MARK: - Buttons
-    // Button appearance
-    private func roundBorder(button: UIButton) {
-        button.backgroundColor = .clear
-        button.layer.cornerRadius = 30
-        button.layer.borderWidth = 1
-        if dayTimeFromNowVC ?? true {
-            button.layer.borderColor = UIColor.black.cgColor
-        } else {
-            button.layer.borderColor = UIColor.white.cgColor
-        }
-        
-    }
+    
     // Button action - dismiss FutureVC and go back to NowVC
     @IBAction func nowButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
