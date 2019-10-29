@@ -32,7 +32,6 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         // Setup notification to trigger refresh current location and data when application come back from the backgroudn
         if favoritesMode == false {
             NotificationCenter.default.addObserver(self, selector:#selector(updateCurrentLocation), name: UIApplication.didBecomeActiveNotification, object: nil)
-            updateCurrentLocation()
         }
         
     }

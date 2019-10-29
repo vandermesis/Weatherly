@@ -35,12 +35,14 @@ Check current, past and future weather for different locations.
 - [x] UI color inverse based on time of the day
 - [x] Let user choose location manually
 - [x] Persist user favorite locations
+- [ ] Replace "Change UI colors based on daytime" with native iOS 13 darkmode
+- [ ] Use of MVC and SOLID design patterns
 - [ ] Tailor UI and UX
 - [ ] Unit Tests
 
 ## Api key
 
-In order run this app create Secret.plist file as in an example and put it in Secrets folder.
+In order to run this app create Secret.plist file with text as in an example and put it in Secrets folder.
 
 Replace XXX with your api-key. You can get free DarkSky api-key here: *[DarkSky](https://darksky.net/dev)*
 
