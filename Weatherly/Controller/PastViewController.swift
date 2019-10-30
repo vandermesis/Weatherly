@@ -19,7 +19,6 @@ class PastViewController: UIViewController {
         pastTempLabel.text = String(tempFromNowVC!)
         pastWeatherIcon.image = UIImage(named: iconFromNowVC!)
         nowButton.roundBorder()
-        updateUIColors()
     }
     
     // MARK: - Constants and Variables
@@ -31,7 +30,6 @@ class PastViewController: UIViewController {
     var tempFromNowVC: Int?
     var iconFromNowVC: String?
     var locationFromNowVC: CLLocation?
-    var dayTimeFromNowVC: Bool?
     @IBOutlet weak var pastTempLabel: UILabel!
     @IBOutlet weak var pastWeatherIcon: UIImageView!
     @IBOutlet weak var pastCityLabel: UILabel!
@@ -75,45 +73,6 @@ class PastViewController: UIViewController {
     // Update UI with current data
     private func updateUIWithPastWeatherData() {
         pastTempLabel.text = String(pastDataModel.pastTemperature ?? 99)
-        if dayTimeFromNowVC ?? true {
-            pastWeatherIcon.image = UIImage(named: pastDataModel.pastIcon ?? "clear-day")
-        } else {
-            pastWeatherIcon.image = invertImageColors(weatherIcon: UIImage(named: pastDataModel.pastIcon ?? "clear-day")!)
-        }
-        
+        pastWeatherIcon.image = UIImage(named: pastDataModel.pastIcon ?? "clear-day")
     }
-    
-    // Invert FutureVC colors during night time
-    private func updateUIColors() {
-        if dayTimeFromNowVC ?? true {
-            self.view.backgroundColor = .white
-            pastTempLabel.textColor = .black
-            pastCityLabel.textColor = .black
-            datePicker.backgroundColor = .white
-            datePicker.tintColor = .black
-            datePicker.setValue(UIColor.black, forKeyPath: "textColor")
-            pastWeatherIcon.image = UIImage(named: iconFromNowVC ?? "clear-day")
-            nowButton.setTitleColor(.black, for: .normal)
-        } else {
-            self.view.backgroundColor = .black
-            pastTempLabel.textColor = .white
-            pastCityLabel.textColor = .white
-            datePicker.backgroundColor = .black
-            datePicker.setValue(UIColor.white, forKeyPath: "textColor")
-            nowButton.setTitleColor(.white, for: .normal)
-            pastWeatherIcon.image = invertImageColors(weatherIcon: UIImage(named: iconFromNowVC ?? "clear-day")!)
-        }
-    }
-    
-    // Filter to invert colors of images
-    private func invertImageColors(weatherIcon: UIImage) -> UIImage? {
-        let beginImage = CIImage(image: weatherIcon)
-        var newImage: UIImage?
-        if let filter = CIFilter(name: "CIColorInvert") {
-            filter.setValue(beginImage, forKey: kCIInputImageKey)
-            newImage = UIImage(ciImage: filter.outputImage!)
-        }
-        return newImage
-    }
-
 }

@@ -165,9 +165,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
                 self.weatherDataModel.currentIcon = forecast.current?.icon ?? "clear-day"
                 self.weatherDataModel.currentDayHours = forecast.hours?.points
                 self.weatherDataModel.dayForecast = forecast.days?.points
-                self.dayTimeCheck(currentTime: forecast.current!.time, sunset: forecast.days?.points[0].sunset, sunrise: forecast.days?.points[0].sunrise)
                 self.nowTableView.reloadData()
-//                print(self.weatherDataModel.dayForecast!)
                 print("Current time from DarkSky:", forecast.current!.time.description)
                 
             // If errors with obtaining weather data will occure update cityLabel
@@ -184,9 +182,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     private func updateUI() {
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
         cityButtonLabel.setTitle(weatherDataModel.currentCity ?? "Luna", for: .normal)
-//        print(cityButtonLabel.titleLabel?.attributedText)
         weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
-        changeUIColors()
     }
     
     // MARK: - Buttons
@@ -216,7 +212,6 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         if segue.identifier == "gotoFuture" {
             let futureVC = segue.destination as! FutureTableViewController
             futureVC.weatherDataForecast = weatherDataModel.dayForecast
-            futureVC.dayTimeFromNowVC = weatherDataModel.dayTime
             futureVC.cityFromNowVC = weatherDataModel.currentCity
         }
         if segue.identifier == "gotoPast" {
@@ -225,64 +220,12 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             pastVC.tempFromNowVC = weatherDataModel.currentTemperature
             pastVC.iconFromNowVC = weatherDataModel.currentIcon
             pastVC.locationFromNowVC = weatherDataModel.currentLocation
-            pastVC.dayTimeFromNowVC = weatherDataModel.dayTime
         }
         if segue.identifier == "gotoFavorites" {
             let favoritesVC = segue.destination as! FavoritesViewController
             favoritesVC.delegate = self
-            favoritesVC.dayTimeFromNowVC = weatherDataModel.dayTime
         }
     }
-    
-    // MARK: - Invert UI colors during night time
-    // FIXME: Refactor needed
-    private func dayTimeCheck(currentTime: Date, sunset: Date?, sunrise: Date?) {
-        dateFormatter.dateFormat = "HH"
-        let sunriseHour = dateFormatter.string(from: sunrise!)
-        let sunsetHour = dateFormatter.string(from: sunset!)
-        let currentHour = dateFormatter.string(from: currentTime)
-        if sunriseHour < sunsetHour {
-            weatherDataModel.dayTime = sunriseHour...sunsetHour ~= currentHour
-        } else {
-            weatherDataModel.dayTime = true
-        }
-        print("currentHour:\(currentHour), sunriseHour:\(sunriseHour), sunsetHour:\(sunsetHour)")
-        print("daytimeBool: \(weatherDataModel.dayTime!)")
-    }
-
-    private func changeUIColors() {
-        if weatherDataModel.dayTime ?? true {
-            self.view.backgroundColor = .white
-            tempLabel.textColor = .black
-            cityButtonLabel.setTitleColor(.black, for: .normal)
-            weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
-            pastButton.setTitleColor(.black, for: .normal)
-            futureButton.setTitleColor(.black, for: .normal)
-            pastButton.layer.borderColor = UIColor.black.cgColor
-            futureButton.layer.borderColor = UIColor.black.cgColor
-        } else {
-            self.view.backgroundColor = .black
-            tempLabel.textColor = .white
-            cityButtonLabel.setTitleColor(.white, for: .normal)
-            weatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataModel.currentIcon!)!)
-            pastButton.setTitleColor(.white, for: .normal)
-            futureButton.setTitleColor(.white, for: .normal)
-            pastButton.layer.borderColor = UIColor.white.cgColor
-            futureButton.layer.borderColor = UIColor.white.cgColor
-        }
-    }
-    
-    // Filter to invert colors of images
-    private func invertImageColors(weatherIcon: UIImage) -> UIImage? {
-        let beginImage = CIImage(image: weatherIcon)
-        var newImage: UIImage?
-        if let filter = CIFilter(name: "CIColorInvert") {
-            filter.setValue(beginImage, forKey: kCIInputImageKey)
-            newImage = UIImage(ciImage: filter.outputImage!)
-        }
-        return newImage
-    }
-    
 }
 
 // MARK: TableView methods
@@ -309,27 +252,8 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
         cell.nowHour.text = dateFormatter.string(from: weatherDataModel.currentDayHours?[indexPath.row].time ?? Date())
         cell.nowTemperature.text = String(Int(round(weatherDataModel.currentDayHours?[indexPath.row].temperature?.current?.value ?? 99))) + "°"
         cell.nowPrecipitation.text = String(weatherDataModel.currentDayHours?[indexPath.row].precipitation?.probability?.value ?? 99) + "%"
-        
-        // Invert NowCell colors during night time
-        if weatherDataModel.dayTime ?? true {
-            nowTableView.backgroundColor = .white
-            cityButtonLabel.titleLabel?.textColor = .black
-            cell.backgroundColor = .white
-            cell.nowHour.textColor = .black
-            cell.nowTemperature.textColor = .black
-            cell.nowPrecipitation.textColor = .black
-            cell.nowWeatherIcon.image = UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")
-            cell.umbrellaIcon.image = UIImage(named: "umbrella")
-        } else {
-            nowTableView.backgroundColor = .black
-            cityButtonLabel.titleLabel?.textColor = .white
-            cell.backgroundColor = .black
-            cell.nowHour.textColor = .white
-            cell.nowTemperature.textColor = .white
-            cell.nowPrecipitation.textColor = .white
-            cell.nowWeatherIcon.image = invertImageColors(weatherIcon: UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")!)
-            cell.umbrellaIcon.image = invertImageColors(weatherIcon: UIImage(named: "umbrella")!)
-        }
+        cell.nowWeatherIcon.image = UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")
+        cell.umbrellaIcon.image = UIImage(named: "umbrella")
         return cell
     }
 }
@@ -359,9 +283,9 @@ extension NowViewController: CanReceive {
 
 extension UIButton {
     func roundBorder() {
-        self.backgroundColor = .clear
         self.clipsToBounds = true
         self.layer.cornerRadius = self.frame.size.width / 2
         self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.label.cgColor
     }
 }

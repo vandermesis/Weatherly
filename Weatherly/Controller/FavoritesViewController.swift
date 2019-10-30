@@ -21,7 +21,7 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        roundBorder(button: addButtonLabel)
+        addButtonLabel.roundBorder()
         loadCities()
     }
     
@@ -33,23 +33,11 @@ class FavoritesViewController: UIViewController {
     // Variables
     var delegate: CanReceive?
     private var favorites = [Favorites]()
-    var dayTimeFromNowVC: Bool?
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var favoritesTableView: UITableView!
     @IBOutlet weak var addButtonLabel: UIButton!
     
     // MARK: - Buttons
-    // Navigation buttons appearance
-    private func roundBorder(button: UIButton) {
-        button.backgroundColor = .clear
-        button.layer.cornerRadius = 30
-        button.layer.borderWidth = 1
-        if dayTimeFromNowVC ?? true {
-            button.layer.borderColor = UIColor.black.cgColor
-        } else {
-            button.layer.borderColor = UIColor.white.cgColor
-        }
-    }
     
     // Buttons actions
     // Add city to favorites
@@ -129,22 +117,6 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = favoritesTableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath)
         cell.textLabel?.text = favorites[indexPath.row].city
-        
-        // Invert FutureVC colors during night time
-        if dayTimeFromNowVC ?? true {
-            self.view.backgroundColor = .white
-            favoritesTableView.backgroundColor = .white
-            cell.textLabel?.textColor = .black
-            cell.backgroundColor = .white
-            addButtonLabel.setTitleColor(.black, for: .normal)
-        } else {
-            self.view.backgroundColor = .black
-            favoritesTableView.backgroundColor = .black
-            cell.textLabel?.textColor = .white
-            cell.backgroundColor = .black
-            addButtonLabel.setTitleColor(.white, for: .normal)
-        }
-        
         return cell
     }
 
