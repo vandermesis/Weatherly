@@ -17,6 +17,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8vh-BQ-3eh">
                                 <rect key="frame" x="157" y="157" width="100" height="100"/>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="3jS-M1-10I"/>
                                     <constraint firstAttribute="width" constant="100" id="7WB-Fc-ZzZ"/>

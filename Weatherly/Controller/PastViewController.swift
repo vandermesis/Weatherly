@@ -25,7 +25,7 @@ class PastViewController: UIViewController {
     // Constants
     private let hud = JGProgressHUD(style: .dark)
     //Variables
-    private var pastDataModel = PastDataModel()
+    private var weatherDataModel = WeatherDataModel()
     var cityFromNowVC: String?
     var tempFromNowVC: Int?
     var iconFromNowVC: String?
@@ -46,8 +46,8 @@ class PastViewController: UIViewController {
             
             // Update WeatherDataModel if request from api will success
             case .success(let forecast):
-                self.pastDataModel.pastTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
-                self.pastDataModel.pastIcon = forecast.current?.icon ?? "clear-day"
+                self.weatherDataModel.pastTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
+                self.weatherDataModel.pastIcon = forecast.current?.icon ?? "clear-day"
                 self.updateUIWithPastWeatherData()
                 print(forecast.current!.time.description)
                 print("locationFromVC", self.locationFromNowVC!)
@@ -72,7 +72,7 @@ class PastViewController: UIViewController {
     
     // Update UI with current data
     private func updateUIWithPastWeatherData() {
-        pastTempLabel.text = String(pastDataModel.pastTemperature ?? 99)
-        pastWeatherIcon.image = UIImage(named: pastDataModel.pastIcon ?? "clear-day")
+        pastTempLabel.text = String(weatherDataModel.pastTemperature ?? 99)
+        pastWeatherIcon.image = UIImage(named: weatherDataModel.pastIcon ?? "clear-day")
     }
 }

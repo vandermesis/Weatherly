@@ -182,7 +182,7 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     private func updateUI() {
         tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
         cityButtonLabel.setTitle(weatherDataModel.currentCity ?? "Luna", for: .normal)
-        weatherIcon.image = UIImage(named: weatherDataModel.currentIcon!)
+        weatherIcon.image = UIImage(systemName: weatherDataModel.convert(icon: weatherDataModel.currentIcon!))
     }
     
     // MARK: - Buttons
@@ -253,7 +253,7 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
         cell.nowTemperature.text = String(Int(round(weatherDataModel.currentDayHours?[indexPath.row].temperature?.current?.value ?? 99))) + "°"
         cell.nowPrecipitation.text = String(weatherDataModel.currentDayHours?[indexPath.row].precipitation?.probability?.value ?? 99) + "%"
         cell.nowWeatherIcon.image = UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")
-        cell.umbrellaIcon.image = UIImage(named: "umbrella")
+        cell.umbrellaIcon.image = UIImage(systemName: "umbrella")
         return cell
     }
 }
