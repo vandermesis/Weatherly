@@ -17,7 +17,7 @@ class PastViewController: UIViewController {
         super.viewDidLoad()
         pastCityLabel.text = cityFromNowVC
         pastTempLabel.text = String(tempFromNowVC!)
-        pastWeatherIcon.image = UIImage(named: iconFromNowVC!)
+        pastWeatherIcon.image = UIImage(systemName: iconFromNowVC!)
         nowButton.roundBorder()
     }
     
@@ -46,8 +46,8 @@ class PastViewController: UIViewController {
             
             // Update WeatherDataModel if request from api will success
             case .success(let forecast):
-                self.weatherDataModel.pastTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
-                self.weatherDataModel.pastIcon = forecast.current?.icon ?? "clear-day"
+                self.weatherDataModel.temperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
+                self.weatherDataModel.icon = forecast.current?.icon ?? "clear-day"
                 self.updateUIWithPastWeatherData()
                 print(forecast.current!.time.description)
                 print("locationFromVC", self.locationFromNowVC!)
@@ -72,7 +72,7 @@ class PastViewController: UIViewController {
     
     // Update UI with current data
     private func updateUIWithPastWeatherData() {
-        pastTempLabel.text = String(weatherDataModel.pastTemperature ?? 99)
-        pastWeatherIcon.image = UIImage(named: weatherDataModel.pastIcon ?? "clear-day")
+        pastTempLabel.text = String(weatherDataModel.temperature ?? 99)
+        pastWeatherIcon.image = UIImage(systemName: weatherDataModel.sfSymbol)
     }
 }

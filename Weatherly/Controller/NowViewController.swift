@@ -82,14 +82,14 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
             
-            // Put currentLocation into WeatherDataModel
-            weatherDataModel.currentLocation = currentLocation
+            // Put location into WeatherDataModel
+            weatherDataModel.location = currentLocation
             
             // Get city name based on current location
             getPlace(for: currentLocation) { (placemark) in
                 guard let placemark = placemark else { return }
                 if let currentCity = placemark.locality {
-                    self.weatherDataModel.currentCity = currentCity
+                    self.weatherDataModel.city = currentCity
                     self.cityButtonLabel.setTitle(currentCity, for: .normal)
                 }
             }
@@ -161,10 +161,10 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
                 
             // Update WeatherDataModel if request from api will success
             case .success(let forecast):
-                self.weatherDataModel.currentTemperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
-                self.weatherDataModel.currentIcon = forecast.current?.icon ?? "clear-day"
-                self.weatherDataModel.currentDayHours = forecast.hours?.points
-                self.weatherDataModel.dayForecast = forecast.days?.points
+                self.weatherDataModel.temperature = Int(round(forecast.current?.temperature?.current?.value ?? 99))
+                self.weatherDataModel.icon = forecast.current?.icon ?? "clear-day"
+                self.weatherDataModel.hours = forecast.hours?.points
+                self.weatherDataModel.days = forecast.days?.points
                 self.nowTableView.reloadData()
                 print("Current time from DarkSky:", forecast.current!.time.description)
                 
@@ -180,9 +180,9 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Update User Interface with current data
     private func updateUI() {
-        tempLabel.text = String(weatherDataModel.currentTemperature ?? 99)
-        cityButtonLabel.setTitle(weatherDataModel.currentCity ?? "Luna", for: .normal)
-        weatherIcon.image = UIImage(systemName: weatherDataModel.convert(icon: weatherDataModel.currentIcon!))
+        tempLabel.text = String(weatherDataModel.temperature ?? 99)
+        cityButtonLabel.setTitle(weatherDataModel.city ?? "Luna", for: .normal)
+        weatherIcon.image = UIImage(systemName: weatherDataModel.sfSymbol)
     }
     
     // MARK: - Buttons
@@ -191,13 +191,13 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     // Buttons actions
     // Go to FutureVC or PastVC
     @IBAction func futureButtonPressed(_ sender: UIButton) {
-        if weatherDataModel.dayForecast != nil {
+        if weatherDataModel.days != nil {
             performSegue(withIdentifier: "gotoFuture", sender: self)
         }
     }
     
     @IBAction func pastButtonPressed(_ sender: Any) {
-        if weatherDataModel.currentTemperature != nil {
+        if weatherDataModel.temperature != nil {
             performSegue(withIdentifier: "gotoPast", sender: self)
         }
     }
@@ -211,15 +211,15 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoFuture" {
             let futureVC = segue.destination as! FutureTableViewController
-            futureVC.weatherDataForecast = weatherDataModel.dayForecast
-            futureVC.cityFromNowVC = weatherDataModel.currentCity
+            futureVC.weatherDataForecast = weatherDataModel.days
+            futureVC.cityFromNowVC = weatherDataModel.city
         }
         if segue.identifier == "gotoPast" {
             let pastVC = segue.destination as! PastViewController
-            pastVC.cityFromNowVC = weatherDataModel.currentCity
-            pastVC.tempFromNowVC = weatherDataModel.currentTemperature
-            pastVC.iconFromNowVC = weatherDataModel.currentIcon
-            pastVC.locationFromNowVC = weatherDataModel.currentLocation
+            pastVC.cityFromNowVC = weatherDataModel.city
+            pastVC.tempFromNowVC = weatherDataModel.temperature
+            pastVC.iconFromNowVC = weatherDataModel.sfSymbol
+            pastVC.locationFromNowVC = weatherDataModel.location
         }
         if segue.identifier == "gotoFavorites" {
             let favoritesVC = segue.destination as! FavoritesViewController
@@ -243,16 +243,16 @@ extension NowViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherDataModel.currentDayHours?.count ?? 1
+        return weatherDataModel.hours?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         dateFormatter.dateFormat = "dd.MM HH:00"
         let cell = nowTableView.dequeueReusableCell(withIdentifier: "nowCell", for: indexPath) as! NowCell
-        cell.nowHour.text = dateFormatter.string(from: weatherDataModel.currentDayHours?[indexPath.row].time ?? Date())
-        cell.nowTemperature.text = String(Int(round(weatherDataModel.currentDayHours?[indexPath.row].temperature?.current?.value ?? 99))) + "°"
-        cell.nowPrecipitation.text = String(weatherDataModel.currentDayHours?[indexPath.row].precipitation?.probability?.value ?? 99) + "%"
-        cell.nowWeatherIcon.image = UIImage(named: weatherDataModel.currentDayHours?[indexPath.row].icon ?? "clear-day")
+        cell.nowHour.text = dateFormatter.string(from: weatherDataModel.hours?[indexPath.row].time ?? Date())
+        cell.nowTemperature.text = String(Int(round(weatherDataModel.hours?[indexPath.row].temperature?.current?.value ?? 99))) + "°"
+        cell.nowPrecipitation.text = String(weatherDataModel.hours?[indexPath.row].precipitation?.probability?.value ?? 99) + "%"
+        cell.nowWeatherIcon.image = UIImage(systemName: weatherDataModel.hoursSymbol[indexPath.row])
         cell.umbrellaIcon.image = UIImage(systemName: "umbrella")
         return cell
     }
@@ -270,11 +270,11 @@ extension NowViewController: CanReceive {
     func userEntered(city: String) {
         print("City passed from FavoritesVC: \(city)")
         favoritesMode = true
-        weatherDataModel.currentCity = city
+        weatherDataModel.city = city
         cityButtonLabel.setTitle(city, for: .normal)
         getLocation(forPlaceCalled: city) { (location) in
             if let cityLocation = location {
-                self.weatherDataModel.currentLocation = cityLocation
+                self.weatherDataModel.location = cityLocation
                 self.getWeatherData(atLocation: cityLocation)
             }
         }
