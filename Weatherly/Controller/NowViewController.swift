@@ -33,7 +33,6 @@ class NowViewController: UIViewController, CLLocationManagerDelegate {
         if favoritesMode == false {
             NotificationCenter.default.addObserver(self, selector:#selector(updateCurrentLocation), name: UIApplication.didBecomeActiveNotification, object: nil)
         }
-        
     }
 
     // MARK: - Constants and Variables
